@@ -16,7 +16,7 @@ ENV PYTHONPATH "${PYTHONPATH}:${APPROOT}"
 RUN pip install --no-cache-dir -r requirements.txt
 
 # server
-RUN mkdir -p /var/log/almamater/gunicorn/
+RUN mkdir -p /var/log/ayuh/gunicorn/
 RUN pip install --no-cache-dir gunicorn==21.2.0
 RUN chmod +x ./entrypoint.sh
 CMD ["/bin/bash", "./entrypoint.sh"]
