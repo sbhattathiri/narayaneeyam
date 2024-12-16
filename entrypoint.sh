@@ -33,8 +33,8 @@ gunicorn ayuh.wsgi \
  --bind 0.0.0.0:8000 \
  --env DJANGO_SETTINGS_MODULE="${DJANGO_SETTINGS_MODULE}" \
  --env settings="${DJANGO_SETTINGS_MODULE}" \
- --access-logfile /var/log/almamater/gunicorn/access.log \
- --error-logfile /var/log/almamater/gunicorn/error.log
+ --access-logfile /var/log/ayuh/gunicorn/access.log \
+ --error-logfile /var/log/ayuh/gunicorn/error.log
 
-tail -f /dev/null
+#tail -f /dev/null
 

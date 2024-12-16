@@ -40,6 +40,7 @@ class Patient(BaseModel):
         blank=True,
     )
     phone = PhoneNumberField(
+        region="IN",
         null=True,
         blank=True,
     )
@@ -49,6 +50,7 @@ class Patient(BaseModel):
         blank=True,
     )
     emergency_contact_person_phone = PhoneNumberField(
+        region="IN",
         null=True,
         blank=True,
     )
@@ -59,7 +61,7 @@ class PatientProfile(Patient):
         max_length=255,
         null=True,
         blank=True,
-        db_comment="Name of the Clinic/Hospital which the ayuh_patient goes to",
+        db_comment="Name of the Clinic/Hospital which the patient goes to",
     )
     primary_physician_name = models.CharField(
         max_length=255,
@@ -75,7 +77,7 @@ class PatientProfile(Patient):
         blank=True,
     )
     date_of_birth = models.DateField(null=True, blank=True)
-    blood_type = models.IntegerField(
+    blood_type = models.CharField(
         choices=BloodGroup.choices(),
         null=True,
         blank=True,
