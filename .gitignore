@@ -162,3 +162,7 @@ cython_debug/
 #.idea/
 
 static/
+
+design-inputs/casesheets.docx
+
+.DS_store

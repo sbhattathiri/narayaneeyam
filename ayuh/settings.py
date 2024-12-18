@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+FACILITY_NAME = "narayaneeyam"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,8 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
     "corsheaders",
+    "rest_framework",
     "drf_spectacular",
     "drf_spectacular_sidecar",
     "phonenumber_field",
@@ -64,7 +66,7 @@ ROOT_URLCONF = "ayuh.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -93,6 +95,8 @@ DATABASES = {
         "PORT": "5432",
     }
 }
+
+AUTH_USER_MODEL = "ayuh_common.AyuhUser"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -140,11 +144,67 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "AYUH API",
+    "TITLE": f"{FACILITY_NAME.upper()} API",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_DIST": "SIDECAR",
     "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
     "REDOC_DIST": "SIDECAR",
     "SWAGGER_UI_SETTINGS": {"displayRequestDuration": True},
+}
+
+
+LOGS_DIR = "/var/log/ayuh"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} | {asctime} | {module} | {message}",
+            "style": "{",
+        }
+    },
+    "handlers": {
+        "ayuh_handler": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOGS_DIR, "ayuh.log"),
+            "formatter": "verbose",
+        },
+        "ayuh_common_handler": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOGS_DIR, "ayuh_common.log"),
+            "formatter": "verbose",
+        },
+        "ayuh_patient_handler": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOGS_DIR, "ayuh_patient.log"),
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["ayuh_handler"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        "ayuh": {
+            "handlers": ["ayuh_handler"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        "ayuh_common": {
+            "handlers": ["ayuh_common_handler"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "ayuh_patient": {
+            "handlers": ["ayuh_patient_handler"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
 }
