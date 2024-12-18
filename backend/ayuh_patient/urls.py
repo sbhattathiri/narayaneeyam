@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from ayuh_patient import views
+from backend.ayuh_patient import views
 
 router = DefaultRouter()
 router.register(

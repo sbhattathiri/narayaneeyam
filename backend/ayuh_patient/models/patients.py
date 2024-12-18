@@ -3,7 +3,7 @@ import uuid
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
-from ayuh_common.models import BaseModel
+from backend.ayuh_common.models import BaseModel
 
 
 class Patient(BaseModel):

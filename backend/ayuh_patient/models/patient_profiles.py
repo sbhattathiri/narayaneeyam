@@ -3,8 +3,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from django.contrib.postgres.fields import ArrayField
 
-from ayuh_common.enums import BloodGroup
-from ayuh_patient.models.patients import Patient
+from backend.ayuh_common.enums import BloodGroup
+from backend.ayuh_patient.models.patients import Patient
 
 
 class PatientProfile(Patient):

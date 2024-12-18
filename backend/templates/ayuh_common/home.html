@@ -1,0 +1,105 @@
+{% load static %}
+<link href="{% static 'css/compiled.css' %}" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinic Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex">
+          <a href="#" class="flex items-center text-blue-500 font-bold text-lg">
+            <svg class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A10 10 0 1117.803 5.122M15.535 15.535L19.07 19.07"></path>
+            </svg>
+            ClinicPro
+          </a>
+          <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+            <a href="#" class="border-b-2 border-transparent text-gray-500 hover:border-blue-500 hover:text-blue-500 px-3 py-2">Dashboard</a>
+            <a href="#" class="border-b-2 border-transparent text-gray-500 hover:border-blue-500 hover:text-blue-500 px-3 py-2">Appointments</a>
+            <a href="#" class="border-b-2 border-transparent text-gray-500 hover:border-blue-500 hover:text-blue-500 px-3 py-2">Patients</a>
+            <a href="#" class="border-b-2 border-transparent text-gray-500 hover:border-blue-500 hover:text-blue-500 px-3 py-2">Reports</a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="#" class="text-gray-500 hover:text-blue-500">Login</a>
+          <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="bg-blue-500 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between py-12">
+        <div>
+          <h1 class="text-4xl font-bold">Welcome to ClinicPro</h1>
+          <p class="mt-4 text-lg">Your all-in-one solution to manage appointments, patient records, and more.</p>
+          <a href="#" class="mt-6 inline-block bg-white text-blue-500 px-6 py-3 rounded-md font-semibold hover:bg-gray-200">Get Started</a>
+        </div>
+        <img src="https://via.placeholder.com/400" alt="Clinic Illustration" class="hidden sm:block h-64">
+      </div>
+    </div>
+  </header>
+
+  <!-- Features Section -->
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-800">Features</h2>
+        <p class="mt-4 text-gray-600">Simplify your clinic operations with these powerful tools.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-white shadow rounded-lg p-6 text-center">
+          <div class="flex justify-center items-center h-16 w-16 bg-blue-500 text-white rounded-full mx-auto mb-4">
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v10m8-10v10M5 7h14M5 17h14"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800">Appointment Scheduling</h3>
+          <p class="mt-2 text-gray-600">Easily manage patient appointments and schedules.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-white shadow rounded-lg p-6 text-center">
+          <div class="flex justify-center items-center h-16 w-16 bg-blue-500 text-white rounded-full mx-auto mb-4">
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800">Patient Records</h3>
+          <p class="mt-2 text-gray-600">Maintain a comprehensive database of your patients.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white shadow rounded-lg p-6 text-center">
+          <div class="flex justify-center items-center h-16 w-16 bg-blue-500 text-white rounded-full mx-auto mb-4">
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-3.333 2.5-5 4.833-5 7s2 3 5 3 5-1.333 5-3-1.667-4.5-5-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-800">Secure Data</h3>
+          <p class="mt-2 text-gray-600">Keep patient information secure and private.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p>© 2024 ClinicPro. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ayuh_patient import models
+from backend.ayuh_patient import models
 
 
 class PatientAddress(serializers.ModelSerializer):
