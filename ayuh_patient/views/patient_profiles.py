@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from backend.ayuh_patient import models, serializers
+from ayuh_patient import models, serializers
 
 
 class PatientProfileAPI(viewsets.ModelViewSet):

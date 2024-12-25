@@ -1,39 +1,31 @@
-FROM node:22.12.0-alpine3.20 AS tailwind-builder
-
-ARG FRONTEND_APPROOT=/narayaneeyam-frontend
-ARG BACKEND_APPROOT=/narayaneeyam-backend
-
-WORKDIR ${FRONTEND_APPROOT}
-COPY frontend/ ${FRONTEND_APPROOT}/
-
-RUN cd css && \
-    npm install && \
-    npm run build:css
-
+ARG APPROOT=/narayaneeyam
+ARG FRONTEND_DIR=/narayaneeyam/ayuh_frontend
+ARG LOG_DIR="/var/log/ayuh"
 
 FROM python:3.13.0-slim
 
-ARG FRONTEND_APPROOT=/narayaneeyam-frontend
-ARG BACKEND_APPROOT=/narayaneeyam-backend
+ARG APPROOT
+ARG FRONTEND_DIR
+ARG LOG_DIR
 
-WORKDIR ${BACKEND_APPROOT}
-COPY backend/ ${BACKEND_APPROOT}/
-
-# tailwind css
-COPY --from=tailwind-builder /${FRONTEND_APPROOT}/css/dist/styles.css .${BACKEND_APPROOT}/static/css/styles.css
+COPY . ${APPROOT}/
+WORKDIR ${APPROOT}
 
 # avoid .pyc
 ENV PYTHONDONTWRITEBYTECODE 1
 # send stdout, stderr straightaway
 ENV PYTHONUNBUFFERED 1
 
-ENV PYTHONPATH "${PYTHONPATH}:${BACKEND_APPROOT}"
+ENV PYTHONPATH "${PYTHONPATH}:${APPROOT}"
+
+# setting ENV for use in entrypoint.sh
+ENV LOG_DIR=$LOG_DIR
+ENV FRONTEND_DIR=$FRONTEND_DIR
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-# server
-RUN mkdir -p /var/log/ayuh/gunicorn/ && \
-    pip install --no-cache-dir gunicorn==21.2.0
+RUN mkdir -p "$LOG_DIR/gunicorn/"
+RUN pip install --no-cache-dir gunicorn==21.2.0
 
 EXPOSE 8000
 

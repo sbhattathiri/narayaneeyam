@@ -163,7 +163,8 @@ cython_debug/
 #.idea/
 
 static/
-
+z_container_logs/
 design-inputs/casesheets.docx
 
 .DS_store
+output.css

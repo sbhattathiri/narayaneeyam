@@ -1,6 +1,6 @@
 #!bin/sh
 
-LOG_FILE="/var/log/ayuh/startup.log"
+LOG_FILE="$LOG_DIR/startup.log"
 
 echo "creating log directory..."
 mkdir -p "$(dirname "$LOG_FILE")"
@@ -22,6 +22,10 @@ echo "apply migrations..." | tee -a "$LOG_FILE"
 python manage.py migrate --settings="${DJANGO_SETTINGS_MODULE}" >> "$LOG_FILE" 2>&1
 printf "\n" | tee -a "$LOG_FILE"
 
+echo "copy css..." | tee -a "$LOG_FILE"
+tailwindcss -i "$FRONTEND_DIR/styles.css" -o "$FRONTEND_DIR/output.css"
+printf "\n" | tee -a "$LOG_FILE"
+
 echo "collect static..." | tee -a "$LOG_FILE"
 python manage.py collectstatic --noinput --settings="${DJANGO_SETTINGS_MODULE}" >> "$LOG_FILE" 2>&1
 printf "\n" | tee -a "$LOG_FILE"
@@ -33,8 +37,8 @@ gunicorn ayuh.wsgi \
  --bind 0.0.0.0:8000 \
  --env DJANGO_SETTINGS_MODULE="${DJANGO_SETTINGS_MODULE}" \
  --env settings="${DJANGO_SETTINGS_MODULE}" \
- --access-logfile /var/log/ayuh/gunicorn/access.log \
- --error-logfile /var/log/ayuh/gunicorn/error.log
+ --access-logfile "$LOG_DIR/gunicorn/access.log" \
+ --error-logfile "$LOG_DIR/gunicorn/error.log"
 
 #tail -f /dev/null
 
