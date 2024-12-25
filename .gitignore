@@ -129,6 +129,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+node_modules/
 
 # Spyder project settings
 .spyderproject
@@ -162,7 +163,8 @@ cython_debug/
 #.idea/
 
 static/
-
+z_container_logs/
 design-inputs/casesheets.docx
 
 .DS_store
+output.css
