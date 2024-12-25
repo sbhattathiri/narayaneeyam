@@ -5,60 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2000565-58a9-4fbb-be89-3f8a072bedd6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/narayaneeyam.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/narayaneeyam.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/enums/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/enums/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/enums/ayuh_enums.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/enums/ayuh_enums.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/models/base_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/models/base_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/models/user_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/models/user_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/views/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_common/views/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_common/views/home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/migrations/0002_alter_patientprofile_blood_type_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/migrations/0002_alter_patientprofile_blood_type_and_more.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/models/patient_addresses.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/models/patient_addresses.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/models/patient_profiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/models/patient_profiles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/models/patients.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/models/patients.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/serializers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/serializers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/serializers/patient_addresses.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/serializers/patient_addresses.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/serializers/patient_profiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/serializers/patient_profiles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/views/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/ayuh_patient/views/patient_profiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_patient/views/patient_profiles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/entrypoint.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/templates/authentication/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/authentication/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/templates/ayuh_common/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/compiled.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/postcss.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/ayuh_frontend/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,9 +15,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2qgqfJx4ichXxPCrKIxaX6JxawU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -80,7 +27,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "setup/tailwindcss",
+    "git-widget-placeholder": "dev",
     "last_opened_file_path": "/Users/svb/Projects/narayaneeyam"
   }
 }]]></component>
