@@ -1,21 +1,22 @@
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 
-from ayuh_patient.models import Patient
+from ayuh_patient import forms, models
+from django.urls import reverse
+from django.shortcuts import render, redirect
 
 
 class PatientProfileView(CreateView):
-    model = Patient
-    fields = [
-        "title",
-        "first_name",
-        "middle_name",
-        "last_name",
-        "gender",
-        "date_of_birth",
-        "blood_type",
-        "email",
-        "phone",
-    ]
+    model = models.PatientProfile
+    form_class = forms.PatientProfile
     template_name = "add_patient.html"
     success_url = reverse_lazy("home")
+
+    def form_valid(self, form):
+        patient_profile = form.save()
+        return redirect(
+            reverse("patient_profile", kwargs={"pk": patient_profile.patient_id})
+        )
+
+    def form_invalid(self, form):
+        return render(self.request, "error.html", {"form": form})

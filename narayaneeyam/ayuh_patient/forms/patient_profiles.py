@@ -1,11 +1,11 @@
 from django import forms
 
-from ayuh_patient.models import PatientProfile
+from ayuh_patient import models
 
 
-class PatientForm(forms.ModelForm):
+class PatientProfile(forms.ModelForm):
     class Meta:
-        model = PatientProfile
+        model = models.PatientProfile
         fields = [
             "title",
             "first_name",
@@ -43,9 +43,7 @@ class PatientForm(forms.ModelForm):
                 attrs={"class": "input input-bordered w-full"}
             ),
             "gender": forms.Select(attrs={"class": "select select-bordered w-full"}),
-            "date_of_birth": forms.DateInput(
-                attrs={"type": "date", "class": "input input-bordered w-full"}
-            ),
+            "date_of_birth": forms.DateInput(attrs={"type": "date"}),
             "blood_type": forms.Select(
                 attrs={"class": "select select-bordered w-full"}
             ),

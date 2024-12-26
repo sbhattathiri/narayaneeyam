@@ -1,6 +1,4 @@
-from ayuh_patient import (
-    views,
-)
+from ayuh_patient import views, models
 from django.urls import (
     include,
     path,
@@ -8,6 +6,7 @@ from django.urls import (
 from rest_framework.routers import (
     DefaultRouter,
 )
+from django.views.generic.detail import DetailView
 
 router = DefaultRouter()
 router.register(
@@ -16,5 +15,12 @@ router.register(
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("add-patient/", views.PatientProfileView.as_view(), name="add_patient"),
+    path("patient/add/", views.PatientProfileView.as_view(), name="add_patient"),
+    path(
+        "patient/<uuid:pk>/",
+        DetailView.as_view(
+            model=models.PatientProfile, template_name="patient_profile.html"
+        ),
+        name="patient_profile",
+    ),
 ]
