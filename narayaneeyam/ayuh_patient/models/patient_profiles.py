@@ -1,6 +1,4 @@
-from ayuh_common.enums import (
-    BloodGroup,
-)
+from ayuh_common.enums import Lifestyle
 from ayuh_patient.models.patients import (
     Patient,
 )
@@ -35,13 +33,8 @@ class PatientProfile(Patient):
         null=True,
         blank=True,
     )
-    date_of_birth = models.DateField(null=True, blank=True)
-    blood_type = models.CharField(
-        choices=BloodGroup.choices(),
-        null=True,
-        blank=True,
-        default="",
-    )
+    pre_existing_health_conditions = models.TextField(null=True, blank=True)
+    pre_existing_medications = models.TextField(null=True, blank=True)
     known_allergies = ArrayField(
         models.CharField(max_length=255),
         null=True,
@@ -57,8 +50,6 @@ class PatientProfile(Patient):
         null=True,
         blank=True,
     )
-    pre_existing_medications = models.TextField(null=True, blank=True)
-    pre_existing_health_conditions = models.TextField(null=True, blank=True)
     smoking_status = models.BooleanField(
         null=True,
         blank=True,
@@ -75,3 +66,14 @@ class PatientProfile(Patient):
         default=False,
     )
     dietary_preference = models.TextField(null=True, blank=True)
+    general_lifestyle = models.CharField(
+        choices=Lifestyle.choices(),
+        null=True,
+        blank=True,
+        default="",
+    )
+    emergency_contact_person_phone = PhoneNumberField(
+        region="IN",
+        null=True,
+        blank=True,
+    )

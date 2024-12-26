@@ -23,7 +23,7 @@ python manage.py migrate --settings="${DJANGO_SETTINGS_MODULE}" >> "$LOG_FILE" 2
 printf "\n" | tee -a "$LOG_FILE"
 
 echo "copy css..." | tee -a "$LOG_FILE"
-tailwindcss -i "$FRONTEND_DIR/styles.css" -o "$FRONTEND_DIR/output.css"
+tailwindcss -i "$FRONTEND_DIR/styles.css" -o "$FRONTEND_DIR/dist/output.css"
 printf "\n" | tee -a "$LOG_FILE"
 
 echo "collect static..." | tee -a "$LOG_FILE"

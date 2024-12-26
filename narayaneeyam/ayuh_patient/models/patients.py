@@ -1,5 +1,6 @@
 import uuid
 
+
 from ayuh_common.models import (
     BaseModel,
 )
@@ -8,6 +9,11 @@ from django.db import (
 )
 from phonenumber_field.modelfields import (
     PhoneNumberField,
+)
+from ayuh_common.enums import (
+    BloodGroup,
+    Gender,
+    Title,
 )
 
 
@@ -18,9 +24,10 @@ class Patient(BaseModel):
         default=uuid.uuid4,
     )
     title = models.CharField(
-        max_length=15,
+        choices=Title.choices(),
         null=True,
         blank=True,
+        default="",
     )
     first_name = models.CharField(
         max_length=255,
@@ -37,21 +44,24 @@ class Patient(BaseModel):
         null=True,
         blank=True,
     )
+    gender = models.CharField(
+        choices=Gender.choices(),
+        null=True,
+        blank=True,
+        default="",
+    )
+    date_of_birth = models.DateField(null=True, blank=True)
+    blood_type = models.CharField(
+        choices=BloodGroup.choices(),
+        null=True,
+        blank=True,
+        default="",
+    )
     email = models.EmailField(
         null=True,
         blank=True,
     )
     phone = PhoneNumberField(
-        region="IN",
-        null=True,
-        blank=True,
-    )
-    emergency_contact_person_name = models.CharField(
-        max_length=255,
-        null=True,
-        blank=True,
-    )
-    emergency_contact_person_phone = PhoneNumberField(
         region="IN",
         null=True,
         blank=True,

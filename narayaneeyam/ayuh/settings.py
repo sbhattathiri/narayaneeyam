@@ -139,7 +139,7 @@ STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = [
-    BASE_DIR / "ayuh_frontend",
+    BASE_DIR / "ayuh_frontend" / "dist",
 ]
 
 # Default primary key field type
