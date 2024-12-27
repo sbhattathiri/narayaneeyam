@@ -1,4 +1,6 @@
-from .patient_profiles import PatientProfile
+from .patient_profiles import (
+    PatientProfile,
+)
 
 __all__ = [
     "PatientProfile",

@@ -1,4 +1,9 @@
-from .ayuh_enums import BloodGroup, Gender, Lifestyle, Title
+from .ayuh_enums import (
+    BloodGroup,
+    Gender,
+    Lifestyle,
+    Title,
+)
 
 __all__ = [
     "BloodGroup",

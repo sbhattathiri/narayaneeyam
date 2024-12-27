@@ -1,6 +1,10 @@
 import uuid
 
-
+from ayuh_common.enums import (
+    BloodGroup,
+    Gender,
+    Title,
+)
 from ayuh_common.models import (
     BaseModel,
 )
@@ -9,11 +13,6 @@ from django.db import (
 )
 from phonenumber_field.modelfields import (
     PhoneNumberField,
-)
-from ayuh_common.enums import (
-    BloodGroup,
-    Gender,
-    Title,
 )
 
 

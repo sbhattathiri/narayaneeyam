@@ -1,22 +1,47 @@
-from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy
+from ayuh_patient import (
+    forms,
+    models,
+)
+from django.urls import (
+    reverse_lazy,
+)
+from django.views.generic.detail import (
+    DetailView,
+)
+from django.views.generic.edit import (
+    CreateView,
+    UpdateView,
+)
 
-from ayuh_patient import forms, models
-from django.urls import reverse
-from django.shortcuts import render, redirect
+
+class PatientProfile(DetailView):
+    model = models.PatientProfile
+    template_name = "patient_management_view_patient.html"
+    context_object_name = "patient"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = forms.PatientProfile(instance=self.object)
+        for field in form.fields.values():
+            field.widget.attrs["readonly"] = True
+            field.widget.attrs["disabled"] = True
+        context["form"] = form
+        return context
 
 
-class PatientProfileView(CreateView):
+class AddPatientProfile(CreateView):
     model = models.PatientProfile
     form_class = forms.PatientProfile
-    template_name = "add_patient.html"
-    success_url = reverse_lazy("home")
+    template_name = "patient_management_add_patient.html"
 
-    def form_valid(self, form):
-        patient_profile = form.save()
-        return redirect(
-            reverse("patient_profile", kwargs={"pk": patient_profile.patient_id})
-        )
+    def get_success_url(self):
+        return reverse_lazy("view_patient", kwargs={"pk": self.object.pk})
 
-    def form_invalid(self, form):
-        return render(self.request, "error.html", {"form": form})
+
+class UpdatePatientProfile(UpdateView):
+    model = models.PatientProfile
+    form_class = forms.PatientProfile
+    template_name = "patient_management_edit_patient.html"
+
+    def get_success_url(self):
+        return reverse_lazy("view_patient", kwargs={"pk": self.object.pk})

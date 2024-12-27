@@ -1,4 +1,6 @@
-from ayuh_common.enums import Lifestyle
+from ayuh_common.enums import (
+    Lifestyle,
+)
 from ayuh_patient.models.patients import (
     Patient,
 )

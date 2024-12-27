@@ -1,6 +1,9 @@
-from django import forms
-
-from ayuh_patient import models
+from ayuh_patient import (
+    models,
+)
+from django import (
+    forms,
+)
 
 
 class PatientProfile(forms.ModelForm):
