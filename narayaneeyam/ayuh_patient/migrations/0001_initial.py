@@ -2,10 +2,11 @@
 
 import uuid
 
-import django.contrib.postgres.fields
-import django.db.models.deletion
 import django_pg_jsonschema.fields
 import phonenumber_field.modelfields
+
+import django.contrib.postgres.fields
+import django.db.models.deletion
 from django.db import (
     migrations,
     models,

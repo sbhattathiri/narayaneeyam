@@ -1,6 +1,7 @@
 from ayuh_home import (
     views,
 )
+
 from django.urls import (
     path,
 )

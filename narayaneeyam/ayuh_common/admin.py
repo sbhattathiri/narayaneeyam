@@ -1,6 +1,7 @@
 from ayuh_common import (
     models,
 )
+
 from django.contrib import (
     admin,
 )

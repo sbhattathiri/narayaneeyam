@@ -5,35 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2000565-58a9-4fbb-be89-3f8a072bedd6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_home/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/narayaneeyam/templates/patient_management_edit_patient.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/narayaneeyam/templates/patient_management_view_patient.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_common/enums/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_common/enums/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_common/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_common/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_common/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_home/views/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_common/views/billing_info.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_common/views/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_home/views/home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_common/views/inventory_info.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_common/views/patient_info.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_common/views/reminders.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/forms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/forms/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/forms/patient_profiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/forms/patient_profiles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/migrations/0003_remove_patient_emergency_contact_person_name_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/migrations/0003_remove_patient_emergency_contact_person_name_and_more.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/models/patient_profiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/models/patient_profiles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/models/patients.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/models/patients.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/views/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/views/patient_profiles_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/views/patient_profiles_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/templates/add_patient.html" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/templates/patient_management_add_patient.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/templates/billing_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/templates/billing_management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/templates/inventory_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/templates/inventory_management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/templates/patient_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/templates/patient_management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

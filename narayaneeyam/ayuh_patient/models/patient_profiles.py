@@ -4,14 +4,15 @@ from ayuh_common.enums import (
 from ayuh_patient.models.patients import (
     Patient,
 )
+from phonenumber_field.modelfields import (
+    PhoneNumberField,
+)
+
 from django.contrib.postgres.fields import (
     ArrayField,
 )
 from django.db import (
     models,
-)
-from phonenumber_field.modelfields import (
-    PhoneNumberField,
 )
 
 

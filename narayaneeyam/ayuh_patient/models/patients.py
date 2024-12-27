@@ -8,11 +8,12 @@ from ayuh_common.enums import (
 from ayuh_common.models import (
     BaseModel,
 )
-from django.db import (
-    models,
-)
 from phonenumber_field.modelfields import (
     PhoneNumberField,
+)
+
+from django.db import (
+    models,
 )
 
 
