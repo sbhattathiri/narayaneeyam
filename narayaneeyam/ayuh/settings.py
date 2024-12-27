@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "django_pg_jsonschema",
     "ayuh_common",
+    "ayuh_home",
     "ayuh_patient",
 ]
 
@@ -139,7 +140,7 @@ STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = [
-    BASE_DIR / "ayuh_frontend",
+    BASE_DIR / "ayuh_frontend" / "dist",
 ]
 
 # Default primary key field type
@@ -160,7 +161,7 @@ SPECTACULAR_SETTINGS = {
 }
 
 
-LOGS_DIR = "/var/log/ayuh"
+LOGS_DIR = os.path.join(BASE_DIR, "logs")
 
 LOGGING = {
     "version": 1,
