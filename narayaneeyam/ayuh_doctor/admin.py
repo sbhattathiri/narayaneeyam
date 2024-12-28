@@ -1,3 +1,10 @@
-from django.contrib import admin
+from ayuh_doctor import (
+    models,
+)
 
-# Register your models here.
+from django.contrib import (
+    admin,
+)
+
+models_to_be_registered = [models.Doctor]
+admin.site.register(models_to_be_registered)

@@ -17,16 +17,19 @@ class Doctor(BaseModel):
         max_length=255,
         null=True,
         blank=True,
+        default="",
     )
     middle_name = models.CharField(
         max_length=255,
         null=True,
         blank=True,
+        default="",
     )
     last_name = models.CharField(
         max_length=255,
         null=True,
         blank=True,
+        default="",
     )
     gender = models.CharField(
         choices=Gender.choices(),
@@ -34,3 +37,6 @@ class Doctor(BaseModel):
         blank=True,
         default="",
     )
+
+    def __str__(self):
+        return f"Dr. {self.last_name or ""}, {self.first_name} {self.middle_name or ""}"

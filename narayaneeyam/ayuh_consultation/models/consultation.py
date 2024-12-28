@@ -29,3 +29,6 @@ class Consultation(BaseModel):
     patient_concerns = models.TextField(null=True, blank=True)
     diagnosis = models.TextField(null=True, blank=True)
     prescription = models.JSONField(null=True, blank=True, default=list)
+
+    def __str__(self):
+        return f"Consultation ID: {self.consultation_id}"

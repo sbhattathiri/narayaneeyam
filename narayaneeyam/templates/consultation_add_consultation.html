@@ -3,8 +3,24 @@
 {% block title %}Consultations{% endblock %}
 
 {% block content %}
-<h2 class="text-2xl font-bold mb-5">Add Consultation</h2>
+
+
 <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <div class="text-center mb-4">
+        <h2 class="text-2xl font-bold mb-5">Add Consultation</h2>
+    </div>
+
+    <!-- Add Button -->
+    <div class="flex justify-end mb-4">
+        <a href="{% url 'add_patient' %}">
+            <button type="button" id="addPatient"
+                    class="bg-green-500 text-white px-4 py-2 mt-4 rounded hover:bg-green-600">
+                Add
+                Patient
+            </button>
+        </a>
+    </div>
+
     <form id="consultationForm" method="post">
         {% csrf_token %}
         <!-- Patient Field -->
@@ -69,8 +85,14 @@
         <input type="hidden" id="prescriptionData" name="prescription">
 
         <!-- Submit Button -->
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 mt-6 rounded hover:bg-blue-600">Submit</button>
+        <!-- Submit Button -->
+        <div class="flex justify-end mb-4">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 mt-6 rounded hover:bg-blue-600">Submit
+            </button>
+        </div>
+
     </form>
+</div>
 </div>
 
 <script>
