@@ -140,7 +140,7 @@ STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = [
-    BASE_DIR / "ayuh_frontend" / "dist",
+    BASE_DIR / "ayuh_styles" / "dist",
 ]
 
 # Default primary key field type
@@ -162,6 +162,7 @@ SPECTACULAR_SETTINGS = {
 
 
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
+os.makedirs(LOGS_DIR, exist_ok=True)
 
 LOGGING = {
     "version": 1,

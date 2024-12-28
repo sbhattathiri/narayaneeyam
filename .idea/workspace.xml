@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2000565-58a9-4fbb-be89-3f8a072bedd6" name="Changes" comment="" />
+    <list default="true" id="c2000565-58a9-4fbb-be89-3f8a072bedd6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_frontend/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/entrypoint.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +44,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "form-interaction",
+    "git-widget-placeholder": "fix-ui",
     "last_opened_file_path": "/Users/svb/Projects/narayaneeyam/narayaneeyam/templates",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable"
