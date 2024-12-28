@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}HOME | NARAYANEEYAM ARYA AYURVEDAM{% endblock %}
+
+{% block content %}
+<h1>Patient Profile</h1>
+<ul>
+    {% for field in patient._meta.fields %}
+        <li><strong>{{ field.verbose_name }}:</strong> {{ field.value_from_object(patient) }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
