@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Consultations{% endblock %}
+
+{% block content %}
+<div class="overflow-x-auto shadow-md rounded-lg bg-white">
+    <a href="{% url 'add_consultation' %}">
+        <button type="button">Add Consultation</button>
+    </a>
+    <table class="min-w-full table-auto">
+        <thead class="bg-gray-200">
+        <tr>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Doctor</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Patient Name</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Consultation Date</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="text-sm text-gray-700">
+        {% for consultation in consultations %}
+        <tr class="hover:bg-gray-100">
+            <td class="px-4 py-2">{{ consultation.doctor }}</td>
+            <td class="px-4 py-2">{{ consultation.patient.name }}</td>
+            <td class="px-4 py-2">{{ consultation.consultation_date }}</td>
+            <td class="border px-4 py-2 text-center">
+                <a href="{% url 'update_consultation' consultation.id %}"
+                   class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Update</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="px-4 py-2 text-center text-gray-500">No consultations available</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="mt-4 text-center">
+    {% if consultations.has_previous %}
+    <a href="?page=1" class="mx-2 text-blue-500 hover:text-blue-700">« First</a>
+    <a href="?page={{ consultations.previous_page_number }}" class="mx-2 text-blue-500 hover:text-blue-700">Previous</a>
+    {% endif %}
+    <span class="mx-2 text-gray-600">Page {{ consultations.number }} of {{ consultations.paginator.num_pages }}</span>
+    {% if consultations.has_next %}
+    <a href="?page={{ consultations.next_page_number }}" class="mx-2 text-blue-500 hover:text-blue-700">Next</a>
+    <a href="?page={{ consultations.paginator.num_pages }}" class="mx-2 text-blue-500 hover:text-blue-700">Last »</a>
+    {% endif %}
+</div>
+{% endblock %}

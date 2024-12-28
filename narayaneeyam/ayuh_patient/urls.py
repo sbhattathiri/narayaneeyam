@@ -19,5 +19,7 @@ urlpatterns = [
     path("", include(router.urls)),
     path("<uuid:pk>/", views.PatientProfile.as_view(), name="view_patient"),
     path("add/", views.AddPatientProfile.as_view(), name="add_patient"),
-    path("<uuid:pk>/edit/", views.UpdatePatientProfile.as_view(), name="edit_patient"),
+    path(
+        "<uuid:pk>/update/", views.UpdatePatientProfile.as_view(), name="update_patient"
+    ),
 ]

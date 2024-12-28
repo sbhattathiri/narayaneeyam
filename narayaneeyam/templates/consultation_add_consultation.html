@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}Consultations{% endblock %}
+
+{% block content %}
+<h2 class="text-2xl font-bold mb-5">Add Consultation</h2>
+<div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <form id="consultationForm" method="post">
+        {% csrf_token %}
+        <!-- Patient Field -->
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700">Patient</label>
+            {{ form.patient }}
+        </div>
+
+        <!-- Doctor Field -->
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700">Doctor</label>
+            {{ form.doctor }}
+        </div>
+
+        <!-- Patients Concerns Field -->
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700">Patient's Concerns</label>
+            {{ form.patient_concerns }}
+        </div>
+
+        <!-- Diagnosis Field -->
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700">Diagnosis</label>
+            {{ form.diagnosis }}
+        </div>
+
+        <!-- Prescription Table -->
+        <h2 class="text-xl font-bold mt-4 mb-2">Prescription</h2>
+        <table id="prescriptionTable" class="table-auto w-full border border-gray-300">
+            <thead>
+            <tr class="bg-gray-200">
+                <th class="border px-4 py-2 text-left">Medicine Name</th>
+                <th class="border px-4 py-2 text-left">Dosage</th>
+                <th class="border px-4 py-2 text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="border px-4 py-2">
+                    <input type="text"
+                           class="medicineName w-full border-gray-300 rounded px-2 py-1 focus:ring focus:ring-blue-200"
+                           placeholder="Medicine Name">
+                </td>
+                <td class="border px-4 py-2">
+                    <input type="text"
+                           class="dosage w-full border-gray-300 rounded px-2 py-1 focus:ring focus:ring-blue-200"
+                           placeholder="Dosage">
+                </td>
+                <td class="border px-4 py-2 text-center">
+                    <button type="button" class="removeRow bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                        Remove
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="button" id="addRow" class="bg-green-500 text-white px-4 py-2 mt-4 rounded hover:bg-green-600">Add
+            Row
+        </button>
+
+        <!-- Hidden Input for Prescription JSON -->
+        <input type="hidden" id="prescriptionData" name="prescription">
+
+        <!-- Submit Button -->
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 mt-6 rounded hover:bg-blue-600">Submit</button>
+    </form>
+</div>
+
+<script>
+    // Initialize Select2 for dropdowns
+    document.addEventListener('DOMContentLoaded', function () {
+        $('.select2').select2({
+            placeholder: "Select an option",
+            allowClear: true,
+            width: '100%'
+        });
+    });
+
+    // Add a new row to the table
+    document.getElementById('addRow').addEventListener('click', function() {
+        const table = document.getElementById('prescriptionTable').querySelector('tbody');
+        const newRow = `
+            <tr>
+                <td class="border px-4 py-2">
+                    <input type="text" class="medicineName w-full border-gray-300 rounded px-2 py-1 focus:ring focus:ring-blue-200" placeholder="Medicine Name">
+                </td>
+                <td class="border px-4 py-2">
+                    <input type="text" class="dosage w-full border-gray-300 rounded px-2 py-1 focus:ring focus:ring-blue-200" placeholder="Dosage">
+                </td>
+                <td class="border px-4 py-2 text-center">
+                    <button type="button" class="removeRow bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Remove</button>
+                </td>
+            </tr>
+        `;
+        table.insertAdjacentHTML('beforeend', newRow);
+    });
+
+    // Remove a row from the table
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('removeRow')) {
+            e.target.closest('tr').remove();
+        }
+    });
+
+    // Convert table data to JSON and set it to the hidden input field before form submission
+    document.getElementById('consultationForm').addEventListener('submit', function(e) {
+        const rows = document.querySelectorAll('#prescriptionTable tbody tr');
+        const prescriptions = Array.from(rows).map(row => {
+            const medicineName = row.querySelector('.medicineName').value.trim();
+            const dosage = row.querySelector('.dosage').value.trim();
+            if (medicineName && dosage) {
+                return { name_of_medicine: medicineName, dosage: dosage };
+            }
+            return null;
+        }).filter(item => item !== null); // Remove empty rows
+
+        document.getElementById('prescriptionData').value = JSON.stringify(prescriptions);
+    });
+</script>
+{% endblock %}
