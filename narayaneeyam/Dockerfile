@@ -1,26 +1,37 @@
 ARG APPROOT=/narayaneeyam
-ARG FRONTEND_DIR=/narayaneeyam/ayuh_frontend
+ARG STYLES_DIR=/narayaneeyam/ayuh_styles
 ARG LOG_DIR="/var/log/ayuh"
+
+
+FROM alpine:3.18 AS builder
+
+ARG APPROOT
+
+WORKDIR ${APPROOT}
+
+RUN apk add --no-cache curl
+RUN curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-arm64 \
+    && mv tailwindcss-linux-arm64 tailwindcss \
+    && chmod +x tailwindcss
+
 
 FROM python:3.13.0-slim
 
 ARG APPROOT
-ARG FRONTEND_DIR
+ARG STYLES_DIR
 ARG LOG_DIR
 
+COPY --from=builder ${APPROOT}/tailwindcss /usr/local/bin/tailwindcss
 COPY .. ${APPROOT}/
 WORKDIR ${APPROOT}
 
-# avoid .pyc
 ENV PYTHONDONTWRITEBYTECODE 1
-# send stdout, stderr straightaway
 ENV PYTHONUNBUFFERED 1
 
 ENV PYTHONPATH "${PYTHONPATH}:${APPROOT}"
 
-# setting ENV for use in entrypoint.sh
 ENV LOG_DIR=$LOG_DIR
-ENV FRONTEND_DIR=$FRONTEND_DIR
+ENV STYLES_DIR=$STYLES_DIR
 
 RUN pip install --no-cache-dir -r requirements.txt
 

@@ -17,8 +17,5 @@ setuptools==75.6.0
 drf-spectacular[sidecar]==0.27.2
 whitenoise==6.8.2
 
-# tailwind
-pytailwindcss==0.2.0
-
 # other
 pytz==2024.2
