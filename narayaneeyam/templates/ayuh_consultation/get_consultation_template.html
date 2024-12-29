@@ -1,7 +1,8 @@
 {% extends "ayuh_base_template.html" %}
-
+{% block extra_head %}
+    {% load crispy_forms_tags %}
+{% endblock %}
 {% block title %}Consultation Details{% endblock %}
-
 {% block content %}
 <h1>Consultation Details</h1>
 
