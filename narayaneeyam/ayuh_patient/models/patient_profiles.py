@@ -1,4 +1,8 @@
-from ayuh_core.enums import HabitStatus, DietaryPreference, Lifestyle
+from ayuh_core.enums import (
+    DietaryPreference,
+    HabitStatus,
+    Lifestyle,
+)
 from ayuh_patient.models.patients import (
     Patient,
 )

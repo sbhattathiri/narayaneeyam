@@ -1,11 +1,17 @@
 import uuid
 
+from ayuh_core.enums import (
+    Gender,
+    StaffRole,
+    Title,
+)
+from ayuh_core.models import (
+    AyuhModel,
+)
+
 from django.db import (
     models,
 )
-
-from ayuh_core.enums import Gender, StaffRole, Title
-from ayuh_core.models import AyuhModel
 
 
 class Staff(AyuhModel):

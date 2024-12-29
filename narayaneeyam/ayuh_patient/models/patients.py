@@ -1,6 +1,13 @@
 import uuid
 
-
+from ayuh_core.enums import (
+    BloodGroup,
+    Gender,
+    Title,
+)
+from ayuh_core.models import (
+    AyuhModel,
+)
 from phonenumber_field.modelfields import (
     PhoneNumberField,
 )
@@ -8,9 +15,6 @@ from phonenumber_field.modelfields import (
 from django.db import (
     models,
 )
-
-from ayuh_core.enums import Title, Gender, BloodGroup
-from ayuh_core.models import AyuhModel
 
 
 class Patient(AyuhModel):

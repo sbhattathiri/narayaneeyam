@@ -1,13 +1,21 @@
 import uuid
 
+from ayuh_core.enums import (
+    StaffRole,
+)
+from ayuh_core.models import (
+    AyuhModel,
+)
+from ayuh_patient.models import (
+    Patient,
+)
+from ayuh_staff.models import (
+    Staff,
+)
+
 from django.db import (
     models,
 )
-
-from ayuh_core.enums import StaffRole
-from ayuh_core.models import AyuhModel
-from ayuh_staff.models import Staff
-from ayuh_patient.models import Patient
 
 
 class Consultation(AyuhModel):

@@ -1,3 +1,6 @@
+from ayuh_core.models import (
+    AyuhModel,
+)
 from django_pg_jsonschema.fields import (
     JSONSchemaField,
 )
@@ -5,8 +8,6 @@ from django_pg_jsonschema.fields import (
 from django.db import (
     models,
 )
-
-from ayuh_core.models import AyuhModel
 
 
 class PatientAddress(AyuhModel):

@@ -1,11 +1,15 @@
 import uuid
 
+from ayuh_consultation.models import (
+    Consultation,
+)
+from ayuh_core.models import (
+    AyuhModel,
+)
+
 from django.db import (
     models,
 )
-
-from ayuh_consultation.models import Consultation
-from ayuh_core.models import AyuhModel
 
 
 class Prescription(AyuhModel):

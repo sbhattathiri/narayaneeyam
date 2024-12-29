@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
+import socket
+import sys
 from pathlib import (
     Path,
 )
@@ -35,13 +37,16 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+]
+
+THIRD_PARTY_APPS = [
     "drf_spectacular",
     "drf_spectacular_sidecar",
     "phonenumber_field",
@@ -50,13 +55,17 @@ INSTALLED_APPS = [
     "crispy_bootstrap4",
     "rest_framework",
     "corsheaders",
-    "debug_toolbar",
+]
+
+FIRST_PARTY_APPS = [
     "ayuh_consultation",
     "ayuh_core",
     "ayuh_home",
     "ayuh_patient",
     "ayuh_staff",
 ]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + FIRST_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -67,15 +76,43 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+
+
+# Only enable the toolbar when we're in debug mode and we're
+# not running tests. Django will change DEBUG to be False for
+# tests, so we can't rely on DEBUG alone.
+TESTING = "test" in sys.argv
+
+ENABLE_DEBUG_TOOLBAR = DEBUG and not TESTING
+if ENABLE_DEBUG_TOOLBAR:
+    INSTALLED_APPS += [
+        "debug_toolbar",
+    ]
+    MIDDLEWARE += [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ]
+    # Customize the config to support turbo and htmx boosting.
+    DEBUG_TOOLBAR_CONFIG = {"ROOT_TAG_EXTRA_ATTRS": "data-turbo-permanent hx-preserve"}
+
+
+# By default, the Django Debug Toolbar only shows on localhost or 127.0.0.1.
+# Since Docker uses a separate network,
+# you'll need to set the INTERNAL_IPS to allow it to work within Docker.
+INTERNAL_IPS = [
+    "127.0.0.1",
+    "0.0.0.0",
+    "host.docker.internal",
+    socket.gethostbyname(socket.gethostname()),
+]
+
 
 ROOT_URLCONF = "ayuh.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -169,6 +206,7 @@ SPECTACULAR_SETTINGS = {
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
 os.makedirs(LOGS_DIR, exist_ok=True)

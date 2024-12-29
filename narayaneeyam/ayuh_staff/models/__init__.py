@@ -1,4 +1,6 @@
-from .staff import Staff
+from .staff import (
+    Staff,
+)
 
 __all__ = [
     "Staff",

@@ -1,0 +1,46 @@
+{% extends "ayuh_base_template.html" %}
+
+{% block title %}Consultation Details{% endblock %}
+
+{% block content %}
+<h1>Consultation Details</h1>
+
+<p><strong>Consultation ID:</strong> {{ consultation.consultation_id }}</p>
+<p><strong>Doctor:</strong> {{ consultation.doctor }}</p>
+<p><strong>Patient:</strong> {{ consultation.patient }}</p>
+<p><strong>Consultation Date:</strong> {{ consultation.consultation_date }}</p>
+<p><strong>Patient Concern:</strong> {{ consultation.patient_concern }}</p>
+<p><strong>Diagnosis:</strong> {{ consultation.diagnosis }}</p>
+<p><strong>Doctor's Comments</strong> {{ consultation.doctors_comments }}</p>
+<p><strong>Next Consultation Date:</strong> {{ consultation.next_consultation_date }}</p>
+
+<h2>Attachments</h2>
+<div class="row">
+    {% for attachment in consultation.attachments.all %}
+        <div class="col-md-3">
+            <img src="{{ attachment.attachment.url }}" alt="Consultation Attachment" class="img-thumbnail">
+        </div>
+    {% endfor %}
+</div>
+
+<h2>Prescriptions</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Medicine</th>
+            <th>Instructions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for prescription in consultation.prescriptions.all %}
+            <tr>
+                <td>{{ prescription.medicine }}</td>
+                <td>{{ prescription.instructions }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'put_consultation' consultation.pk %}" class="btn btn-secondary">Update Consultation</a>
+<a href="{% url 'list_consultation' %}" class="btn btn-primary">Back to Consultations</a>
+{% endblock %}

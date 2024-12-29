@@ -1,0 +1,29 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NARAYANEEYAM ARYA AYURVEDAM</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    {% load crispy_forms_tags %}
+</head>
+<body>
+<header class="bg-primary text-white py-4">
+    <div class="container text-center">
+        <h1 class="text-2xl font-weight-bold">NARAYANEEYAM ARYA AYURVEDAM</h1>
+        <h3 class="text-base mt-2">त्रायस्व सर्वामयात्</h3>
+    </div>
+</header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'patient_management_landing' %}">Consultation</a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

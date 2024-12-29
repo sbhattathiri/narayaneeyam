@@ -1,6 +1,11 @@
-from django.db import models
+from ayuh_core.models.mixins import (
+    TimestampedModelMixin,
+    UserStampedModelMixin,
+)
 
-from ayuh_core.models.mixins import TimestampedModelMixin, UserStampedModelMixin
+from django.db import (
+    models,
+)
 
 
 class AyuhModel(

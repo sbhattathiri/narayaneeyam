@@ -1,0 +1,27 @@
+{% extends "ayuh_base_template.html" %}
+{% block title %}Create Consultation{% endblock %}
+{% block content %}
+<h1 class="mb-4">Create Consultation</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    
+    <h4>Attachments</h4>
+    {{ attachment_formset.management_form }}
+    <div class="mb-3">
+        {% for form in attachment_formset %}
+            {{ form|crispy }}
+        {% endfor %}
+    </div>
+    
+    <h4>Prescriptions</h4>
+    {{ prescription_formset.management_form }}
+    <div class="mb-3">
+        {% for form in prescription_formset %}
+            {{ form|crispy }}
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

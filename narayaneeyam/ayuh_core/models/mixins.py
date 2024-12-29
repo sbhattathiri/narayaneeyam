@@ -1,6 +1,10 @@
-from django.db import models
+from ayuh import (
+    settings,
+)
 
-from ayuh import settings
+from django.db import (
+    models,
+)
 
 
 class TimestampedModelMixin(models.Model):
@@ -25,7 +29,9 @@ class UserStampedModelMixin(models.Model):
         abstract = True
 
     def save(self, *args, **kwargs):
-        from django.contrib.auth.models import AnonymousUser
+        from django.contrib.auth.models import (
+            AnonymousUser,
+        )
 
         current_user = getattr(self, "_current_user", None)
         if current_user and not isinstance(current_user, AnonymousUser):

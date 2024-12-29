@@ -1,5 +1,10 @@
-from enum import Enum
-from typing import List, Tuple
+from enum import (
+    Enum,
+)
+from typing import (
+    List,
+    Tuple,
+)
 
 
 class ChoiceEnum(Enum):

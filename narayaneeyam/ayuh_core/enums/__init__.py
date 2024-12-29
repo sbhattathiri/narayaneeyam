@@ -1,13 +1,12 @@
 from .ayuh_enums import (
     BloodGroup,
-    Gender,
     DietaryPreference,
+    Gender,
     HabitStatus,
     Lifestyle,
     StaffRole,
     Title,
 )
-
 
 __all__ = [
     "BloodGroup",
