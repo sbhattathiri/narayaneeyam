@@ -1,6 +1,3 @@
-from ayuh_common.models import (
-    BaseModel,
-)
 from django_pg_jsonschema.fields import (
     JSONSchemaField,
 )
@@ -9,8 +6,10 @@ from django.db import (
     models,
 )
 
+from ayuh_core.models import AyuhModel
 
-class PatientAddress(BaseModel):
+
+class PatientAddress(AyuhModel):
     patient = models.OneToOneField(
         "Patient",
         on_delete=models.CASCADE,

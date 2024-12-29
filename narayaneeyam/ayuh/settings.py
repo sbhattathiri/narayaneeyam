@@ -42,18 +42,20 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "corsheaders",
-    "rest_framework",
     "drf_spectacular",
     "drf_spectacular_sidecar",
     "phonenumber_field",
     "django_pg_jsonschema",
+    "crispy_forms",
+    "crispy_bootstrap4",
+    "rest_framework",
+    "corsheaders",
     "debug_toolbar",
-    "ayuh_common",
-    "ayuh_home",
-    "ayuh_doctor",
-    "ayuh_patient",
     "ayuh_consultation",
+    "ayuh_core",
+    "ayuh_home",
+    "ayuh_patient",
+    "ayuh_staff",
 ]
 
 MIDDLEWARE = [
@@ -96,7 +98,7 @@ WSGI_APPLICATION = "ayuh.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "ayuh",
+        "NAME": "narayaneeyam",
         "USER": "postgres",
         "PASSWORD": "postgres",
         "HOST": "host.docker.internal",
@@ -104,7 +106,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = "ayuh_common.AyuhUser"
+AUTH_USER_MODEL = "ayuh_core.AyuhUser"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -144,17 +146,15 @@ STATIC_URL = "static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-STATICFILES_DIRS = [
-    BASE_DIR / "ayuh_styles" / "dist",
-]
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# drf
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
 
+# swagger
 SPECTACULAR_SETTINGS = {
     "TITLE": f"{FACILITY_NAME.upper()} API",
     "VERSION": "1.0.0",
@@ -165,9 +165,10 @@ SPECTACULAR_SETTINGS = {
     "SWAGGER_UI_SETTINGS": {"displayRequestDuration": True},
 }
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+# crispy-forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
 os.makedirs(LOGS_DIR, exist_ok=True)

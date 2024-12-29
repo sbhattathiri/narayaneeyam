@@ -22,10 +22,6 @@ echo "apply migrations..." | tee -a "$LOG_FILE"
 python manage.py migrate --settings="${DJANGO_SETTINGS_MODULE}" >> "$LOG_FILE" 2>&1
 printf "\n" | tee -a "$LOG_FILE"
 
-echo "copy css..." | tee -a "$LOG_FILE"
-tailwindcss -i "$STYLES_DIR/styles.css" -o "$STYLES_DIR/dist/output.css"
-printf "\n" | tee -a "$LOG_FILE"
-
 echo "collect static..." | tee -a "$LOG_FILE"
 python manage.py collectstatic --noinput --settings="${DJANGO_SETTINGS_MODULE}" >> "$LOG_FILE" 2>&1
 printf "\n" | tee -a "$LOG_FILE"
