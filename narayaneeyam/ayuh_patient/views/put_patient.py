@@ -3,9 +3,6 @@ from ayuh_patient import (
     models,
 )
 
-from django.shortcuts import (
-    redirect,
-)
 from django.urls import (
     reverse_lazy,
 )
