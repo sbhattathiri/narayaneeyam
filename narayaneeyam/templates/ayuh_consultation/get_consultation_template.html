@@ -2,10 +2,9 @@
 {% block extra_head %}
     {% load crispy_forms_tags %}
 {% endblock %}
-{% block title %}Consultation Details{% endblock %}
 {% block content %}
-<h1>Consultation Details</h1>
-
+<h3>Consultation Details</h3>
+<div>
 <p><strong>Consultation ID:</strong> {{ consultation.consultation_id }}</p>
 <p><strong>Doctor:</strong> {{ consultation.doctor }}</p>
 <p><strong>Patient:</strong> {{ consultation.patient }}</p>
@@ -14,7 +13,7 @@
 <p><strong>Diagnosis:</strong> {{ consultation.diagnosis }}</p>
 <p><strong>Doctor's Comments</strong> {{ consultation.doctors_comments }}</p>
 <p><strong>Next Consultation Date:</strong> {{ consultation.next_consultation_date }}</p>
-
+</div>
 <h2>Attachments</h2>
 <div class="row">
     {% for attachment in consultation.attachments.all %}

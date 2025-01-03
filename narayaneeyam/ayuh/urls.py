@@ -22,6 +22,10 @@ urlpatterns = [
         f"{settings.FACILITY_NAME}/ayuh/consultation/",
         include("ayuh_consultation.urls"),
     ),
+    path(
+        f"{settings.FACILITY_NAME}/ayuh/patient/",
+        include("ayuh_patient.urls"),
+    ),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path("swagger/", SpectacularSwaggerView.as_view(), name="swagger-ui"),
 ]
