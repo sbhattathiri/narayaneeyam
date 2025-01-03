@@ -1,15 +1,12 @@
 import uuid
 
 from ayuh_core.enums import (
-    BloodGroup,
     Gender,
+    StaffRole,
     Title,
 )
 from ayuh_core.models import (
     AyuhModel,
-)
-from phonenumber_field.modelfields import (
-    PhoneNumberField,
 )
 
 from django.db import (
@@ -17,8 +14,8 @@ from django.db import (
 )
 
 
-class Patient(AyuhModel):
-    patient_id = models.UUIDField(
+class Staff(AyuhModel):
+    staff_id = models.UUIDField(
         primary_key=True,
         editable=False,
         default=uuid.uuid4,
@@ -33,16 +30,19 @@ class Patient(AyuhModel):
         max_length=255,
         null=True,
         blank=True,
+        default="",
     )
     middle_name = models.CharField(
         max_length=255,
         null=True,
         blank=True,
+        default="",
     )
     last_name = models.CharField(
         max_length=255,
         null=True,
         blank=True,
+        default="",
     )
     gender = models.CharField(
         choices=Gender.choices(),
@@ -51,21 +51,15 @@ class Patient(AyuhModel):
         default="",
     )
     date_of_birth = models.DateField(null=True, blank=True)
-    blood_type = models.CharField(
-        choices=BloodGroup.choices(),
+    designation = models.CharField(
+        choices=StaffRole.choices(),
         null=True,
         blank=True,
         default="",
     )
-    email = models.EmailField(
-        null=True,
-        blank=True,
-    )
-    phone = PhoneNumberField(
-        region="IN",
-        null=True,
-        blank=True,
-    )
+    date_of_joining = models.DateField(null=True, blank=True)
+    date_of_leaving = models.DateField(null=True, blank=True)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.title} {self.last_name}, {self.first_name} {self.middle_name}"
+        return f"{self.title or ""} {self.last_name or ""}, {self.first_name} {self.middle_name or ""}"

@@ -1,0 +1,12 @@
+{% extends 'ayuh_base_template.html' %}
+{% block extra_head %}
+    {% load crispy_forms_tags %}
+{% endblock %}
+{% block title %}Patient Management{% endblock %}
+{% block content %}
+<div class="bg-white shadow-lg rounded p-4 mx-auto" style="max-width: 36rem;">
+    <ul class="list-unstyled d-flex gap-4 p-3">
+        <li><a href="{% url 'list_consultation' %}" class="text-dark hover-text-muted">Consultations</a></li>
+    </ul>
+</div>
+{% endblock %}

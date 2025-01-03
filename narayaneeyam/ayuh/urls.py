@@ -13,17 +13,23 @@ from django.urls import (
     include,
     path,
 )
-from debug_toolbar.toolbar import debug_toolbar_urls
 
 urlpatterns = [
     path(f"{settings.FACILITY_NAME}/admin/", admin.site.urls),
     path(f"{settings.FACILITY_NAME}/accounts/", include("django.contrib.auth.urls")),
     path(f"{settings.FACILITY_NAME}/ayuh/home/", include("ayuh_home.urls")),
-    path(f"{settings.FACILITY_NAME}/ayuh/patients/", include("ayuh_patient.urls")),
     path(
-        f"{settings.FACILITY_NAME}/ayuh/consultations/",
+        f"{settings.FACILITY_NAME}/ayuh/consultation/",
         include("ayuh_consultation.urls"),
     ),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path("swagger/", SpectacularSwaggerView.as_view(), name="swagger-ui"),
-] + debug_toolbar_urls()
+]
+
+if not settings.TESTING:
+    import debug_toolbar
+
+    urlpatterns = [
+        *urlpatterns,
+        path("debug/", include(debug_toolbar.urls)),
+    ]

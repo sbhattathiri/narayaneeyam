@@ -1,0 +1,31 @@
+{% extends "ayuh_base_template.html" %}
+{% block extra_head %}
+    {% load crispy_forms_tags %}
+{% endblock %}
+{% block title %}Consultation List{% endblock %}
+{% block content %}
+<h1 class="mb-4">Consultation List</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Doctor</th>
+            <th>Patient</th>
+            <th>Consultation Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for consultation in consultations %}
+            <tr>
+                <td>{{ consultation.doctor }}</td>
+                <td>{{ consultation.patient }}</td>
+                <td>{{ consultation.consultation_date }}</td>
+                <td>
+                    <a href="{% url 'put_consultation' consultation.pk %}" class="btn btn-warning btn-sm">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

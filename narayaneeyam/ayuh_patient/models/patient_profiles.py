@@ -1,7 +1,8 @@
-from ayuh_common.enums import (
+from ayuh_core.enums import (
+    DietaryPreference,
+    HabitStatus,
     Lifestyle,
 )
-from ayuh_common.enums.ayuh_enums import HabitStatus
 from ayuh_patient.models.patients import (
     Patient,
 )
@@ -72,7 +73,12 @@ class PatientProfile(Patient):
         blank=True,
         default="",
     )
-    dietary_preference = models.TextField(null=True, blank=True)
+    dietary_preference = models.CharField(
+        choices=DietaryPreference.choices(),
+        null=True,
+        blank=True,
+        default="",
+    )
     general_lifestyle = models.CharField(
         choices=Lifestyle.choices(),
         null=True,

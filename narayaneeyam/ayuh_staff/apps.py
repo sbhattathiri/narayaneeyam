@@ -3,6 +3,6 @@ from django.apps import (
 )
 
 
-class AyuhConsultationConfig(AppConfig):
+class AyuhStaffConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "ayuh_consultation"
+    name = "ayuh_staff"

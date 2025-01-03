@@ -168,3 +168,5 @@ design-inputs
 
 .DS_store
 output.css
+.idea/workspace.xml
+consultation_attachments

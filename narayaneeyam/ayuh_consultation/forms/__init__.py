@@ -1,5 +1,15 @@
-from .consultation import Consultation
+from .consultation import (
+    ConsultationForm,
+)
+from .consultation_attachment import (
+    ConsultationAttachmentFormSet,
+)
+from .prescription import (
+    PrescriptionFormSet,
+)
 
 __all__ = [
-    "Consultation",
+    "ConsultationForm",
+    "ConsultationAttachmentFormSet",
+    "PrescriptionFormSet",
 ]

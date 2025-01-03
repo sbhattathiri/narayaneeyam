@@ -6,13 +6,25 @@ from django.urls import (
     path,
 )
 
-
 urlpatterns = [
-    path("", views.ListConsultation.as_view(), name="list_consultation"),
-    path("add/", views.AddConsultation.as_view(), name="add_consultation"),
     path(
-        "<uuid:pk>/edit/",
-        views.UpdateConsultation.as_view(),
-        name="update_consultation",
+        "list",
+        views.ConsultationListView.as_view(),
+        name="list_consultation",
+    ),
+    path(
+        "create/",
+        views.ConsultationCreateView.as_view(),
+        name="post_consultation",
+    ),
+    path(
+        "<uuid:pk>/",
+        views.ConsultationDetailView.as_view(),
+        name="get_consultation",
+    ),
+    path(
+        "<uuid:pk>/update/",
+        views.ConsultationUpdateView.as_view(),
+        name="put_consultation",
     ),
 ]

@@ -1,5 +1,5 @@
-from ayuh_common.models import (
-    BaseModel,
+from ayuh_core.models import (
+    AyuhModel,
 )
 from django_pg_jsonschema.fields import (
     JSONSchemaField,
@@ -10,7 +10,7 @@ from django.db import (
 )
 
 
-class PatientAddress(BaseModel):
+class PatientAddress(AyuhModel):
     patient = models.OneToOneField(
         "Patient",
         on_delete=models.CASCADE,

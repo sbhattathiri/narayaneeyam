@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
+import socket
+import sys
 from pathlib import (
     Path,
 )
@@ -35,26 +37,35 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "corsheaders",
-    "rest_framework",
+]
+
+THIRD_PARTY_APPS = [
     "drf_spectacular",
     "drf_spectacular_sidecar",
     "phonenumber_field",
     "django_pg_jsonschema",
-    "debug_toolbar",
-    "ayuh_common",
-    "ayuh_home",
-    "ayuh_doctor",
-    "ayuh_patient",
-    "ayuh_consultation",
+    "crispy_forms",
+    "crispy_bootstrap4",
+    "rest_framework",
+    "corsheaders",
 ]
+
+FIRST_PARTY_APPS = [
+    "ayuh_consultation",
+    "ayuh_core",
+    "ayuh_home",
+    "ayuh_patient",
+    "ayuh_staff",
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + FIRST_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -65,15 +76,43 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+
+
+# Only enable the toolbar when we're in debug mode and we're
+# not running tests. Django will change DEBUG to be False for
+# tests, so we can't rely on DEBUG alone.
+TESTING = "test" in sys.argv
+
+ENABLE_DEBUG_TOOLBAR = DEBUG and not TESTING
+if ENABLE_DEBUG_TOOLBAR:
+    INSTALLED_APPS += [
+        "debug_toolbar",
+    ]
+    MIDDLEWARE += [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ]
+    # Customize the config to support turbo and htmx boosting.
+    DEBUG_TOOLBAR_CONFIG = {"ROOT_TAG_EXTRA_ATTRS": "data-turbo-permanent hx-preserve"}
+
+
+# By default, the Django Debug Toolbar only shows on localhost or 127.0.0.1.
+# Since Docker uses a separate network,
+# you'll need to set the INTERNAL_IPS to allow it to work within Docker.
+INTERNAL_IPS = [
+    "127.0.0.1",
+    "0.0.0.0",
+    "host.docker.internal",
+    socket.gethostbyname(socket.gethostname()),
+]
+
 
 ROOT_URLCONF = "ayuh.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -96,7 +135,7 @@ WSGI_APPLICATION = "ayuh.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "ayuh",
+        "NAME": "narayaneeyam",
         "USER": "postgres",
         "PASSWORD": "postgres",
         "HOST": "host.docker.internal",
@@ -104,7 +143,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = "ayuh_common.AyuhUser"
+AUTH_USER_MODEL = "ayuh_core.AyuhUser"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -144,17 +183,15 @@ STATIC_URL = "static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-STATICFILES_DIRS = [
-    BASE_DIR / "ayuh_styles" / "dist",
-]
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# drf
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
 
+# swagger
 SPECTACULAR_SETTINGS = {
     "TITLE": f"{FACILITY_NAME.upper()} API",
     "VERSION": "1.0.0",
@@ -165,9 +202,11 @@ SPECTACULAR_SETTINGS = {
     "SWAGGER_UI_SETTINGS": {"displayRequestDuration": True},
 }
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+# crispy-forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
 os.makedirs(LOGS_DIR, exist_ok=True)

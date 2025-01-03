@@ -1,46 +1,35 @@
-from django import forms
+from ayuh_consultation import (
+    models,
+)
+from crispy_forms.helper import (
+    FormHelper,
+)
+from crispy_forms.layout import (
+    Submit,
+)
 
-from ayuh_consultation.models import Consultation
-from ayuh_doctor.models import Doctor
-from ayuh_patient.models import PatientProfile
+from django import (
+    forms,
+)
 
 
-class Consultation(forms.ModelForm):
-    patient = forms.ModelChoiceField(
-        queryset=PatientProfile.objects.all(),
-        to_field_name="patient_id",
-        widget=forms.Select(attrs={"id": "id_patient", "class": "select2 w-full"}),
-        label="Patient",
-    )
-
-    doctor = forms.ModelChoiceField(
-        queryset=Doctor.objects.all(),
-        to_field_name="doctor_id",
-        widget=forms.Select(attrs={"id": "id_doctor", "class": "select2 w-full"}),
-        label="Doctor",
-    )
-
-    patient_concerns = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "input input-bordered w-full"}),
-        label="Patient Concerns",
-    )
-
-    diagnosis = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "input input-bordered w-full"}),
-        label="Diagnosis",
-    )
-
-    prescription = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "input input-bordered w-full"}),
-        label="Prescription",
-    )
-
+class ConsultationForm(forms.ModelForm):
     class Meta:
-        model = Consultation
+        model = models.Consultation
         fields = [
             "patient",
             "doctor",
             "patient_concerns",
             "diagnosis",
-            "prescription",
+            "doctors_comments",
+            "next_consultation_date",
         ]
+        widgets = {
+            "consultation_date": forms.TextInput(attrs={"readonly": "readonly"}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = "post"
+        self.helper.add_input(Submit("submit", "Save Consultation"))

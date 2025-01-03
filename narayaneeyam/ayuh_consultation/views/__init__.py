@@ -1,7 +1,19 @@
-from .consultation_view import ListConsultation, AddConsultation, UpdateConsultation
+from .get_consultation import (
+    ConsultationDetailView,
+)
+from .list_consultation import (
+    ConsultationListView,
+)
+from .post_consultation import (
+    ConsultationCreateView,
+)
+from .put_consultation import (
+    ConsultationUpdateView,
+)
 
 __all__ = [
-    "AddConsultation",
-    "ListConsultation",
-    "UpdateConsultation",
+    "ConsultationCreateView",
+    "ConsultationDetailView",
+    "ConsultationUpdateView",
+    "ConsultationListView",
 ]
