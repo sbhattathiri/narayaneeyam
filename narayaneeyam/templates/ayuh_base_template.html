@@ -1,22 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NARAYANEEYAM ARYA AYURVEDAM</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    {% load crispy_forms_tags %}
-</head>
-<body>
-<header class="text-white py-4" style="background-color: #966d29;">
-    <div class="container text-center">
-        <h1 class="text-2xl font-weight-bold">NARAYANEEYAM ARYA AYURVEDAM</h1>
-        <h3 class="text-base mt-2">त्रायस्व सर्वामयात्</h3>
-    </div>
-</header>
-<div class="container mt-4">
-    {% block content %}
-    {% endblock %}
-</div>
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      <title>NARAYANEEYAM ARYA AYURVEDAM</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+      {% load crispy_forms_tags %}
+   </head>
+   <body>
+      <header class="text-white py-4" style="background-color: #966d29;">
+         <div class="container text-center">
+            <h1 class="text-2xl font-weight-bold">NARAYANEEYAM ARYA AYURVEDAM</h1>
+            <h3 class="text-base mt-2">त्रायस्व सर्वामयात्</h3>
+         </div>
+      </header>
+      <div class="container-fluid">
+         <div class="row">
+            {% if not request.resolver_match.url_name == "home" %}
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+               <div class="sidebar-sticky">
+                  <ul class="nav flex-column" style="margin-top: 15%;">
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}" style="color: brown;">Home</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin' %}" style="color: brown;">Admin</a>
+                     </li>
+                  </ul>
+               </div>
+            </nav>
+            {% endif %}
+            <main class="{% if not request.resolver_match.url_name == 'home' %}
+               col-md-10 ml-sm-auto col-lg-10{% else %}col{% endif %}"
+               role="main">
+               {% block content %}
+               {% endblock %}
+            </main>
+         </div>
+      </div>
+   </body>
 </html>
