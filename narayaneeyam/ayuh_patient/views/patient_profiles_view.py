@@ -42,7 +42,7 @@ class AddPatientProfile(CreateView):
 class UpdatePatientProfile(UpdateView):
     model = models.PatientProfile
     form_class = forms.PatientProfile
-    template_name = "patient_management_edit_patient.html"
+    template_name = "patient_management_update_patient.html"
 
     def get_success_url(self):
         return reverse_lazy("view_patient", kwargs={"pk": self.object.pk})

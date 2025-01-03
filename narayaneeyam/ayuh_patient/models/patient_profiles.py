@@ -1,6 +1,7 @@
 from ayuh_common.enums import (
     Lifestyle,
 )
+from ayuh_common.enums.ayuh_enums import HabitStatus
 from ayuh_patient.models.patients import (
     Patient,
 )
@@ -53,20 +54,23 @@ class PatientProfile(Patient):
         null=True,
         blank=True,
     )
-    smoking_status = models.BooleanField(
+    smoking_status = models.CharField(
+        choices=HabitStatus.choices(),
         null=True,
         blank=True,
-        default=False,
+        default="",
     )
-    drinking_status = models.BooleanField(
+    drinking_status = models.CharField(
+        choices=HabitStatus.choices(),
         null=True,
         blank=True,
-        default=False,
+        default="",
     )
-    substance_abuse_status = models.BooleanField(
+    substance_abuse_status = models.CharField(
+        choices=HabitStatus.choices(),
         null=True,
         blank=True,
-        default=False,
+        default="",
     )
     dietary_preference = models.TextField(null=True, blank=True)
     general_lifestyle = models.CharField(

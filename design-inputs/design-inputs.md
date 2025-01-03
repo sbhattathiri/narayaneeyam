@@ -12,26 +12,30 @@
         - Vitals Timeline (Weight, Height, Pressure etc)
         - Discharge Summary
 
-   - Clinic Inventory
-        - Medicinies
-        - Non Medical
+   - Billing
+
+   - Inventory
+     - Clinic Inventory
+          - Medicinies
+          - Non Medical
    
-   - Kitchen Inventory
+     - Kitchen Inventory
 
-   - Payroll Management
-
-   - Leave Management
-
-   - Utility Bills
-     - Electricity
-     - Water
-     - Waste
-     - Internet
-     - Cable TV
-     - Cooking Gas
+   - Human Resource Management
+     - Payroll Management
+     - Leave Management
      
    - Reminders
      - Utility Bills
-     - License renewal
+         - Electricity
+         - Water
+         - Waste
+         - Internet
+         - Cable TV
+         - Cooking Gas
+         - License renewal
+         - Rent
 
    - Expense Tracker
+
+   - PR

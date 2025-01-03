@@ -49,3 +49,14 @@ class Title(Enum):
     @classmethod
     def choices(cls):
         return [(key.value, key.name) for key in cls]
+
+
+class HabitStatus(Enum):
+    NEVER = "Never"
+    OCCASIONAL = "Occasional"
+    REGULAR = "Regular"
+    HEAVY = "Heavy"
+
+    @classmethod
+    def choices(cls):
+        return [(key.value, key.name) for key in cls]

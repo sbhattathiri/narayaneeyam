@@ -6,11 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="c2000565-58a9-4fbb-be89-3f8a072bedd6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_frontend/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/entrypoint.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/narayaneeyam/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_common/enums/ayuh_enums.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_common/enums/ayuh_enums.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_consultation/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_consultation/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_consultation/forms/consultation.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_consultation/forms/consultation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_consultation/models/consultation.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_consultation/models/consultation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_doctor/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_doctor/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_doctor/models/doctors.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_doctor/models/doctors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/forms/patient_profiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/forms/patient_profiles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/models/patient_profiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/models/patient_profiles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/models/patients.py" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/ayuh_patient/models/patients.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/templates/consultation_add_consultation.html" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/templates/consultation_add_consultation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/templates/consultation_list_consultation.html" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/templates/consultation_list_consultation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/narayaneeyam/templates/patient_management.html" beforeDir="false" afterPath="$PROJECT_DIR$/narayaneeyam/templates/patient_management.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,22 +46,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "fix-ui",
-    "last_opened_file_path": "/Users/svb/Projects/narayaneeyam/narayaneeyam/templates",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fix-ui&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/svb/Projects/narayaneeyam/narayaneeyam/templates&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.black.configuration.BlackFormatterConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/narayaneeyam/templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/narayaneeyam/ayuh_consultation/views" />
+      <recent name="$PROJECT_DIR$/narayaneeyam/ayuh_consultation/models" />
       <recent name="$PROJECT_DIR$/narayaneeyam/ayuh_home" />
       <recent name="$PROJECT_DIR$/narayaneeyam" />
       <recent name="$PROJECT_DIR$" />

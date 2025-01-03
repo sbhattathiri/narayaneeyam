@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Inventory Management{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow-md rounded-lg p-6 max-w-xl mx-auto">
+    <ul class="flex space-x-4 p-4">
+        <li><a href="{% url 'clinical_inventory' %}" class="hover:text-gray-300">Clinical Inventory</a></li>
+         <li><a href="{% url 'non_clinical_inventory' %}" class="hover:text-gray-300">Non Clinical Inventory</a></li>
+    </ul>
+</div>
+{% endblock %}

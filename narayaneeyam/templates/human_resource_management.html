@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Human Resource Management{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow-md rounded-lg p-6 max-w-xl mx-auto">
+    <ul class="flex space-x-4 p-4">
+        <li><a href="{% url 'payroll_management' %}" class="hover:text-gray-300">Payroll Management</a></li>
+        <li><a href="{% url 'leave_management' %}" class="hover:text-gray-300">Leave Management</a></li>
+    </ul>
+</div>
+{% endblock %}

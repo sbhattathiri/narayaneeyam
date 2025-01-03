@@ -48,9 +48,12 @@ INSTALLED_APPS = [
     "drf_spectacular_sidecar",
     "phonenumber_field",
     "django_pg_jsonschema",
+    "debug_toolbar",
     "ayuh_common",
     "ayuh_home",
+    "ayuh_doctor",
     "ayuh_patient",
+    "ayuh_consultation",
 ]
 
 MIDDLEWARE = [
@@ -62,6 +65,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "ayuh.urls"
@@ -78,6 +82,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
+            "debug": True,
         },
     },
 ]
@@ -160,6 +165,9 @@ SPECTACULAR_SETTINGS = {
     "SWAGGER_UI_SETTINGS": {"displayRequestDuration": True},
 }
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
 os.makedirs(LOGS_DIR, exist_ok=True)

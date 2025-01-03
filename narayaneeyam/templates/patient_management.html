@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Patient Information - Clinic Management{% endblock %}
+{% block title %}Patient Management{% endblock %}
 
 {% block content %}
 <div class="bg-white shadow-md rounded-lg p-6 max-w-xl mx-auto">
-    <h2 class="text-xl font-semibold text-gray-700">Patient Information</h2>
     <ul class="flex space-x-4 p-4">
-        <li><a href="{% url 'add_patient' %}" class="hover:text-gray-300">Patient Management</a></li>
+        <li><a href="{% url 'list_consultation' %}" class="hover:text-gray-300">Patient Management</a></li>
     </ul>
 </div>
 {% endblock %}
