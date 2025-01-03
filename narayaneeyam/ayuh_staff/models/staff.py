@@ -8,6 +8,9 @@ from ayuh_core.enums import (
 from ayuh_core.models import (
     AyuhModel,
 )
+from phonenumber_field.modelfields import (
+    PhoneNumberField,
+)
 
 from django.db import (
     models,
@@ -57,9 +60,26 @@ class Staff(AyuhModel):
         blank=True,
         default="",
     )
+    email = models.EmailField(
+        null=True,
+        blank=True,
+    )
+    phone = PhoneNumberField(
+        region="IN",
+        null=True,
+        blank=True,
+    )
     date_of_joining = models.DateField(null=True, blank=True)
     date_of_leaving = models.DateField(null=True, blank=True)
     active = models.BooleanField(default=True)
+
+    class Meta:
+        unique_together = (
+            "first_name",
+            "middle_name",
+            "last_name",
+            "email",
+        )
 
     def __str__(self):
         return f"{self.title or ""} {self.last_name or ""}, {self.first_name} {self.middle_name or ""}"

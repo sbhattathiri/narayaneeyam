@@ -3,7 +3,10 @@
     {% load crispy_forms_tags %}
 {% endblock %}
 {% block content %}
-<h3 class="mb-4">Patients List</h3>
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h3 class="mb-4">Patients List</h3>
+    <a href="{% url 'post_patient' %}" class="btn btn-warning btn-sm">New Patient</a>
+</div>
 <table class="table table-bordered">
     <thead>
         <tr>
