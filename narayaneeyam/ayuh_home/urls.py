@@ -7,6 +7,10 @@ from django.urls import (
 )
 
 urlpatterns = [
-    path("", views.home, name="home_landing"),
-    path("patient", views.patient_management, name="patient_management_landing"),
+    path("", views.home, name="home"),
+    path("admin", views.admin, name="admin"),
+    path("patient", views.patient, name="patients"),
+    path("consultation", views.consultation, name="consultations"),
+    path("admission", views.admission, name="admissions"),
+    path("inventory", views.inventory, name="inventory"),
 ]

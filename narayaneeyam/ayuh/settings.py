@@ -227,10 +227,22 @@ LOGGING = {
             "filename": os.path.join(LOGS_DIR, "ayuh.log"),
             "formatter": "verbose",
         },
-        "ayuh_common_handler": {
+        "ayuh_core_handler": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": os.path.join(LOGS_DIR, "ayuh_common.log"),
+            "filename": os.path.join(LOGS_DIR, "ayuh_core.log"),
+            "formatter": "verbose",
+        },
+        "ayuh_home_handler": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOGS_DIR, "ayuh_home.log"),
+            "formatter": "verbose",
+        },
+        "ayuh_consultation_handler": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOGS_DIR, "ayuh_consultation.log"),
             "formatter": "verbose",
         },
         "ayuh_patient_handler": {
@@ -257,8 +269,18 @@ LOGGING = {
             "level": "DEBUG",
             "propagate": True,
         },
-        "ayuh_common": {
-            "handlers": ["ayuh_common_handler"],
+        "ayuh_core": {
+            "handlers": ["ayuh_core_handler"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "ayuh_home": {
+            "handlers": ["ayuh_home_handler"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "ayuh_consultation": {
+            "handlers": ["ayuh_consultation_handler"],
             "level": "DEBUG",
             "propagate": False,
         },

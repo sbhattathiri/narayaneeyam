@@ -4,12 +4,40 @@ from django.shortcuts import (
 
 
 def home(request):
-    return render(request, "ayuh_home/home_landing_template.html", context={})
+    return render(request, "ayuh_home/home_template.html", context={})
 
 
-def patient_management(request):
+def admin(request):
+    return render(request, "ayuh_home/admin_home_template.html", context={})
+
+
+def consultation(request):
     return render(
         request,
-        "ayuh_home/patient_consultation_management_landing_template.html",
+        "ayuh_home/consultations_home_template.html",
+        context={},
+    )
+
+
+def admission(request):
+    return render(
+        request,
+        "ayuh_home/admissions_home_template.html",
+        context={},
+    )
+
+
+def patient(request):
+    return render(
+        request,
+        "ayuh_home/patients_home_template.html",
+        context={},
+    )
+
+
+def inventory(request):
+    return render(
+        request,
+        "ayuh_home/inventory_home_template.html",
         context={},
     )

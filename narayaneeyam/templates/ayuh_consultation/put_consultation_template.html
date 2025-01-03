@@ -2,9 +2,8 @@
 {% block extra_head %}
     {% load crispy_forms_tags %}
 {% endblock %}
-{% block title %}Update Consultation{% endblock %}
 {% block content %}
-<h1 class="mb-4">Update Consultation</h1>
+<h3 class="mb-4">Update Consultation</h3>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
@@ -25,6 +24,6 @@
         {% endfor %}
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" style="background-color: #6F4F1A;">Submit</button>
 </form>
 {% endblock %}

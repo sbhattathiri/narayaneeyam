@@ -1,9 +1,10 @@
-from .home import (
-    home,
-    patient_management,
-)
+from .home import home, admin, patient, consultation, admission, inventory
 
 __all__ = [
     "home",
-    "patient_management",
+    "admin",
+    "patient",
+    "consultation",
+    "admission",
+    "inventory",
 ]

@@ -2,9 +2,8 @@
 {% block extra_head %}
     {% load crispy_forms_tags %}
 {% endblock %}
-{% block title %}Create Consultation{% endblock %}
 {% block content %}
-<h1 class="mb-4">Create Consultation</h1>
+<h3 class="mb-4">Create Consultation</h3>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
