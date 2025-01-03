@@ -1,4 +1,11 @@
-from .home import home, admin, patient, consultation, admission, inventory
+from .home import (
+    admin,
+    admission,
+    consultation,
+    home,
+    inventory,
+    patient,
+)
 
 __all__ = [
     "home",

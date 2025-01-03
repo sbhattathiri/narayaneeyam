@@ -1,4 +1,6 @@
-from .patient import PatientForm
+from .patient import (
+    PatientForm,
+)
 
 __all__ = [
     "PatientForm",

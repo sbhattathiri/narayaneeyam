@@ -1,13 +1,18 @@
 import logging
 
-from django.db.models import Max
-from ayuh_consultation.models import Consultation
+from ayuh_consultation.models import (
+    Consultation,
+)
+from ayuh_patient.models import (
+    Patient,
+)
 
+from django.db.models import (
+    Max,
+)
 from django.views.generic import (
     ListView,
 )
-
-from ayuh_patient.models import Patient
 
 logger = logging.getLogger(__name__)
 
