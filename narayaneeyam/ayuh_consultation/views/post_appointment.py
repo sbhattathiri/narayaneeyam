@@ -15,7 +15,7 @@ from django.views.generic.edit import (
 
 
 class AppointmentCreateView(CreateView):
-    model = models.Consultation
-    form_class = forms.ConsultationForm
+    model = models.Appointment
+    form_class = forms.AppointmentForm
     template_name = "ayuh_consultation/post_appointment_template.html"
     success_url = reverse_lazy("list_consultation")

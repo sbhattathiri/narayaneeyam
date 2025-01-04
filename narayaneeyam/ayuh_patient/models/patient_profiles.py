@@ -90,3 +90,16 @@ class PatientProfile(Patient):
         null=True,
         blank=True,
     )
+
+    def clean(self):
+        self.primary_care_provider = (
+            self.primary_care_provider.upper()
+            if self.primary_care_provider
+            else self.primary_care_provider
+        )
+        self.primary_physician_name = (
+            self.primary_physician_name.upper()
+            if self.primary_physician_name
+            else self.primary_physician_name
+        )
+        super().clean()

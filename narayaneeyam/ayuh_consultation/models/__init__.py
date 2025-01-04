@@ -1,3 +1,6 @@
+from .appointment import (
+    Appointment,
+)
 from .consultation import (
     Consultation,
 )
@@ -9,6 +12,7 @@ from .prescription import (
 )
 
 __all__ = [
+    "Appointment",
     "Consultation",
     "ConsultationAttachment",
     "Prescription",

@@ -15,7 +15,7 @@ from django.views.generic.edit import (
 
 
 class PatientCreateView(CreateView):
-    model = models.Patient
+    model = models.PatientProfile
     form_class = forms.PatientForm
     template_name = "ayuh_patient/post_patient_template.html"
     success_url = reverse_lazy("list_patient")

@@ -75,5 +75,15 @@ class Patient(AyuhModel):
             "email",
         )
 
+    def clean(self):
+        self.first_name = (
+            self.first_name.upper() if self.first_name else self.first_name
+        )
+        self.middle_name = (
+            self.middle_name.upper() if self.middle_name else self.middle_name
+        )
+        self.last_name = self.last_name.upper() if self.last_name else self.last_name
+        super().clean()
+
     def __str__(self):
-        return f"{self.title} {self.last_name}, {self.first_name} {self.middle_name}"
+        return f"{self.title} {self.last_name or ""}, {self.first_name or ""} {self.middle_name or ""}"

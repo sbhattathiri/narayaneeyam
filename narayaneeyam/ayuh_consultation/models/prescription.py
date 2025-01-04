@@ -1,6 +1,6 @@
 import uuid
 
-from ayuh_consultation.models import (
+from ayuh_consultation.models.consultation import (
     Consultation,
 )
 from ayuh_core.models import (
