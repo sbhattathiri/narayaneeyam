@@ -15,7 +15,7 @@ from django import (
 
 class PatientForm(forms.ModelForm):
     class Meta:
-        model = models.Patient
+        model = models.PatientProfile
         fields = [
             "title",
             "first_name",
@@ -27,6 +27,9 @@ class PatientForm(forms.ModelForm):
             "email",
             "phone",
         ]
+        widgets = {
+            "date_of_birth": forms.widgets.DateInput(attrs={"type": "date"}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

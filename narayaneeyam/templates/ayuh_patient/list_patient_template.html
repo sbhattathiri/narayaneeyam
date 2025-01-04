@@ -3,12 +3,15 @@
     {% load crispy_forms_tags %}
 {% endblock %}
 {% block content %}
-<h3 class="mb-4">Patients List</h3>
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h3 class="mb-4 pt-4">Patients List</h3>
+    <a href="{% url 'post_patient' %}" class="btn btn-warning btn-md">New Patient</a>
+</div>
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Patient Name</th>
-            <th>Doctor Name</th>
+            <th>Patient</th>
+            <th>Doctor</th>
             <th>Last Consultation Date</th>
             <th>Actions</th>
         </tr>
@@ -17,8 +20,8 @@
         {% for patient in patients %}
             <tr>
                 <td>{{ patient.patient }}</td>
-                <td>{{ patient.doctor }}</td>
-                <td>{{ patient.last_consultation_date }}</td>
+                <td>{{ patient.doctor | default_if_none:""}}</td>
+                <td>{{ patient.appointment_date | default_if_none:"" }}</td>
                 <td>
                     <a href="{% url 'put_patient' patient.patient_id %}" class="btn btn-warning btn-sm">Update</a>
                 </td>

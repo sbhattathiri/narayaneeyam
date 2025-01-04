@@ -13,6 +13,11 @@ urlpatterns = [
         name="list_consultation",
     ),
     path(
+        "new/",
+        views.AppointmentCreateView.as_view(),
+        name="post_appointment",
+    ),
+    path(
         "create/",
         views.ConsultationCreateView.as_view(),
         name="post_consultation",

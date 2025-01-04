@@ -1,16 +1,5 @@
-import uuid
-
-from ayuh_core.enums import (
-    StaffRole,
-)
-from ayuh_core.models import (
-    AyuhModel,
-)
-from ayuh_patient.models import (
-    Patient,
-)
-from ayuh_staff.models import (
-    Staff,
+from ayuh_consultation.models.appointment import (
+    Appointment,
 )
 
 from django.db import (
@@ -18,26 +7,7 @@ from django.db import (
 )
 
 
-class Consultation(AyuhModel):
-    consultation_id = models.UUIDField(
-        primary_key=True,
-        editable=False,
-        default=uuid.uuid4,
-    )
-    patient = models.ForeignKey(
-        Patient,
-        on_delete=models.CASCADE,
-        related_name="consulting_patient",
-    )
-    doctor = models.ForeignKey(
-        Staff,
-        on_delete=models.SET_NULL,
-        limit_choices_to={"designation": StaffRole.DOCTOR.value},
-        db_column="doctor",
-        null=True,
-        blank=True,
-        related_name="consulting_doctor",
-    )
+class Consultation(Appointment):
     consultation_date = models.DateTimeField(auto_now_add=True)
     patient_concerns = models.TextField(null=True, blank=True)
     diagnosis = models.TextField(null=True, blank=True)
@@ -51,4 +21,4 @@ class Consultation(AyuhModel):
             else "Unknown"
         )
         doctor_name = f"Dr. {self.doctor.last_name or ""}" if self.doctor else "Unknown"
-        return f"Patient: {patient_name} with {doctor_name} on {self.consultation_date}"
+        return f"Patient: {patient_name} consulted {doctor_name} on {self.appointment_date}"

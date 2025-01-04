@@ -13,6 +13,11 @@ urlpatterns = [
         name="list_patient",
     ),
     path(
+        "create/",
+        views.PatientCreateView.as_view(),
+        name="post_patient",
+    ),
+    path(
         "<uuid:pk>/update/",
         views.PatientUpdateView.as_view(),
         name="put_patient",

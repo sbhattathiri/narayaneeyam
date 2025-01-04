@@ -1,6 +1,7 @@
 import logging
 
 from ayuh_consultation.models import (
+    Appointment,
     Consultation,
 )
 from ayuh_patient.models import (
@@ -9,6 +10,8 @@ from ayuh_patient.models import (
 
 from django.db.models import (
     Max,
+    OuterRef,
+    Subquery,
 )
 from django.views.generic import (
     ListView,
@@ -23,47 +26,44 @@ class PatientListView(ListView):
     context_object_name = "patients"
 
     def get_queryset(self):
-        consultations = Consultation.objects.values("patient").annotate(
-            last_consultation_date=Max("consultation_date")
+        latest_appointments = Appointment.objects.filter(
+            patient=OuterRef("pk")
+        ).order_by("-appointment_date")
+        latest_appointment_data = latest_appointments.values(
+            "doctor", "appointment_date"
+        )[:1]
+
+        patients_with_appointment = Patient.objects.annotate(
+            latest_appointment_doctor_title=Subquery(
+                latest_appointment_data.values("doctor__title")
+            ),
+            latest_appointment_doctor_first_name=Subquery(
+                latest_appointment_data.values("doctor__first_name")
+            ),
+            latest_appointment_doctor_middle_name=Subquery(
+                latest_appointment_data.values("doctor__middle_name")
+            ),
+            latest_appointment_doctor_last_name=Subquery(
+                latest_appointment_data.values("doctor__last_name")
+            ),
+            latest_appointment_date=Subquery(
+                latest_appointment_data.values("appointment_date")
+            ),
         )
-        logger.info(f"consultations: {consultations}")
 
         patient_data = []
-        for consultation in consultations:
-            patient = Patient.objects.get(patient_id=consultation["patient"])
-            last_consultation = (
-                patient.consulting_patient.filter(
-                    consultation_date=consultation["last_consultation_date"]
-                ).first()
-                if consultation["last_consultation_date"]
-                else None
-            )
-            doctor = last_consultation.doctor if last_consultation else None
-            last_consultation_date = (
-                consultation["last_consultation_date"] if last_consultation else None
-            )
-            patient_data.append(
-                {
-                    "patient_id": consultation["patient"],
-                    "patient": patient,
-                    "doctor": doctor,
-                    "last_consultation_date": last_consultation_date,
-                }
-            )
-
-        logger.info(f"consulting patients: {patient_data}")
-        patients_without_consultations = Patient.objects.filter(
-            consulting_patient__isnull=True
-        )
-        for patient in patients_without_consultations:
+        for patient in patients_with_appointment:
             patient_data.append(
                 {
                     "patient_id": patient.patient_id,
                     "patient": patient,
-                    "doctor": None,
-                    "last_consultation_date": None,
+                    "doctor": f"{patient.latest_appointment_doctor_title or ""} "
+                    f"{patient.latest_appointment_doctor_last_name or ""}"
+                    f"{"," if patient.latest_appointment_doctor_last_name else ""} "
+                    f"{patient.latest_appointment_doctor_first_name or ""} "
+                    f"{patient.latest_appointment_doctor_middle_name or ""}",
+                    "appointment_date": patient.latest_appointment_date,
                 }
             )
 
-        logger.info(f"patients: {patient_data}")
         return patient_data

@@ -13,24 +13,20 @@ from django import (
 )
 
 
-class ConsultationForm(forms.ModelForm):
+class AppointmentForm(forms.ModelForm):
     class Meta:
-        model = models.Consultation
+        model = models.Appointment
         fields = [
             "patient",
             "doctor",
-            "patient_concerns",
-            "diagnosis",
-            "doctors_comments",
-            "next_consultation_date",
+            "appointment_date",
         ]
         widgets = {
-            "consultation_date": forms.TextInput(attrs={"readonly": "readonly"}),
-            "next_consultation_date": forms.widgets.DateInput(attrs={"type": "date"}),
+            "appointment_date": forms.widgets.DateInput(attrs={"type": "date"}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = "post"
-        self.helper.add_input(Submit("submit", "Save Consultation"))
+        self.helper.add_input(Submit("submit", "Save Appointment"))
