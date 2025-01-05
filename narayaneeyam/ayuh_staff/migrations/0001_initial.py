@@ -2,9 +2,8 @@
 
 import uuid
 
-import phonenumber_field.modelfields
-
 import django.db.models.deletion
+import phonenumber_field.modelfields
 from django.conf import (
     settings,
 )

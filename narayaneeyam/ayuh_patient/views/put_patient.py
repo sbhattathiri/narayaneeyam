@@ -1,13 +1,13 @@
-from ayuh_patient import (
-    forms,
-    models,
-)
-
 from django.urls import (
     reverse_lazy,
 )
 from django.views.generic.edit import (
     UpdateView,
+)
+
+from ayuh_patient import (
+    forms,
+    models,
 )
 
 

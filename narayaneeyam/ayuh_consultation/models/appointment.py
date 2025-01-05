@@ -1,5 +1,9 @@
 import uuid
 
+from django.db import (
+    models,
+)
+
 from ayuh_core.enums import (
     StaffRole,
 )
@@ -11,10 +15,6 @@ from ayuh_patient.models import (
 )
 from ayuh_staff.models import (
     Staff,
-)
-
-from django.db import (
-    models,
 )
 
 

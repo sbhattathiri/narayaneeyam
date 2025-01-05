@@ -1,3 +1,13 @@
+from django.contrib.postgres.fields import (
+    ArrayField,
+)
+from django.db import (
+    models,
+)
+from phonenumber_field.modelfields import (
+    PhoneNumberField,
+)
+
 from ayuh_core.enums import (
     DietaryPreference,
     HabitStatus,
@@ -5,16 +15,6 @@ from ayuh_core.enums import (
 )
 from ayuh_patient.models.patients import (
     Patient,
-)
-from phonenumber_field.modelfields import (
-    PhoneNumberField,
-)
-
-from django.contrib.postgres.fields import (
-    ArrayField,
-)
-from django.db import (
-    models,
 )
 
 

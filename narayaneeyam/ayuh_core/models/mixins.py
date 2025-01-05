@@ -1,7 +1,6 @@
 from ayuh import (
     settings,
 )
-
 from django.db import (
     models,
 )

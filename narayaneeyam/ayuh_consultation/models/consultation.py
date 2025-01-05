@@ -1,9 +1,9 @@
-from ayuh_consultation.models.appointment import (
-    Appointment,
-)
-
 from django.db import (
     models,
+)
+
+from ayuh_consultation.models.appointment import (
+    Appointment,
 )
 
 

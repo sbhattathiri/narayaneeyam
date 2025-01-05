@@ -1,12 +1,12 @@
+from django.db import (
+    models,
+)
+
 from ayuh_consultation.models.consultation import (
     Consultation,
 )
 from ayuh_core.models import (
     AyuhModel,
-)
-
-from django.db import (
-    models,
 )
 
 

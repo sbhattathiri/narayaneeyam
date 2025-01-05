@@ -1,8 +1,3 @@
-from drf_spectacular.views import (
-    SpectacularAPIView,
-    SpectacularSwaggerView,
-)
-
 from django.conf import (
     settings,
 )
@@ -12,6 +7,10 @@ from django.contrib import (
 from django.urls import (
     include,
     path,
+)
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
 )
 
 urlpatterns = [
@@ -31,6 +30,8 @@ urlpatterns = [
 ]
 
 if settings.ENABLE_DEBUG_TOOLBAR:
-    from debug_toolbar.toolbar import debug_toolbar_urls
+    from debug_toolbar.toolbar import (
+        debug_toolbar_urls,
+    )
 
     urlpatterns = urlpatterns + debug_toolbar_urls()

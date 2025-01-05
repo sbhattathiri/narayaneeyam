@@ -1,9 +1,9 @@
-from ayuh_home import (
-    views,
-)
-
 from django.urls import (
     path,
+)
+
+from ayuh_home import (
+    views,
 )
 
 urlpatterns = [

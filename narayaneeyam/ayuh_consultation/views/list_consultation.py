@@ -1,9 +1,9 @@
-from ayuh_consultation import (
-    models,
-)
-
 from django.views.generic import (
     ListView,
+)
+
+from ayuh_consultation import (
+    models,
 )
 
 

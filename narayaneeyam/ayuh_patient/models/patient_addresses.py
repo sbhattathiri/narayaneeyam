@@ -1,12 +1,12 @@
-from ayuh_core.models import (
-    AyuhModel,
+from django.db import (
+    models,
 )
 from django_pg_jsonschema.fields import (
     JSONSchemaField,
 )
 
-from django.db import (
-    models,
+from ayuh_core.models import (
+    AyuhModel,
 )
 
 

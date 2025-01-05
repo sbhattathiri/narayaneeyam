@@ -1,9 +1,9 @@
-from ayuh_consultation import (
-    models,
-)
-
 from django.forms import (
     inlineformset_factory,
+)
+
+from ayuh_consultation import (
+    models,
 )
 
 ConsultationAttachmentFormSet = inlineformset_factory(

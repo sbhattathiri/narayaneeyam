@@ -1,9 +1,9 @@
-from ayuh_patient import (
-    views,
-)
-
 from django.urls import (
     path,
+)
+
+from ayuh_patient import (
+    views,
 )
 
 urlpatterns = [

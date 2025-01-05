@@ -1,8 +1,3 @@
-from ayuh_consultation import (
-    forms,
-    models,
-)
-
 from django.shortcuts import (
     redirect,
 )
@@ -11,6 +6,11 @@ from django.urls import (
 )
 from django.views.generic.edit import (
     UpdateView,
+)
+
+from ayuh_consultation import (
+    forms,
+    models,
 )
 
 

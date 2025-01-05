@@ -1,9 +1,9 @@
-from ayuh_patient import (
-    models,
-)
-
 from django.contrib import (
     admin,
+)
+
+from ayuh_patient import (
+    models,
 )
 
 models_to_be_registered = [models.PatientProfile, models.PatientAddress]

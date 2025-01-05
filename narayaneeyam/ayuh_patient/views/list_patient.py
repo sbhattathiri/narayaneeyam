@@ -1,20 +1,24 @@
 import logging
 
-from ayuh_consultation.models import (
-    Appointment,
-    Consultation,
-)
-from ayuh_patient.models import (
-    Patient,
-)
-
 from django.db.models import (
-    Max,
+    F,
     OuterRef,
     Subquery,
+    Value,
+)
+from django.db.models.functions import (
+    Coalesce,
+    Concat,
 )
 from django.views.generic import (
     ListView,
+)
+
+from ayuh_consultation.models import (
+    Appointment,
+)
+from ayuh_patient.models import (
+    Patient,
 )
 
 logger = logging.getLogger(__name__)
@@ -29,22 +33,22 @@ class PatientListView(ListView):
         latest_appointments = Appointment.objects.filter(
             patient=OuterRef("pk")
         ).order_by("-appointment_date")
-        latest_appointment_data = latest_appointments.values(
-            "doctor", "appointment_date"
-        )[:1]
+
+        latest_appointment_data = latest_appointments.annotate(
+            doctor_full_name=Concat(
+                Coalesce(F("doctor__title"), Value("")),
+                Value(" "),
+                Coalesce(F("doctor__last_name"), Value("")),
+                Value(", "),
+                Coalesce(F("doctor__first_name"), Value("")),
+                Value(" "),
+                Coalesce(F("doctor__middle_name"), Value("")),
+            )
+        ).values("doctor_full_name", "appointment_date")[:1]
 
         patients_with_appointment = Patient.objects.annotate(
-            latest_appointment_doctor_title=Subquery(
-                latest_appointment_data.values("doctor__title")
-            ),
-            latest_appointment_doctor_first_name=Subquery(
-                latest_appointment_data.values("doctor__first_name")
-            ),
-            latest_appointment_doctor_middle_name=Subquery(
-                latest_appointment_data.values("doctor__middle_name")
-            ),
-            latest_appointment_doctor_last_name=Subquery(
-                latest_appointment_data.values("doctor__last_name")
+            latest_appointment_doctor_full_name=Subquery(
+                latest_appointment_data.values("doctor_full_name")
             ),
             latest_appointment_date=Subquery(
                 latest_appointment_data.values("appointment_date")
@@ -57,11 +61,7 @@ class PatientListView(ListView):
                 {
                     "patient_id": patient.patient_id,
                     "patient": patient,
-                    "doctor": f"{patient.latest_appointment_doctor_title or ""} "
-                    f"{patient.latest_appointment_doctor_last_name or ""}"
-                    f"{"," if patient.latest_appointment_doctor_last_name else ""} "
-                    f"{patient.latest_appointment_doctor_first_name or ""} "
-                    f"{patient.latest_appointment_doctor_middle_name or ""}",
+                    "doctor": patient.latest_appointment_doctor_full_name,
                     "appointment_date": patient.latest_appointment_date,
                 }
             )
