@@ -30,10 +30,7 @@ urlpatterns = [
     path("swagger/", SpectacularSwaggerView.as_view(), name="swagger-ui"),
 ]
 
-if not settings.TESTING:
-    import debug_toolbar
+if settings.ENABLE_DEBUG_TOOLBAR:
+    from debug_toolbar.toolbar import debug_toolbar_urls
 
-    urlpatterns = [
-        *urlpatterns,
-        path("debug/", include(debug_toolbar.urls)),
-    ]
+    urlpatterns = urlpatterns + debug_toolbar_urls()

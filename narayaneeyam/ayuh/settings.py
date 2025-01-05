@@ -79,34 +79,6 @@ MIDDLEWARE = [
 ]
 
 
-# Only enable the toolbar when we're in debug mode and we're
-# not running tests. Django will change DEBUG to be False for
-# tests, so we can't rely on DEBUG alone.
-TESTING = "test" in sys.argv
-
-ENABLE_DEBUG_TOOLBAR = DEBUG and not TESTING
-if ENABLE_DEBUG_TOOLBAR:
-    INSTALLED_APPS += [
-        "debug_toolbar",
-    ]
-    MIDDLEWARE += [
-        "debug_toolbar.middleware.DebugToolbarMiddleware",
-    ]
-    # Customize the config to support turbo and htmx boosting.
-    DEBUG_TOOLBAR_CONFIG = {"ROOT_TAG_EXTRA_ATTRS": "data-turbo-permanent hx-preserve"}
-
-
-# By default, the Django Debug Toolbar only shows on localhost or 127.0.0.1.
-# Since Docker uses a separate network,
-# you'll need to set the INTERNAL_IPS to allow it to work within Docker.
-INTERNAL_IPS = [
-    "127.0.0.1",
-    "0.0.0.0",
-    "host.docker.internal",
-    socket.gethostbyname(socket.gethostname()),
-]
-
-
 ROOT_URLCONF = "ayuh.urls"
 
 TEMPLATES = [
@@ -291,3 +263,26 @@ LOGGING = {
         },
     },
 }
+
+
+ENABLE_DEBUG_TOOLBAR = DEBUG and "test" not in sys.argv
+
+if ENABLE_DEBUG_TOOLBAR:
+    # By default, the Django Debug Toolbar only shows on localhost or 127.0.0.1.
+    # Since Docker uses a separate network, you'll need to set the INTERNAL_IPS to allow it to work within Docker.
+    INTERNAL_IPS = [
+        "127.0.0.1",
+        "::1",
+    ]
+
+    DEBUG_TOOLBAR_CONFIG = {
+        "SHOW_TOOLBAR_CALLBACK": lambda request: True,
+    }
+
+    INSTALLED_APPS += [
+        "debug_toolbar",
+    ]
+
+    MIDDLEWARE += [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ]
