@@ -1,6 +1,9 @@
 {% extends 'ayuh_base_template.html' %}
 {% block extra_head %}
-    {% load crispy_forms_tags %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_messages %}
 {% endblock %}
 {% block content %}
 <div class="bg-white shadow-lg rounded p-4 mx-auto text-center" style="max-width: 36rem;">

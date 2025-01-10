@@ -1,12 +1,15 @@
 {% extends "ayuh_base_template.html" %}
 {% block extra_head %}
-    {% load crispy_forms_tags %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_messages %}
 {% endblock %}
 {% block content %}
 <h3 class="mb-4">Update Patient</h3>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form|crispy }}
+    {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary" style="background-color: #6F4F1A;">Submit</button>
 </form>
 {% endblock %}

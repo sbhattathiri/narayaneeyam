@@ -1,18 +1,21 @@
 {% extends "ayuh_base_template.html" %}
 {% block extra_head %}
-    {% load crispy_forms_tags %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_messages %}
 {% endblock %}
 {% block content %}
 <h3 class="mb-4">Update Consultation</h3>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form|crispy }}
+    {% bootstrap_form form %}
 
     <h4>Attachments</h4>
     {{ attachment_formset.management_form }}
     <div class="mb-3">
         {% for form in attachment_formset %}
-            {{ form|crispy }}
+            {% bootstrap_form form %}
         {% endfor %}
     </div>
 
@@ -20,10 +23,12 @@
     {{ prescription_formset.management_form }}
     <div class="mb-3">
         {% for form in prescription_formset %}
-            {{ form|crispy }}
+            {% bootstrap_form form %}
         {% endfor %}
     </div>
 
+    {% buttons %}
     <button type="submit" class="btn btn-warning btn-sm">Save</button>
+    {% endbuttons %}
 </form>
 {% endblock %}

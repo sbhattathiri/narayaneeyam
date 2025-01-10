@@ -1,12 +1,17 @@
 {% extends "ayuh_base_template.html" %}
 {% block extra_head %}
-    {% load crispy_forms_tags %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_messages %}
 {% endblock %}
 {% block content %}
 <h3 class="mb-4">Create Appointment</h3>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-warning btn-sm">Save</button>
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-warning btn-sm">Save</button>
+    {% endbuttons %}
 </form>
 {% endblock %}

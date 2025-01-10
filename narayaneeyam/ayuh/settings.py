@@ -52,8 +52,7 @@ THIRD_PARTY_APPS = [
     "phonenumber_field",
     "django_pg_jsonschema",
     "django_hashids",
-    "crispy_forms",
-    "crispy_bootstrap4",
+    "bootstrap4",
     "rest_framework",
     "corsheaders",
 ]
@@ -177,11 +176,6 @@ SPECTACULAR_SETTINGS = {
     "REDOC_DIST": "SIDECAR",
     "SWAGGER_UI_SETTINGS": {"displayRequestDuration": True},
 }
-
-# crispy-forms
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
-
-CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
