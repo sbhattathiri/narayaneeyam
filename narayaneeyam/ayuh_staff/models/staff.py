@@ -3,6 +3,9 @@ import uuid
 from django.db import (
     models,
 )
+from django_hashids import (
+    HashidsField,
+)
 from phonenumber_field.modelfields import (
     PhoneNumberField,
 )
@@ -18,11 +21,7 @@ from ayuh_core.models import (
 
 
 class Staff(AyuhModel):
-    staff_id = models.UUIDField(
-        primary_key=True,
-        editable=False,
-        default=uuid.uuid4,
-    )
+    staff_hash_id = HashidsField(real_field_name="id")
     title = models.CharField(
         choices=Title.choices(),
         null=True,

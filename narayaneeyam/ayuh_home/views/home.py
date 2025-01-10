@@ -11,26 +11,10 @@ def admin(request):
     return render(request, "ayuh_home/admin_home_template.html", context={})
 
 
-def consultation(request):
-    return render(
-        request,
-        "ayuh_home/consultations_home_template.html",
-        context={},
-    )
-
-
 def admission(request):
     return render(
         request,
         "ayuh_home/admissions_home_template.html",
-        context={},
-    )
-
-
-def patient(request):
-    return render(
-        request,
-        "ayuh_home/patients_home_template.html",
         context={},
     )
 

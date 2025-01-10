@@ -3,12 +3,15 @@ import uuid
 from django.db import (
     models,
 )
+from django_hashids import (
+    HashidsField,
+)
 from phonenumber_field.modelfields import (
     PhoneNumberField,
 )
 
 from ayuh_core.enums import (
-    BloodGroup,
+    BLOOD_GROUP_CHOICES,
     Gender,
     Title,
 )
@@ -17,11 +20,16 @@ from ayuh_core.models import (
 )
 
 
+def generate_registration_id():
+    return uuid.uuid4().hex[:10].upper()
+
+
 class Patient(AyuhModel):
-    patient_id = models.UUIDField(
-        primary_key=True,
+    patient_hash_id = HashidsField(real_field_name="id")
+    patient_registration_id = models.CharField(
+        max_length=10,
+        unique=True,
         editable=False,
-        default=uuid.uuid4,
     )
     title = models.CharField(
         choices=Title.choices(),
@@ -52,7 +60,7 @@ class Patient(AyuhModel):
     )
     date_of_birth = models.DateField(null=True, blank=True)
     blood_type = models.CharField(
-        choices=BloodGroup.choices(),
+        choices=BLOOD_GROUP_CHOICES,
         null=True,
         blank=True,
         default="",
@@ -85,5 +93,10 @@ class Patient(AyuhModel):
         self.last_name = self.last_name.upper() if self.last_name else self.last_name
         super().clean()
 
+    def save(self, *args, **kwargs):
+        if not self.patient_registration_id:
+            self.patient_registration_id = generate_registration_id()
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return f"{self.title} {self.last_name or ""}, {self.first_name or ""} {self.middle_name or ""}"
+        return f"{self.title}  {self.first_name or ""} {self.middle_name or ""} {self.last_name or ""}"

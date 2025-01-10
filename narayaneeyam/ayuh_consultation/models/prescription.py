@@ -3,6 +3,9 @@ import uuid
 from django.db import (
     models,
 )
+from django_hashids import (
+    HashidsField,
+)
 
 from ayuh_consultation.models.consultation import (
     Consultation,
@@ -13,11 +16,7 @@ from ayuh_core.models import (
 
 
 class Prescription(AyuhModel):
-    prescription_id = models.UUIDField(
-        primary_key=True,
-        editable=False,
-        default=uuid.uuid4,
-    )
+    prescription_hash_id = HashidsField(real_field_name="id")
     consultation = models.ForeignKey(
         Consultation,
         on_delete=models.CASCADE,

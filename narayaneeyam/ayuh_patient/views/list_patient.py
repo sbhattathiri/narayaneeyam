@@ -28,6 +28,7 @@ class PatientListView(ListView):
     model = Patient
     template_name = "ayuh_patient/list_patient_template.html"
     context_object_name = "patients"
+    slug_field = "patient_hash_id"
 
     def get_queryset(self):
         latest_appointments = Appointment.objects.filter(
@@ -38,11 +39,11 @@ class PatientListView(ListView):
             doctor_full_name=Concat(
                 Coalesce(F("doctor__title"), Value("")),
                 Value(" "),
-                Coalesce(F("doctor__last_name"), Value("")),
-                Value(", "),
                 Coalesce(F("doctor__first_name"), Value("")),
                 Value(" "),
                 Coalesce(F("doctor__middle_name"), Value("")),
+                Value(" "),
+                Coalesce(F("doctor__last_name"), Value("")),
             )
         ).values("doctor_full_name", "appointment_date")[:1]
 
@@ -59,7 +60,7 @@ class PatientListView(ListView):
         for patient in patients_with_appointment:
             patient_data.append(
                 {
-                    "patient_id": patient.patient_id,
+                    "patient_hash_id": patient.patient_hash_id,
                     "patient": patient,
                     "doctor": patient.latest_appointment_doctor_full_name,
                     "appointment_date": patient.latest_appointment_date,

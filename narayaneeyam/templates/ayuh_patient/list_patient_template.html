@@ -23,7 +23,7 @@
                 <td>{{ patient.doctor | default_if_none:""}}</td>
                 <td>{{ patient.appointment_date | default_if_none:"" }}</td>
                 <td>
-                    <a href="{% url 'put_patient' patient.patient_id %}" class="btn btn-warning btn-sm">Update</a>
+                    <a href="{% url 'put_patient' patient.patient_hash_id %}" class="btn btn-warning btn-sm">Update</a>
                 </td>
             </tr>
         {% endfor %}

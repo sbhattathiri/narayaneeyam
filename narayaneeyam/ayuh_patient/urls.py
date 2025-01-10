@@ -18,7 +18,7 @@ urlpatterns = [
         name="post_patient",
     ),
     path(
-        "<uuid:pk>/update/",
+        "<slug>/update/",
         views.PatientUpdateView.as_view(),
         name="put_patient",
     ),

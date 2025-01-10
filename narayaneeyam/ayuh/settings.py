@@ -51,6 +51,7 @@ THIRD_PARTY_APPS = [
     "drf_spectacular_sidecar",
     "phonenumber_field",
     "django_pg_jsonschema",
+    "django_hashids",
     "crispy_forms",
     "crispy_bootstrap4",
     "rest_framework",
@@ -147,6 +148,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+DJANGO_HASHIDS_SALT = "my_salt"
+DJANGO_HASHIDS_MIN_LENGTH = 5
+DJANGO_HASHIDS_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

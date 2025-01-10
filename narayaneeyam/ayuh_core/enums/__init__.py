@@ -1,5 +1,5 @@
 from .ayuh_enums import (
-    BloodGroup,
+    BLOOD_GROUP_CHOICES,
     DietaryPreference,
     Gender,
     HabitStatus,
@@ -9,7 +9,7 @@ from .ayuh_enums import (
 )
 
 __all__ = [
-    "BloodGroup",
+    "BLOOD_GROUP_CHOICES",
     "Gender",
     "DietaryPreference",
     "HabitStatus",

@@ -13,6 +13,7 @@ from ayuh_patient import (
 
 class PatientUpdateView(UpdateView):
     model = models.Patient
-    form_class = forms.PatientForm
+    slug_field = "patient_hash_id"
+    form_class = forms.PatientProfileForm
     template_name = "ayuh_patient/put_patient_template.html"
     success_url = reverse_lazy("list_patient")
