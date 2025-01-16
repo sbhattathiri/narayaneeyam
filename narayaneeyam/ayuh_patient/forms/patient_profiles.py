@@ -15,6 +15,7 @@ class PatientProfileForm(ModelForm):
     class Meta:
         model = PatientProfile
         fields = [
+            "patient_registration_id",
             "title",
             "first_name",
             "middle_name",
@@ -38,12 +39,13 @@ class PatientProfileForm(ModelForm):
             "dietary_preference",
             "general_lifestyle",
             "emergency_contact_person_phone",
-            "billing_address",
-            "billing_address_is_shipping_address",
-            "shipping_address",
+            "patient_address",
         ]
 
         widgets = {
+            "patient_registration_id": forms.widgets.TextInput(
+                attrs={"readonly": True}
+            ),
             "date_of_birth": forms.widgets.DateInput(attrs={"type": "date"}),
         }
 

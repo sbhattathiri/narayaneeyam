@@ -29,7 +29,6 @@ class Patient(AyuhModel):
     patient_registration_id = models.CharField(
         max_length=10,
         unique=True,
-        editable=False,
     )
     title = models.CharField(
         choices=Title.choices(),

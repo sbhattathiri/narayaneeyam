@@ -1,5 +1,3 @@
-import uuid
-
 from django.db import (
     models,
 )
@@ -7,7 +5,7 @@ from django_hashids import (
     HashidsField,
 )
 
-from ayuh_consultation.models.consultation import (
+from ayuh_consultation.models.consultations import (
     Consultation,
 )
 from ayuh_core.models import (

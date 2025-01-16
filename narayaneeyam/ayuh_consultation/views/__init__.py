@@ -7,16 +7,12 @@ from .list_consultation import (
 from .post_appointment import (
     AppointmentCreateView,
 )
-from .post_consultation import (
-    ConsultationCreateView,
-)
 from .put_consultation import (
     ConsultationUpdateView,
 )
 
 __all__ = [
     "AppointmentCreateView",
-    "ConsultationCreateView",
     "ConsultationDetailView",
     "ConsultationUpdateView",
     "ConsultationListView",

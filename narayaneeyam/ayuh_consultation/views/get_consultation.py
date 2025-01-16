@@ -3,7 +3,6 @@ from django.views.generic.detail import (
 )
 
 from ayuh_consultation import (
-    forms,
     models,
 )
 

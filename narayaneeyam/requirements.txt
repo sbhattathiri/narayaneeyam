@@ -10,7 +10,6 @@ django-bootstrap4==24.4
 # special model fields
 django-hashids==0.7.0
 django-phonenumber-field[phonenumberslite]==8.0.0
-django-pg-jsonschema==0.1.2
 
 # CORS
 django-cors-headers==4.6.0

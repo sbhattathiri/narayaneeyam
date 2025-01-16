@@ -15,7 +15,7 @@
     {{ attachment_formset.management_form }}
     <div class="mb-3">
         {% for form in attachment_formset %}
-            {% bootstrap_form form %}
+            {% bootstrap_formset form %}
         {% endfor %}
     </div>
 
@@ -23,7 +23,7 @@
     {{ prescription_formset.management_form }}
     <div class="mb-3">
         {% for form in prescription_formset %}
-            {% bootstrap_form form %}
+            {% bootstrap_formset form %}
         {% endfor %}
     </div>
 

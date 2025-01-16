@@ -1,3 +1,5 @@
+import logging
+
 from django.urls import (
     reverse_lazy,
 )
@@ -10,9 +12,11 @@ from ayuh_patient import (
     models,
 )
 
+logger = logging.getLogger(__name__)
+
 
 class PatientUpdateView(UpdateView):
-    model = models.Patient
+    model = models.PatientProfile
     slug_field = "patient_hash_id"
     form_class = forms.PatientProfileForm
     template_name = "ayuh_patient/put_patient_template.html"

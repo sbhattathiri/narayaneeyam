@@ -12,7 +12,7 @@ from ayuh_consultation import (
 
 
 class AppointmentCreateView(CreateView):
-    model = models.Appointment
+    model = models.Consultation
     form_class = forms.AppointmentForm
     template_name = "ayuh_consultation/post_appointment_template.html"
     success_url = reverse_lazy("list_consultation")

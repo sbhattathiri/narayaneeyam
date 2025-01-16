@@ -13,14 +13,9 @@ urlpatterns = [
         name="list_consultation",
     ),
     path(
-        "new/",
+        "create/",
         views.AppointmentCreateView.as_view(),
         name="post_appointment",
-    ),
-    path(
-        "create/",
-        views.ConsultationCreateView.as_view(),
-        name="post_consultation",
     ),
     path(
         "<uuid:pk>/",

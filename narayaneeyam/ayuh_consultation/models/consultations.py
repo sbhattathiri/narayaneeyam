@@ -2,7 +2,7 @@ from django.db import (
     models,
 )
 
-from ayuh_consultation.models.appointment import (
+from ayuh_consultation.models.appointments import (
     Appointment,
 )
 

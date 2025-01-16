@@ -1,7 +1,7 @@
-from .patient import (
+from .patients import (
     PatientForm,
 )
-from .patient_profile import (
+from .patient_profiles import (
     PatientProfileForm,
 )
 

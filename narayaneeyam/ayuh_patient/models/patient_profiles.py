@@ -4,9 +4,6 @@ from django.contrib.postgres.fields import (
 from django.db import (
     models,
 )
-from django_pg_jsonschema.fields import (
-    JSONSchemaField,
-)
 from phonenumber_field.modelfields import (
     PhoneNumberField,
 )
@@ -93,39 +90,7 @@ class PatientProfile(Patient):
         null=True,
         blank=True,
     )
-    billing_address = JSONSchemaField(
-        schema={
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "type": "object",
-            "properties": {
-                "address_line_1": {"type": "string"},
-                "address_line_2": {"type": "string"},
-                "address_line_3": {"type": "string"},
-                "address_line_4": {"type": "string"},
-                "PIN": {"type": "integer"},
-            },
-            "required": ["PIN"],
-        },
-        null=True,
-        blank=True,
-    )
-    billing_address_is_shipping_address = models.BooleanField(default=False)
-    shipping_address = JSONSchemaField(
-        schema={
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "type": "object",
-            "properties": {
-                "address_line_1": {"type": "string"},
-                "address_line_2": {"type": "string"},
-                "address_line_3": {"type": "string"},
-                "address_line_4": {"type": "string"},
-                "PIN": {"type": "integer"},
-            },
-            "required": ["PIN"],
-        },
-        null=True,
-        blank=True,
-    )
+    patient_address = models.TextField(null=True, blank=True)
 
     def clean(self):
         self.primary_care_provider = (
@@ -137,5 +102,10 @@ class PatientProfile(Patient):
             self.primary_physician_name.upper()
             if self.primary_physician_name
             else self.primary_physician_name
+        )
+        self.patient_address = (
+            self.patient_address.upper()
+            if self.patient_address
+            else self.patient_address
         )
         super().clean()

@@ -1,10 +1,6 @@
 from enum import (
     Enum,
 )
-from typing import (
-    List,
-    Tuple,
-)
 
 BLOOD_GROUP_CHOICES = [
     ("A+", "A+"),
