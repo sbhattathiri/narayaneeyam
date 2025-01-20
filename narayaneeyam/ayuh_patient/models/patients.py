@@ -12,7 +12,7 @@ from phonenumber_field.modelfields import (
 
 from ayuh_core.enums import (
     BLOOD_GROUP_CHOICES,
-    Gender,
+    GENDER_CHOICES,
     Title,
 )
 from ayuh_core.models import (
@@ -52,7 +52,7 @@ class Patient(AyuhModel):
         blank=True,
     )
     gender = models.CharField(
-        choices=Gender.choices(),
+        choices=GENDER_CHOICES,
         null=True,
         blank=True,
         default="",

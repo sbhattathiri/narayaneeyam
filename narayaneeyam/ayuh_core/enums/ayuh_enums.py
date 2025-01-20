@@ -13,18 +13,18 @@ BLOOD_GROUP_CHOICES = [
     ("O-", "O-"),
 ]
 
+GENDER_CHOICES = [
+    ("MALE", "Male"),
+    ("FEMALE", "Female"),
+    ("OTHER", "Other"),
+]
+
 
 class ChoiceEnum(Enum):
 
     @classmethod
     def choices(cls):
         return [(member.value, member.name) for member in cls]
-
-
-class Gender(ChoiceEnum):
-    MALE = "Male"
-    FEMALE = "Female"
-    OTHER = "Other"
 
 
 class Lifestyle(ChoiceEnum):

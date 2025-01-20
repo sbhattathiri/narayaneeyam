@@ -7,15 +7,15 @@
 {% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-2">
-    <h3 class="mb-4 pt-4">Consultation List</h3>
-    <a href="{% url 'post_appointment' %}" class="btn btn-warning btn-md">Create Appointment</a>
+    <h3 class="mb-4 pt-4">Appointments</h3>
+    <a href="{% url 'post_consultation' %}" class="btn btn-warning btn-md">Create Appointment</a>
 </div>
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>Doctor</th>
             <th>Patient</th>
-            <th>Consultation Date</th>
+            <th>Appointment Date</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -24,7 +24,7 @@
             <tr>
                 <td>{{ consultation.doctor }}</td>
                 <td>{{ consultation.patient }}</td>
-                <td>{{ consultation.consultation_date }}</td>
+                <td>{{ consultation.appointment_date }}</td>
                 <td>
                     <a href="{% url 'put_consultation' consultation.pk %}" class="btn btn-warning btn-sm">Update</a>
                 </td>

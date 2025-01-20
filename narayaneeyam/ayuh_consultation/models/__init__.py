@@ -1,11 +1,11 @@
 from .appointments import (
     Appointment,
 )
-from .consultations import (
-    Consultation,
-)
 from .consultation_attachments import (
     ConsultationAttachment,
+)
+from .consultations import (
+    Consultation,
 )
 from .prescriptions import (
     Prescription,

@@ -109,3 +109,6 @@ class PatientProfile(Patient):
             else self.patient_address
         )
         super().clean()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)

@@ -9,7 +9,7 @@ from phonenumber_field.modelfields import (
 )
 
 from ayuh_core.enums import (
-    Gender,
+    GENDER_CHOICES,
     StaffRole,
     Title,
 )
@@ -45,7 +45,7 @@ class Staff(AyuhModel):
         default="",
     )
     gender = models.CharField(
-        choices=Gender.choices(),
+        choices=GENDER_CHOICES,
         null=True,
         blank=True,
         default="",
@@ -79,6 +79,9 @@ class Staff(AyuhModel):
         )
 
     def clean(self):
+        self.title = (
+            Title.DR.value if self.designation == StaffRole.DOCTOR.value else self.title
+        )
         self.first_name = (
             self.first_name.upper() if self.first_name else self.first_name
         )

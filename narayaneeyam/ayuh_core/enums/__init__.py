@@ -1,7 +1,7 @@
 from .ayuh_enums import (
     BLOOD_GROUP_CHOICES,
+    GENDER_CHOICES,
     DietaryPreference,
-    Gender,
     HabitStatus,
     Lifestyle,
     StaffRole,
@@ -10,7 +10,7 @@ from .ayuh_enums import (
 
 __all__ = [
     "BLOOD_GROUP_CHOICES",
-    "Gender",
+    "GENDER_CHOICES",
     "DietaryPreference",
     "HabitStatus",
     "Lifestyle",

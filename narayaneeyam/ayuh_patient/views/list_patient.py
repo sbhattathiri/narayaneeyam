@@ -19,13 +19,14 @@ from ayuh_consultation.models import (
 )
 from ayuh_patient.models import (
     Patient,
+    PatientProfile,
 )
 
 logger = logging.getLogger(__name__)
 
 
 class PatientListView(ListView):
-    model = Patient
+    model = PatientProfile
     template_name = "ayuh_patient/list_patient_template.html"
     context_object_name = "patients"
     slug_field = "patient_hash_id"
@@ -47,7 +48,7 @@ class PatientListView(ListView):
             )
         ).values("doctor_full_name", "appointment_date")[:1]
 
-        patients_with_appointment = Patient.objects.annotate(
+        patients_with_appointment = PatientProfile.objects.annotate(
             latest_appointment_doctor_full_name=Subquery(
                 latest_appointment_data.values("doctor_full_name")
             ),

@@ -4,7 +4,6 @@ from django.views.generic import (
     ListView,
 )
 
-
 from ayuh_staff import (
     models,
 )

@@ -1,4 +1,6 @@
-from .staffs import StaffForm
+from .staffs import (
+    StaffForm,
+)
 
 __all__ = [
     "StaffForm",

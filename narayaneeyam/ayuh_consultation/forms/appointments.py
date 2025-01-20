@@ -9,7 +9,7 @@ from ayuh_consultation import (
 
 class AppointmentForm(forms.ModelForm):
     class Meta:
-        model = models.Appointment
+        model = models.Consultation
         fields = [
             "patient",
             "doctor",
