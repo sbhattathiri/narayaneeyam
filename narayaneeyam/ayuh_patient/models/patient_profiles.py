@@ -31,6 +31,7 @@ class PatientProfile(Patient):
         blank=True,
     )
     primary_physician_phone = PhoneNumberField(
+        region="IN",
         null=True,
         blank=True,
     )
