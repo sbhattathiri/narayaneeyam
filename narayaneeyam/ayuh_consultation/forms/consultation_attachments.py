@@ -10,6 +10,6 @@ ConsultationAttachmentFormSet = inlineformset_factory(
     models.Consultation,
     models.ConsultationAttachment,
     fields=("attachment",),
-    extra=2,
+    extra=1,
     can_delete=True,
 )

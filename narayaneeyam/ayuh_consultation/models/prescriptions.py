@@ -18,7 +18,7 @@ class Prescription(AyuhModel):
     consultation = models.ForeignKey(
         Consultation,
         on_delete=models.CASCADE,
-        related_name="consulting_patient",
+        related_name="consultation_prescription",
     )
     medicine = models.CharField(max_length=255)
     instructions = models.TextField(null=True, blank=True)

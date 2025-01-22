@@ -7,15 +7,15 @@
 {% endblock %}
 {% block content %}
 <h3 class="mb-4">Update Consultation</h3>
-<form method="post" enctype="multipart/form-data">
+<form role="form" class=form-horizontal" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {% bootstrap_form form %}
+    {% bootstrap_form form layout="horizontal" %}
 
     <h4>Attachments</h4>
     {{ attachment_formset.management_form }}
     <div class="mb-3">
         {% for form in attachment_formset %}
-            {% bootstrap_formset attachment_formset %}
+            {% bootstrap_formset attachment_formset  layout="horizontal" %}
         {% endfor %}
     </div>
 
@@ -23,7 +23,7 @@
     {{ prescription_formset.management_form }}
     <div class="mb-3">
         {% for form in prescription_formset %}
-            {% bootstrap_formset prescription_formset %}
+            {% bootstrap_formset prescription_formset  layout="horizontal" %}
         {% endfor %}
     </div>
 
