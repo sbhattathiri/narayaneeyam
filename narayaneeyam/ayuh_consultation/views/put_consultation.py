@@ -18,7 +18,9 @@ class ConsultationUpdateView(UpdateView):
     model = models.Consultation
     form_class = forms.ConsultationForm
     template_name = "ayuh_consultation/put_consultation_template.html"
-    success_url = reverse_lazy("list_consultation")
+
+    def get_success_url(self):
+        return reverse_lazy("get_consultation", kwargs={"pk": self.object.pk})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -48,6 +50,6 @@ class ConsultationUpdateView(UpdateView):
             attachment_formset.save()
             prescription_formset.instance = self.object
             prescription_formset.save()
-            return redirect(self.success_url)
+            return redirect(self.get_success_url())
         else:
             return self.form_invalid(form)

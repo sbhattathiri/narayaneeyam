@@ -10,6 +10,6 @@ PrescriptionFormSet = inlineformset_factory(
     models.Consultation,
     models.Prescription,
     fields=("medicine", "instructions"),
-    extra=3,
+    extra=2,
     can_delete=True,
 )
