@@ -8,17 +8,17 @@ from ayuh_patient import (
 
 urlpatterns = [
     path(
-        "create/",
+        "/ayuh/patient/create/",
         views.PatientCreateView.as_view(),
         name="post_patient",
     ),
     path(
-        "list",
+        "/ayuh/patient/list/",
         views.PatientListView.as_view(),
         name="list_patient",
     ),
     path(
-        "<slug>/update/",
+        "/ayuh/patient/<slug>/update/",
         views.PatientUpdateView.as_view(),
         name="put_patient",
     ),

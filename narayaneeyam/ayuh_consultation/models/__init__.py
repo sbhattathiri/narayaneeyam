@@ -7,7 +7,7 @@ from .consultation_attachments import (
 from .consultations import (
     Consultation,
 )
-from .prescriptions import (
+from .consultation_prescriptions import (
     Prescription,
 )
 

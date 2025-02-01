@@ -26,7 +26,7 @@
                 <td>{{ consultation.patient }}</td>
                 <td>{{ consultation.appointment_date }}</td>
                 <td>
-                    <a href="{% url 'put_consultation' consultation.pk %}" class="btn btn-warning btn-sm">Update</a>
+                    <a href="{% url 'get_consultation' consultation.pk %}" class="btn btn-warning btn-sm">View</a>
                 </td>
             </tr>
         {% endfor %}

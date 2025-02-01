@@ -14,16 +14,16 @@
     <h4>Attachments</h4>
     {{ attachment_formset.management_form }}
     <div class="mb-3">
-        {% for form in attachment_formset %}
-            {% bootstrap_formset attachment_formset  layout="horizontal" %}
+        {% for attachment_form in attachment_formset %}
+            {% bootstrap_form attachment_form layout="horizontal" %}
         {% endfor %}
     </div>
 
     <h4>Prescriptions</h4>
     {{ prescription_formset.management_form }}
     <div class="mb-3">
-        {% for form in prescription_formset %}
-            {% bootstrap_formset prescription_formset  layout="horizontal" %}
+        {% for prescription_form in prescription_formset %}
+            {% bootstrap_form prescription_form layout="horizontal" %}
         {% endfor %}
     </div>
 

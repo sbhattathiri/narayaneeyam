@@ -19,9 +19,9 @@
 </div>
 <h2>Attachments</h2>
 <div class="row">
-    {% for attachment in consultation.attachments.all %}
+    {% for attachment in consultation.consultation_attachment.all %}
         <div class="col-md-3">
-            <img src="{{ attachment.attachment.url }}" alt="Consultation Attachment" class="img-thumbnail">
+            <a href="{{ attachment.attachment.url }}" target="_blank">View Attachment</a>
         </div>
     {% endfor %}
 </div>
@@ -35,7 +35,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for prescription in consultation.prescriptions.all %}
+        {% for prescription in consultation.consultation_prescription.all %}
             <tr>
                 <td>{{ prescription.medicine }}</td>
                 <td>{{ prescription.instructions }}</td>
@@ -44,6 +44,6 @@
     </tbody>
 </table>
 
-<a href="{% url 'put_consultation' consultation.pk %}" class="btn btn-secondary">Update Consultation</a>
-<a href="{% url 'list_consultation' %}" class="btn btn-primary">Back to Consultations</a>
+<a href="{% url 'put_consultation' consultation.pk %}" class="btn btn-warning btn-sm">Update Consultation</a>
+<a href="{% url 'list_consultation' %}" class="btn btn-warning btn-sm">Back to Consultations</a>
 {% endblock %}

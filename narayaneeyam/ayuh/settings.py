@@ -117,13 +117,18 @@ DJANGO_HASHIDS_SALT = "my_salt"
 DJANGO_HASHIDS_MIN_LENGTH = 5
 DJANGO_HASHIDS_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
-STATIC_URL = "static/"
+MEDIA_URL = "media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
+
+LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "login/"
 
 SPECTACULAR_SETTINGS = {
     "TITLE": f"{FACILITY_NAME.upper()} API",

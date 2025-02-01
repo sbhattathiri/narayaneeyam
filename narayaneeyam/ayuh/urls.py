@@ -8,6 +8,7 @@ from django.urls import (
     include,
     path,
 )
+from django.conf.urls.static import static
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
@@ -15,23 +16,26 @@ from drf_spectacular.views import (
 
 urlpatterns = [
     path(f"{settings.FACILITY_NAME}/admin/", admin.site.urls),
-    path(f"{settings.FACILITY_NAME}/accounts/", include("django.contrib.auth.urls")),
-    path(f"{settings.FACILITY_NAME}/ayuh/home/", include("ayuh_home.urls")),
+    # path(f"{settings.FACILITY_NAME}/accounts/", include("django.contrib.auth.urls")),
+    path(f"{settings.FACILITY_NAME}", include("ayuh_core.urls")),
+    path(f"{settings.FACILITY_NAME}", include("ayuh_home.urls")),
     path(
-        f"{settings.FACILITY_NAME}/ayuh/consultation/",
+        f"{settings.FACILITY_NAME}",
         include("ayuh_consultation.urls"),
     ),
     path(
-        f"{settings.FACILITY_NAME}/ayuh/patient/",
+        f"{settings.FACILITY_NAME}",
         include("ayuh_patient.urls"),
     ),
     path(
-        f"{settings.FACILITY_NAME}/ayuh/staff/",
+        f"{settings.FACILITY_NAME}",
         include("ayuh_staff.urls"),
     ),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path("swagger/", SpectacularSwaggerView.as_view(), name="swagger-ui"),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.ENABLE_DEBUG_TOOLBAR:
     from debug_toolbar.toolbar import (

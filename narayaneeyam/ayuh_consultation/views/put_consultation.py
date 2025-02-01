@@ -46,10 +46,22 @@ class ConsultationUpdateView(UpdateView):
         prescription_formset = context["prescription_formset"]
         if attachment_formset.is_valid() and prescription_formset.is_valid():
             self.object = form.save()
-            attachment_formset.instance = self.object
-            attachment_formset.save()
-            prescription_formset.instance = self.object
-            prescription_formset.save()
-            return redirect(self.get_success_url())
+            attachments = attachment_formset.save(commit=False)
+            for attachment in attachments:
+                attachment.consultation = self.object
+                attachment.save()
+            for obj in attachment_formset.deleted_objects:
+                obj.delete()
+
+            prescriptions = prescription_formset.save(commit=False)
+            for prescription in prescriptions:
+                prescription.consultation = self.object
+                prescription.save()
+
+            for obj in prescription_formset.deleted_objects:
+                obj.delete()
+
+            # return redirect(self.get_success_url())
+            return super().form_valid(form)
         else:
             return self.form_invalid(form)

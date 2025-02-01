@@ -12,6 +12,8 @@ from ayuh_core.models import (
 
 class ConsultationAttachment(AyuhModel):
     consultation = models.ForeignKey(
-        Consultation, on_delete=models.CASCADE, related_name="attachments"
+        Consultation,
+        on_delete=models.CASCADE,
+        related_name="consultation_attachment",
     )
     attachment = models.ImageField(upload_to="consultation_attachments/")
