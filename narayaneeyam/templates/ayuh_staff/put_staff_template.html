@@ -1,0 +1,17 @@
+{% extends "ayuh_base_template.html" %}
+{% block extra_head %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_messages %}
+{% endblock %}
+{% block content %}
+<h3 class="mb-4" style="color: #966d29;">Update Staff</h3>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary" style="background-color: #6F4F1A;">Submit</button>
+    {% endbuttons %}
+</form>
+{% endblock %}

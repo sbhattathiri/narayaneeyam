@@ -1,3 +1,13 @@
+from django.contrib.postgres.fields import (
+    ArrayField,
+)
+from django.db import (
+    models,
+)
+from phonenumber_field.modelfields import (
+    PhoneNumberField,
+)
+
 from ayuh_core.enums import (
     DietaryPreference,
     HabitStatus,
@@ -5,16 +15,6 @@ from ayuh_core.enums import (
 )
 from ayuh_patient.models.patients import (
     Patient,
-)
-from phonenumber_field.modelfields import (
-    PhoneNumberField,
-)
-
-from django.contrib.postgres.fields import (
-    ArrayField,
-)
-from django.db import (
-    models,
 )
 
 
@@ -31,6 +31,7 @@ class PatientProfile(Patient):
         blank=True,
     )
     primary_physician_phone = PhoneNumberField(
+        region="IN",
         null=True,
         blank=True,
     )
@@ -90,6 +91,7 @@ class PatientProfile(Patient):
         null=True,
         blank=True,
     )
+    patient_address = models.TextField(null=True, blank=True)
 
     def clean(self):
         self.primary_care_provider = (
@@ -102,4 +104,12 @@ class PatientProfile(Patient):
             if self.primary_physician_name
             else self.primary_physician_name
         )
+        self.patient_address = (
+            self.patient_address.upper()
+            if self.patient_address
+            else self.patient_address
+        )
         super().clean()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)

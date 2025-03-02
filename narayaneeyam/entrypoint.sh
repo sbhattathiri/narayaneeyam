@@ -1,4 +1,5 @@
 #!bin/sh
+set -e
 
 LOG_FILE="$LOG_DIR/startup.log"
 

@@ -1,8 +1,3 @@
-from ayuh_consultation import (
-    forms,
-    models,
-)
-
 from django.shortcuts import (
     redirect,
 )
@@ -13,12 +8,19 @@ from django.views.generic.edit import (
     UpdateView,
 )
 
+from ayuh_consultation import (
+    forms,
+    models,
+)
+
 
 class ConsultationUpdateView(UpdateView):
     model = models.Consultation
     form_class = forms.ConsultationForm
     template_name = "ayuh_consultation/put_consultation_template.html"
-    success_url = reverse_lazy("list_consultation")
+
+    def get_success_url(self):
+        return reverse_lazy("get_consultation", kwargs={"pk": self.object.pk})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -44,10 +46,22 @@ class ConsultationUpdateView(UpdateView):
         prescription_formset = context["prescription_formset"]
         if attachment_formset.is_valid() and prescription_formset.is_valid():
             self.object = form.save()
-            attachment_formset.instance = self.object
-            attachment_formset.save()
-            prescription_formset.instance = self.object
-            prescription_formset.save()
-            return redirect(self.success_url)
+            attachments = attachment_formset.save(commit=False)
+            for attachment in attachments:
+                attachment.consultation = self.object
+                attachment.save()
+            for obj in attachment_formset.deleted_objects:
+                obj.delete()
+
+            prescriptions = prescription_formset.save(commit=False)
+            for prescription in prescriptions:
+                prescription.consultation = self.object
+                prescription.save()
+
+            for obj in prescription_formset.deleted_objects:
+                obj.delete()
+
+            # return redirect(self.get_success_url())
+            return super().form_valid(form)
         else:
             return self.form_invalid(form)

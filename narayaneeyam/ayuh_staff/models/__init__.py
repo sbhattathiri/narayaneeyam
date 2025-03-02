@@ -1,4 +1,4 @@
-from .staff import (
+from .staffs import (
     Staff,
 )
 

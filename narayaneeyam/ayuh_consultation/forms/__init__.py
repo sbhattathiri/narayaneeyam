@@ -1,13 +1,13 @@
-from .appointment import (
+from .appointments import (
     AppointmentForm,
 )
-from .consultation import (
-    ConsultationForm,
-)
-from .consultation_attachment import (
+from .consultation_attachments import (
     ConsultationAttachmentFormSet,
 )
-from .prescription import (
+from .consultations import (
+    ConsultationForm,
+)
+from .prescriptions import (
     PrescriptionFormSet,
 )
 

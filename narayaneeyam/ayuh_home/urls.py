@@ -1,16 +1,15 @@
-from ayuh_home import (
-    views,
-)
-
 from django.urls import (
     path,
 )
 
+from ayuh_home import (
+    views,
+)
+
+
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("admin", views.admin, name="admin"),
-    path("patient", views.patient, name="patients"),
-    path("consultation", views.consultation, name="consultations"),
-    path("admission", views.admission, name="admissions"),
-    path("inventory", views.inventory, name="inventory"),
+    path("/ayuh/home/", views.narayaneeyam_home, name="home"),
+    path("/ayuh/home/admin/", views.narayaneeyam_admin, name="admin"),
+    path("/ayuh/home/admission/", views.narayaneeyam_admission, name="admissions"),
+    path("/ayuh/home/inventory/", views.narayaneeyam_inventory, name="inventory"),
 ]

@@ -1,9 +1,9 @@
-from ayuh_staff import (
-    models,
-)
-
 from django.contrib import (
     admin,
+)
+
+from ayuh_staff import (
+    models,
 )
 
 models_to_be_registered = [models.Staff]

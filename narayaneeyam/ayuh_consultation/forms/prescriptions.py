@@ -1,15 +1,15 @@
-from ayuh_consultation import (
-    models,
-)
-
 from django.forms import (
     inlineformset_factory,
+)
+
+from ayuh_consultation import (
+    models,
 )
 
 PrescriptionFormSet = inlineformset_factory(
     models.Consultation,
     models.Prescription,
     fields=("medicine", "instructions"),
-    extra=3,
+    extra=2,
     can_delete=True,
 )

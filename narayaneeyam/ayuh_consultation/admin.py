@@ -1,9 +1,9 @@
-from ayuh_consultation import (
-    models,
-)
-
 from django.contrib import (
     admin,
+)
+
+from ayuh_consultation import (
+    models,
 )
 
 models_to_be_registered = [models.Consultation]

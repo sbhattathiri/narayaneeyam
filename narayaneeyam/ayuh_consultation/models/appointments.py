@@ -1,4 +1,9 @@
-import uuid
+from django.db import (
+    models,
+)
+from django_hashids import (
+    HashidsField,
+)
 
 from ayuh_core.enums import (
     StaffRole,
@@ -13,17 +18,9 @@ from ayuh_staff.models import (
     Staff,
 )
 
-from django.db import (
-    models,
-)
-
 
 class Appointment(AyuhModel):
-    appointment_id = models.UUIDField(
-        primary_key=True,
-        editable=False,
-        default=uuid.uuid4,
-    )
+    appointment_hash_id = HashidsField(real_field_name="id")
     patient = models.ForeignKey(
         Patient,
         on_delete=models.CASCADE,

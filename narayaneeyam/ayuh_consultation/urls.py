@@ -1,34 +1,29 @@
-from ayuh_consultation import (
-    views,
-)
-
 from django.urls import (
     path,
 )
 
+from ayuh_consultation import (
+    views,
+)
+
 urlpatterns = [
     path(
-        "list",
-        views.ConsultationListView.as_view(),
-        name="list_consultation",
-    ),
-    path(
-        "new/",
-        views.AppointmentCreateView.as_view(),
-        name="post_appointment",
-    ),
-    path(
-        "create/",
+        "/ayuh/consultation/create/",
         views.ConsultationCreateView.as_view(),
         name="post_consultation",
     ),
     path(
-        "<uuid:pk>/",
+        "/ayuh/consultation/<int:pk>/",
         views.ConsultationDetailView.as_view(),
         name="get_consultation",
     ),
     path(
-        "<uuid:pk>/update/",
+        "/ayuh/consultation/list/",
+        views.ConsultationListView.as_view(),
+        name="list_consultation",
+    ),
+    path(
+        "/ayuh/consultation/<int:pk>/update/",
         views.ConsultationUpdateView.as_view(),
         name="put_consultation",
     ),

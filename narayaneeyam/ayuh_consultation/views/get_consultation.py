@@ -1,10 +1,9 @@
-from ayuh_consultation import (
-    forms,
-    models,
-)
-
 from django.views.generic.detail import (
     DetailView,
+)
+
+from ayuh_consultation import (
+    models,
 )
 
 

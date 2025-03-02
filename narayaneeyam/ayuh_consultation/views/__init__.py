@@ -4,9 +4,6 @@ from .get_consultation import (
 from .list_consultation import (
     ConsultationListView,
 )
-from .post_appointment import (
-    AppointmentCreateView,
-)
 from .post_consultation import (
     ConsultationCreateView,
 )
@@ -15,7 +12,6 @@ from .put_consultation import (
 )
 
 __all__ = [
-    "AppointmentCreateView",
     "ConsultationCreateView",
     "ConsultationDetailView",
     "ConsultationUpdateView",

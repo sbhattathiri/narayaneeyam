@@ -1,7 +1,7 @@
 from .ayuh_base import (
     AyuhModel,
 )
-from .ayuh_user import (
+from .ayuh_users import (
     AyuhUser,
 )
 

@@ -1,29 +1,34 @@
 {% extends "ayuh_base_template.html" %}
 {% block extra_head %}
-    {% load crispy_forms_tags %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_messages %}
 {% endblock %}
 {% block content %}
-<h3 class="mb-4">Update Consultation</h3>
-<form method="post" enctype="multipart/form-data">
+<h3 class="mb-4" style="color: #966d29;">Update Consultation</h3>
+<form role="form" class=form-horizontal" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form|crispy }}
+    {% bootstrap_form form layout="horizontal" %}
 
     <h4>Attachments</h4>
     {{ attachment_formset.management_form }}
     <div class="mb-3">
-        {% for form in attachment_formset %}
-            {{ form|crispy }}
+        {% for attachment_form in attachment_formset %}
+            {% bootstrap_form attachment_form layout="horizontal" %}
         {% endfor %}
     </div>
 
     <h4>Prescriptions</h4>
     {{ prescription_formset.management_form }}
     <div class="mb-3">
-        {% for form in prescription_formset %}
-            {{ form|crispy }}
+        {% for prescription_form in prescription_formset %}
+            {% bootstrap_form prescription_form layout="horizontal" %}
         {% endfor %}
     </div>
 
+    {% buttons %}
     <button type="submit" class="btn btn-warning btn-sm">Save</button>
+    {% endbuttons %}
 </form>
 {% endblock %}

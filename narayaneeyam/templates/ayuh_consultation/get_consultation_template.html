@@ -1,24 +1,27 @@
 {% extends "ayuh_base_template.html" %}
 {% block extra_head %}
-    {% load crispy_forms_tags %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_messages %}
 {% endblock %}
 {% block content %}
-<h3>Consultation Details</h3>
+<h3 class="mb-4 pt-4" style="color: #966d29;">Consultation Details</h3>
 <div>
-<p><strong>Consultation ID:</strong> {{ consultation.consultation_id }}</p>
+<p><strong>Consultation ID:</strong> {{ consultation.appointment_hash_id }}</p>
 <p><strong>Doctor:</strong> {{ consultation.doctor }}</p>
 <p><strong>Patient:</strong> {{ consultation.patient }}</p>
 <p><strong>Consultation Date:</strong> {{ consultation.consultation_date }}</p>
-<p><strong>Patient Concern:</strong> {{ consultation.patient_concern }}</p>
+<p><strong>Patient Concern:</strong> {{ consultation.patient_concerns }}</p>
 <p><strong>Diagnosis:</strong> {{ consultation.diagnosis }}</p>
 <p><strong>Doctor's Comments</strong> {{ consultation.doctors_comments }}</p>
 <p><strong>Next Consultation Date:</strong> {{ consultation.next_consultation_date }}</p>
 </div>
 <h2>Attachments</h2>
 <div class="row">
-    {% for attachment in consultation.attachments.all %}
+    {% for attachment in consultation.consultation_attachment.all %}
         <div class="col-md-3">
-            <img src="{{ attachment.attachment.url }}" alt="Consultation Attachment" class="img-thumbnail">
+            <a href="{{ attachment.attachment.url }}" target="_blank">View Attachment</a>
         </div>
     {% endfor %}
 </div>
@@ -32,7 +35,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for prescription in consultation.prescriptions.all %}
+        {% for prescription in consultation.consultation_prescription.all %}
             <tr>
                 <td>{{ prescription.medicine }}</td>
                 <td>{{ prescription.instructions }}</td>
@@ -41,6 +44,6 @@
     </tbody>
 </table>
 
-<a href="{% url 'put_consultation' consultation.pk %}" class="btn btn-secondary">Update Consultation</a>
-<a href="{% url 'list_consultation' %}" class="btn btn-primary">Back to Consultations</a>
+<a href="{% url 'put_consultation' consultation.pk %}" class="btn btn-warning btn-sm">Update Consultation</a>
+<a href="{% url 'list_consultation' %}" class="btn btn-warning btn-sm">Back to Consultations</a>
 {% endblock %}
