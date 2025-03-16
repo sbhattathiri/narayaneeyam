@@ -18,7 +18,6 @@ from ayuh_consultation.models import (
     Appointment,
 )
 from ayuh_patient.models import (
-    Patient,
     PatientProfile,
 )
 
