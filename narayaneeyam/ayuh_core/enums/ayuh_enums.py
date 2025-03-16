@@ -19,6 +19,16 @@ GENDER_CHOICES = [
     ("OTHER", "Other"),
 ]
 
+MEDICINE_TYPE_CHOICES = [
+    ("ARISHTAM", "Arishtam"),
+    ("CHOORNAM", "Choornam"),
+    ("GHRTAM", "Ghrtam"),
+    ("GULIKA", "Gulika"),
+    ("KASHAAYAM", "Kashaayam"),
+    ("LEPAM", "Lepam"),
+    ("LEHYAM", "Lehyam"),
+]
+
 
 class ChoiceEnum(Enum):
 
