@@ -17,12 +17,12 @@ from drf_spectacular.views import (
 urlpatterns = [
     path(f"{settings.FACILITY_NAME}/admin/", admin.site.urls),
     # path(f"{settings.FACILITY_NAME}/accounts/", include("django.contrib.auth.urls")),
-    path(f"{settings.FACILITY_NAME}", include("ayuh_core.urls")),
-    path(f"{settings.FACILITY_NAME}", include("ayuh_consultation.urls")),
-    path(f"{settings.FACILITY_NAME}", include("ayuh_home.urls")),
-    path(f"{settings.FACILITY_NAME}", include("ayuh_inventory.urls")),
-    path(f"{settings.FACILITY_NAME}", include("ayuh_patient.urls")),
-    path(f"{settings.FACILITY_NAME}", include("ayuh_staff.urls")),
+    path(f"{settings.FACILITY_NAME}/", include("ayuh_core.urls")),
+    path(f"{settings.FACILITY_NAME}/", include("ayuh_consultation.urls")),
+    path(f"{settings.FACILITY_NAME}/", include("ayuh_home.urls")),
+    path(f"{settings.FACILITY_NAME}/", include("ayuh_inventory.urls")),
+    path(f"{settings.FACILITY_NAME}/", include("ayuh_patient.urls")),
+    path(f"{settings.FACILITY_NAME}/", include("ayuh_staff.urls")),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path("swagger/", SpectacularSwaggerView.as_view(), name="swagger-ui"),
 ]

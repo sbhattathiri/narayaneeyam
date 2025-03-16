@@ -12,5 +12,6 @@ models_to_be_registered = [
     models.MedicinePurchase,
     models.MedicineStock,
     models.MedicineSupplier,
+    models.Medicine,
 ]
 admin.site.register(models_to_be_registered)

@@ -19,3 +19,10 @@ class MedicineSupplier(AyuhModel):
     )
     email = models.EmailField(blank=True, null=True)
     is_blacklisted = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "medicine supplier"
+        verbose_name_plural = "medicine suppliers"
+
+    def __str__(self):
+        return f"{self.email}"

@@ -5,12 +5,12 @@ from django.urls import (
 
 urlpatterns = [
     path(
-        "/login/",
+        "login/",
         auth_views.LoginView.as_view(template_name="ayuh_home/login.html"),
         name="login",
     ),
     path(
-        "/logout/",
+        "logout/",
         auth_views.LogoutView.as_view(template_name="ayuh_home/login.html"),
         name="logout",
     ),

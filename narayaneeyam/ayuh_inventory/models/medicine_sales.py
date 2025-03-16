@@ -23,6 +23,10 @@ class MedicineSale(AyuhModel):
         blank=True,
     )
 
+    class Meta:
+        verbose_name = "medicine sale"
+        verbose_name_plural = "medicine sales"
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
