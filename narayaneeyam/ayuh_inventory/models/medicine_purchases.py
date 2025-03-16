@@ -20,3 +20,7 @@ class MedicinePurchase(AyuhModel):
         null=True,
         blank=True,
     )
+
+    class Meta:
+        verbose_name = "medicine purchase"
+        verbose_name_plural = "medicine purchases"

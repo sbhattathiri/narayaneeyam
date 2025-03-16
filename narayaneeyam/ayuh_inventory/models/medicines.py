@@ -29,5 +29,9 @@ class Medicine(AyuhModel):
         help_text="price per unit",
     )
 
+    class Meta:
+        verbose_name = "medicine"
+        verbose_name_plural = "medicines"
+
     def __str__(self):
         return f"{self.name} ({self.sku})"

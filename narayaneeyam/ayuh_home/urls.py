@@ -8,8 +8,7 @@ from ayuh_home import (
 
 
 urlpatterns = [
-    path("/ayuh/home/", views.narayaneeyam_home, name="home"),
-    path("/ayuh/home/admin/", views.narayaneeyam_admin, name="admin"),
-    path("/ayuh/home/admission/", views.narayaneeyam_admission, name="admissions"),
-    path("/ayuh/home/inventory/", views.narayaneeyam_inventory, name="inventory"),
+    path("ayuh/home/", views.narayaneeyam_home, name="home"),
+    path("ayuh/home/admin/", views.narayaneeyam_admin, name="admin"),
+    path("ayuh/home/admission/", views.narayaneeyam_admission, name="admissions"),
 ]

@@ -17,3 +17,10 @@ class MedicineBatch(AyuhModel):
     shelf_life = models.PositiveSmallIntegerField(
         default=6, verbose_name="shelf life in months"
     )
+
+    class Meta:
+        verbose_name = "medicine batch"
+        verbose_name_plural = "medicine batches"
+
+    def __str__(self):
+        return f"{self.batch}"

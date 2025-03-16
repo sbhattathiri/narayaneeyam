@@ -8,12 +8,12 @@ from ayuh_inventory import (
 
 urlpatterns = [
     path(
-        "/ayuh/inventory/medicine/sale/create/",
+        "ayuh/inventory/medicine/sale/create/",
         views.MedicineSaleCreateView.as_view(),
         name="post_medicine_sale",
     ),
     path(
-        "/ayuh/inventory/medicine/list/",
+        "ayuh/inventory/medicine/list/",
         views.MedicineListView.as_view(),
         name="list_medicine",
     ),
