@@ -1,21 +1,35 @@
 from django.db import (
     models,
 )
+from django_hashids import (
+    HashidsField,
+)
 from ayuh_core.models import AyuhModel
 from ayuh_inventory.models.medicine_stocks import MedicineStock
 from ayuh_patient.models import Patient
 
 
 class MedicineSaleBatch(AyuhModel):
-    sale = models.ForeignKey("MedicineSale", on_delete=models.CASCADE)
+    sale = models.ForeignKey("MedicineSaleItem", on_delete=models.CASCADE)
     batch = models.ForeignKey("MedicineBatch", on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField()
 
 
 class MedicineSale(AyuhModel):
+    sale_id = HashidsField(real_field_name="id")
+    sale_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "medicine sale"
+        verbose_name_plural = "medicine sales"
+
+
+class MedicineSaleItem(AyuhModel):
+    sale = models.ForeignKey(
+        "MedicineSale", on_delete=models.CASCADE, related_name="items"
+    )
     medicine = models.ForeignKey("Medicine", on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
-    sold_at = models.DateTimeField(auto_now_add=True)
     patient = models.ForeignKey(
         Patient,
         on_delete=models.SET_NULL,
@@ -23,9 +37,12 @@ class MedicineSale(AyuhModel):
         blank=True,
     )
 
+    def __str__(self):
+        return f"{self.sale} of {self.medicine} : {self.quantity} units"
+
     class Meta:
-        verbose_name = "medicine sale"
-        verbose_name_plural = "medicine sales"
+        verbose_name = "medicine sale item"
+        verbose_name_plural = "medicine sale items"
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

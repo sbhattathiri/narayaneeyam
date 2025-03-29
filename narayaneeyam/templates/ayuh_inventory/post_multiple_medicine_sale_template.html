@@ -1,0 +1,39 @@
+{% extends "ayuh_base_template.html" %}
+{% block extra_head %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_messages %}
+{% endblock %}
+{% block content %}
+<h3 class="mb-4" style="color: #966d29;">Medicine Sale</h3>
+<form role="form" class=form-horizontal" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form layout="horizontal" %}
+<!--    {{ formset.management_form }}  &lt;!&ndash; Required for Django formsets &ndash;&gt;-->
+    {{ medicine_sales_item_formset.management_form }}
+    <table>
+        <thead>
+            <tr>
+                <th>Medicine</th>
+                <th>Quantity</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for form in medicine_sales_item_formset %}
+            <tr>
+                <td>{{ form.medicine }}</td>
+                <td>{{ form.quantity }}</td>
+                <td>{{ form.DELETE }}</td>  <!-- Allows deleting rows -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <button type="submit">Submit Sale</button>
+</form>
+{% endblock %}
+
+
+

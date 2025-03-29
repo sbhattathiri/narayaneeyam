@@ -23,4 +23,4 @@ class MedicineBatch(AyuhModel):
         verbose_name_plural = "medicine batches"
 
     def __str__(self):
-        return f"{self.batch}"
+        return f"{self.batch} : {self.medicine}"

@@ -13,6 +13,11 @@ urlpatterns = [
         name="post_medicine_sale",
     ),
     path(
+        "ayuh/inventory/medicine/sale/create-multiple/",
+        views.MultipleMedicineSaleCreateView.as_view(),
+        name="post_multiple_medicine_sale",
+    ),
+    path(
         "ayuh/inventory/medicine/list/",
         views.MedicineListView.as_view(),
         name="list_medicine",

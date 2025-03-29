@@ -14,3 +14,6 @@ class MedicineStock(AyuhModel):
     class Meta:
         verbose_name = "medicine stock"
         verbose_name_plural = "medicine stocks"
+
+    def __str__(self):
+        return f"stock for: {self.batch} : quantity {self.quantity}"
