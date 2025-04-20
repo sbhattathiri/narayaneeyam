@@ -1,0 +1,36 @@
+{% extends "ayuh_base_template.html" %}
+{% block extra_head %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{% endblock %}
+{% block content %}
+<h3 class="mb-4" style="color: #966d29;">Medicine Sale For Consultation Id: {{ consultation.id }}</h3>
+<form class=form-horizontal" enctype="multipart/form-data" method="post" role="form">
+    {% csrf_token %}
+    {% bootstrap_form form layout="horizontal" %}
+    <table>
+        <thead>
+        <tr>
+            <th>Medicine Name</th>
+            <th>SKU</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{ formset.management_form }}
+        {% for form in formset %}
+        <tr>
+            <td>{{ form.medicine_name }}</td>
+            <td>{{ form.sku }}</td>
+            <td>{{ form.quantity }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% buttons %}
+    <button class="btn btn-warning btn-sm" type="submit">Save</button>
+    {% endbuttons %}
+</form>
+{% endblock %}

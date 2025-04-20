@@ -9,12 +9,6 @@ from ayuh_inventory.models.medicine_stocks import MedicineStock
 from ayuh_patient.models import Patient
 
 
-class MedicineSaleBatch(AyuhModel):
-    sale = models.ForeignKey("MedicineSaleItem", on_delete=models.CASCADE)
-    batch = models.ForeignKey("MedicineBatch", on_delete=models.PROTECT)
-    quantity = models.PositiveIntegerField()
-
-
 class MedicineSale(AyuhModel):
     sale_id = HashidsField(real_field_name="id")
     sale_date = models.DateTimeField(auto_now_add=True)
@@ -45,33 +39,17 @@ class MedicineSaleItem(AyuhModel):
         verbose_name_plural = "medicine sale items"
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+        medicine_stock = MedicineStock.objects.get(medicine=self.medicine)
+        quantity_in_stock = medicine_stock.quantity
 
-        remaining_qty = self.quantity
-        available_batches = (
-            MedicineStock.objects.filter(batch__medicine=self.medicine)
-            .select_related("batch")
-            .order_by("batch__manufactured_date")  # FIFO logic
-        )
-
-        for stock in available_batches:
-            if remaining_qty <= 0:
-                break
-
-            deducted_qty = min(remaining_qty, stock.quantity)
-
-            # Create batch-wise sale entry
-            MedicineSaleBatch.objects.create(
-                sale=self, batch=stock.batch, quantity=deducted_qty
-            )
-
-            # Update stock quantity
-            stock.quantity -= deducted_qty
-            stock.save()
-
-            remaining_qty -= deducted_qty
-
-        if remaining_qty > 0:
+        if quantity_in_stock <= 0:
             raise Exception(
                 f"Not enough stock for {self.medicine.name} (SKU: {self.medicine.sku})"
             )
+
+        if self.quantity > quantity_in_stock:
+            self.quantity = quantity_in_stock
+
+        medicine_stock.update(quantity=(quantity_in_stock - self.quantity))
+
+        super(MedicineSaleItem, self).save(*args, **kwargs)
