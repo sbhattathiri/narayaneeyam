@@ -1,3 +1,5 @@
+import logging
+
 from django.views.generic.edit import FormView
 from django.forms import formset_factory
 from django.urls import (
@@ -5,23 +7,33 @@ from django.urls import (
 )
 from django.shortcuts import get_object_or_404, redirect
 from ayuh_consultation import models, forms
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+logger = logging.getLogger(__name__)
 
 
-class PrescriptionsSaleView(FormView):
+class PrescriptionsSaleView(LoginRequiredMixin, FormView):
     template_name = (
         "ayuh_consultation/post_medicine_sale_for_given_consultation_template.html"
     )
     form_class = forms.PrescriptionForGivenConsultationForm
 
     def get_success_url(self):
-        return reverse_lazy("list_consultation", kwargs={"pk": self.object.pk})
+        return reverse_lazy("list_consultation")
 
     def get_formset(self):
         prescriptions = self.get_prescriptions()
+
         initial_data = [
-            {"medicine_name": p.medicine_name, "quantity": p.quantity}
+            {
+                "medicine": p.medicine,
+                "quantity": p.quantity,
+                "instructions": p.instructions,
+            }
             for p in prescriptions
         ]
+
+        logger.info(f"initial data: {initial_data}")
 
         FormSet = formset_factory(forms.PrescriptionForGivenConsultationForm, extra=0)
 

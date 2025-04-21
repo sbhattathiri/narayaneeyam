@@ -6,25 +6,45 @@
 {% bootstrap_messages %}
 {% endblock %}
 {% block content %}
-<h3 class="mb-4" style="color: #966d29;">Medicine Sale For Consultation Id: {{ consultation.id }}</h3>
+<h3 class="mb-4" style="color: #966d29;">Prescription Sale</h3>
+<div class="container">
+    <div class="row">
+        <div class="col">Consultation ID:</div>
+        <div class="col">{{ consultation.appointment_hash_id }}</div>
+    </div>
+        <div class="row">
+        <div class="col">Patient Name:</div>
+        <div class="col">{{ consultation.patient }}</div>
+    </div>
+    <div class="row">
+        <div class="col">Patient ID:</div>
+        <div class="col">{{ consultation.patient.patient_registration_id }}</div>
+    </div>
+        <div class="row">
+        <div class="col">Consulting Doctor:</div>
+        <div class="col">{{ consultation.doctor }}</div>
+    </div>
+</div>
+<hr class="mt-3">
 <form class=form-horizontal" enctype="multipart/form-data" method="post" role="form">
     {% csrf_token %}
-    {% bootstrap_form form layout="horizontal" %}
     <table>
         <thead>
         <tr>
-            <th>Medicine Name</th>
+            <th>Medicine</th>
             <th>SKU</th>
             <th>Quantity</th>
+            <th>Instructions</th>
         </tr>
         </thead>
         <tbody>
         {{ formset.management_form }}
         {% for form in formset %}
         <tr>
-            <td>{{ form.medicine_name }}</td>
+            <td>{{ form.medicine }}</td>
             <td>{{ form.sku }}</td>
             <td>{{ form.quantity }}</td>
+            <td>{{ form.instructions }}</td>
         </tr>
         {% endfor %}
         </tbody>
