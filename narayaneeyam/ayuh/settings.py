@@ -128,8 +128,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
 
+LOGIN_URL = f"/{FACILITY_NAME}/login/"  # IMPORTANT: start with `/`
 LOGIN_REDIRECT_URL = "/"
-LOGIN_URL = "login/"
+LOGOUT_REDIRECT_URL = f"/{FACILITY_NAME}/login/"
+
 
 SPECTACULAR_SETTINGS = {
     "TITLE": f"{FACILITY_NAME.upper()} API",

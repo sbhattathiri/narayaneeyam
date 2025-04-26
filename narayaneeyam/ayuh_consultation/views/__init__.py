@@ -10,10 +10,14 @@ from .post_consultation import (
 from .put_consultation import (
     ConsultationUpdateView,
 )
+from .post_sale_of_prescriptions_for_given_consultation import PrescriptionsSaleView
+from .post_search_consultation import ConsultationSearchView
 
 __all__ = [
     "ConsultationCreateView",
     "ConsultationDetailView",
     "ConsultationUpdateView",
     "ConsultationListView",
+    "ConsultationSearchView",
+    "PrescriptionsSaleView",
 ]

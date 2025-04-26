@@ -13,10 +13,21 @@ from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
 )
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path(f"{settings.FACILITY_NAME}/admin/", admin.site.urls),
     # path(f"{settings.FACILITY_NAME}/accounts/", include("django.contrib.auth.urls")),
+    path(
+        f"{settings.FACILITY_NAME}/login/",
+        auth_views.LoginView.as_view(template_name="ayuh_home/login.html"),
+        name="login",
+    ),
+    path(
+        f"{settings.FACILITY_NAME}/logout/",
+        auth_views.LogoutView.as_view(next_page="login"),
+        name="logout",
+    ),
     path(f"{settings.FACILITY_NAME}/", include("ayuh_core.urls")),
     path(f"{settings.FACILITY_NAME}/", include("ayuh_consultation.urls")),
     path(f"{settings.FACILITY_NAME}/", include("ayuh_home.urls")),

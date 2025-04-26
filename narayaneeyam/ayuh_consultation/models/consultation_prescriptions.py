@@ -21,4 +21,5 @@ class Prescription(AyuhModel):
         related_name="consultation_prescription",
     )
     medicine = models.CharField(max_length=255)
+    quantity = models.PositiveIntegerField(null=True, blank=True)
     instructions = models.TextField(null=True, blank=True)
