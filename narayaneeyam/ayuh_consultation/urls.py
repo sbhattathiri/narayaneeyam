@@ -32,9 +32,4 @@ urlpatterns = [
         views.ConsultationSearchView.as_view(),
         name="post_search_consultations",
     ),
-    path(
-        "ayuh/consultation/<str:consultation_id>/prescriptions/sale",
-        views.PrescriptionsSaleView.as_view(),
-        name="post_sale_of_prescriptions_for_given_consultation",
-    ),
 ]

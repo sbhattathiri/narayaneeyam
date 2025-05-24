@@ -1,8 +1,8 @@
-from .medicine_sales import MedicineSalesForm, MedicineSaleItemsFormSet
+from .medicine_sales import MedicineSaleForm, MedicineSaleItemsFormSet
 from .medicines import MedicinesForm
 
 __all__ = [
-    "MedicineSalesForm",
+    "MedicineSaleForm",
     "MedicineSaleItemsFormSet",
     "MedicinesForm",
 ]
