@@ -8,12 +8,14 @@ from ayuh_core.models import (
 
 
 class MedicineStock(AyuhModel):
-    medicine = models.OneToOneField("Medicine", on_delete=models.CASCADE)
+    medicine = models.OneToOneField(
+        "Medicine", on_delete=models.CASCADE, related_name="stock"
+    )
     quantity = models.PositiveSmallIntegerField(default=0)
 
     class Meta:
-        verbose_name = "medicine stock"
-        verbose_name_plural = "medicine stocks"
+        verbose_name = "Medicine Stock"
+        verbose_name_plural = "Medicine Stocks"
 
     def __str__(self):
         return f"stock for: {self.medicine} : quantity {self.quantity}"

@@ -19,6 +19,11 @@ from ayuh_patient.models.patients import (
 
 
 class PatientProfile(Patient):
+
+    class Meta:
+        verbose_name = "Patient Profile"
+        verbose_name_plural = "Patient Profiles"
+
     primary_care_provider = models.CharField(
         max_length=255,
         null=True,

@@ -30,8 +30,8 @@ class Medicine(AyuhModel):
     )
 
     class Meta:
-        verbose_name = "medicine"
-        verbose_name_plural = "medicines"
+        verbose_name = "Medicine"
+        verbose_name_plural = "Medicines"
 
     def __str__(self):
         return f"{self.name} ({self.sku})"

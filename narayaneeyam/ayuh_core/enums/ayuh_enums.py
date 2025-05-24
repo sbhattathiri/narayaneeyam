@@ -27,6 +27,7 @@ MEDICINE_TYPE_CHOICES = [
     ("KASHAAYAM", "Kashaayam"),
     ("LEPAM", "Lepam"),
     ("LEHYAM", "Lehyam"),
+    ("THAILAM", "Thailam"),
 ]
 
 

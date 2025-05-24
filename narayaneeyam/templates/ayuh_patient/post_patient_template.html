@@ -1,17 +1,12 @@
 {% extends "ayuh_base_template.html" %}
-{% block extra_head %}
-    {% load bootstrap4 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript jquery='full' %}
-    {% bootstrap_messages %}
-{% endblock %}
+{% load bootstrap4 %}
 {% block content %}
 <h3 class="mb-4" style="color: #966d29;">Add Patient</h3>
 <form role="form" class=form-horizontal" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form layout="horizontal" %}
     {% buttons %}
-    <button type="submit" class="btn btn-warning btn-sm">Save</button>
+    <button type="submit" class="btn btn-warning">Save</button>
     {% endbuttons %}
 </form>
 {% endblock %}
