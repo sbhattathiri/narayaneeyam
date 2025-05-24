@@ -19,6 +19,15 @@ from ayuh_core.models import (
 
 
 class Staff(AyuhModel):
+
+    class Meta:
+        unique_together = (
+            "first_name",
+            "middle_name",
+            "last_name",
+            "email",
+        )
+
     staff_hash_id = HashidsField(real_field_name="id")
     title = models.CharField(
         choices=Title.choices(),
@@ -69,14 +78,6 @@ class Staff(AyuhModel):
     date_of_joining = models.DateField(null=True, blank=True)
     date_of_leaving = models.DateField(null=True, blank=True)
     active = models.BooleanField(default=True)
-
-    class Meta:
-        unique_together = (
-            "first_name",
-            "middle_name",
-            "last_name",
-            "email",
-        )
 
     def clean(self):
         self.title = (

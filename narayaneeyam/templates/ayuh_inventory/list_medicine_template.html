@@ -8,8 +8,8 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-2">
     <h3 class="mb-4 pt-4" style="color: #966d29;">Medicines</h3>
-    <a href="{% url 'post_medicine_sale' %}" class="btn btn-warning btn-md">New Sale</a>
-    <a href="{% url 'post_multiple_medicine_sale' %}" class="btn btn-warning btn-md">New Sale (Multiple)</a>
+<!--    <a href="{% url 'post_medicine_sale' %}" class="btn btn-warning btn-md">New Sale</a>-->
+    <a href="{% url 'post_multiple_medicine_sale' %}" class="btn btn-warning btn-md">Sale</a>
 </div>
 <table class="table table-bordered">
     <thead>
@@ -30,7 +30,7 @@
                 <td>{{ medicine.type | default_if_none:"" }}</td>
                 <td>{{ medicine.manufacturer | default_if_none:""}}</td>
                 <td>{{ medicine.price | default_if_none:"" }}</td>
-                <td>{{ medicine.stock | default_if_none:"" }}</td>
+                <td>{{ medicine.stock.quantity | default_if_none:"" }}</td>
             </tr>
         {% endfor %}
     </tbody>

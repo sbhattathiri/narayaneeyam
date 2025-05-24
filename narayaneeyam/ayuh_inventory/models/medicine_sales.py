@@ -14,8 +14,8 @@ class MedicineSale(AyuhModel):
     sale_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = "medicine sale"
-        verbose_name_plural = "medicine sales"
+        verbose_name = "Medicine Sale"
+        verbose_name_plural = "Medicine Sales"
 
 
 class MedicineSaleItem(AyuhModel):
@@ -35,8 +35,8 @@ class MedicineSaleItem(AyuhModel):
         return f"{self.sale} of {self.medicine} : {self.quantity} units"
 
     class Meta:
-        verbose_name = "medicine sale item"
-        verbose_name_plural = "medicine sale items"
+        verbose_name = "Medicine Sale Item"
+        verbose_name_plural = "Medicine Sale Items"
 
     def save(self, *args, **kwargs):
         medicine_stock = MedicineStock.objects.get(medicine=self.medicine)

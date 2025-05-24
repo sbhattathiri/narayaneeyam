@@ -16,8 +16,8 @@ class MedicinePurchase(AyuhModel):
     purchased_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = "medicine purchase"
-        verbose_name_plural = "medicine purchases"
+        verbose_name = "Medicine Purchase"
+        verbose_name_plural = "Medicine Purchases"
 
     def save(self, *args, **kwargs):
         medicine_stock = MedicineStock.objects.get(medicine=self.medicine)
