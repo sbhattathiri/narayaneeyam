@@ -1,0 +1,13 @@
+{% extends "ayuh_base_template.html" %}
+{% load bootstrap4 %}
+{% block content %}
+  <h3 class="mb-4" style="color: #966d29;">Get Prescription History</h3>
+  <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+
+      {% buttons %}
+      <button class="btn btn-warning btn-sm" type="submit">Search</button>
+      {% endbuttons %}
+  </form>
+{% endblock %}

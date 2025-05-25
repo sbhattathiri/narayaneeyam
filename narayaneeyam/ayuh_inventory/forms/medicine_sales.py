@@ -8,7 +8,7 @@ from ayuh_inventory import (
 class MedicineSaleForm(forms.ModelForm):
     class Meta:
         model = models.MedicineSale
-        fields = ["patient"]
+        fields = ["patient", "customer"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
