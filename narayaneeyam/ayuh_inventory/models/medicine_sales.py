@@ -18,6 +18,7 @@ class MedicineSale(AyuhModel):
         null=True,
         blank=True,
     )
+    customer = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         verbose_name = "Medicine Sale"
@@ -31,26 +32,9 @@ class MedicineSaleItem(AyuhModel):
     medicine = models.ForeignKey("Medicine", on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
 
-
     def __str__(self):
         return f"{self.sale} of {self.medicine} : {self.quantity} units"
 
     class Meta:
         verbose_name = "Medicine Sale Item"
         verbose_name_plural = "Medicine Sale Items"
-
-    def save(self, *args, **kwargs):
-        medicine_stock = MedicineStock.objects.get(medicine=self.medicine)
-        quantity_in_stock = medicine_stock.quantity
-
-        if quantity_in_stock <= 0:
-            raise Exception(
-                f"Not enough stock for {self.medicine.name} (SKU: {self.medicine.sku})"
-            )
-
-        if self.quantity > quantity_in_stock:
-            self.quantity = quantity_in_stock
-
-        medicine_stock.update(quantity=(quantity_in_stock - self.quantity))
-
-        super(MedicineSaleItem, self).save(*args, **kwargs)

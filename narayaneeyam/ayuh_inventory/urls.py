@@ -9,7 +9,7 @@ from ayuh_inventory import (
 urlpatterns = [
     path(
         "ayuh/inventory/medicine/sale/create-multiple/",
-        views.MultipleMedicineSaleCreateView.as_view(),
+        views.MedicineSaleCreateView.as_view(),
         name="post_multiple_medicine_sale",
     ),
     path(

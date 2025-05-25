@@ -32,4 +32,14 @@ urlpatterns = [
         views.ConsultationSearchView.as_view(),
         name="post_search_consultations",
     ),
+    path(
+        "ayuh/consultation/prescriptions/search",
+        views.PrescriptionSearchView.as_view(),
+        name="post_search_prescription_history",
+    ),
+    path(
+        "ayuh/consultation/prescriptions/<str:patient_registration_id>/history",
+        views.PrescriptionHistoryListView.as_view(),
+        name="prescription_history",
+    ),
 ]

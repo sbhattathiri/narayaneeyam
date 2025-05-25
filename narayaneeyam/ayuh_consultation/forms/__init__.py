@@ -15,6 +15,7 @@ from .prescription_for_given_consultation import (
     PrescriptionForGivenConsultationFormSet,
 )
 from .consultation_search import ConsultationSearchForm
+from .prescription_search import PrescriptionSearchForm
 
 __all__ = [
     "AppointmentForm",
@@ -24,4 +25,5 @@ __all__ = [
     "PrescriptionFormSet",
     "PrescriptionForGivenConsultationForm",
     "PrescriptionForGivenConsultationFormSet",
+    "PrescriptionSearchForm",
 ]
