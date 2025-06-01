@@ -15,7 +15,7 @@ class ConsultationForm(forms.ModelForm):
             "doctor",
             "patient_concerns",
             "diagnosis",
-            "doctors_comments",
+            "doctor_comments",
             "next_consultation_date",
         ]
         widgets = {

@@ -21,7 +21,7 @@ class MedicineSaleCreateView(CreateView):
 
     model = models.MedicineSale
     form_class = forms.MedicineSaleForm
-    template_name = "ayuh_inventory/post_medicine_sale_template.html"
+    template_name = "ayuh_inventory/post_sale_of_medicines_template.html"
     success_url = reverse_lazy("list_medicine")
 
     def get_context_data(self, **kwargs):
@@ -48,7 +48,9 @@ class MedicineSaleCreateView(CreateView):
                     quantity = item_form.cleaned_data["quantity"]
 
                     if medicine.stock.quantity < quantity:
-                        form.add_error(None, f"Not enough stock for {medicine.name}")
+                        form.add_error(
+                            None, f"We don't have enough stock for {medicine.name}"
+                        )
                         transaction.set_rollback(True)
                         return self.form_invalid(form)
 

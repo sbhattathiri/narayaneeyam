@@ -41,8 +41,22 @@ class ConsultationUpdateView(UpdateView):
         context = self.get_context_data()
         attachment_formset = context["attachment_formset"]
         prescription_formset = context["prescription_formset"]
+
+        valid_attachment_forms = [
+            attachment_form
+            for attachment_form in attachment_formset.forms
+            if attachment_form not in attachment_formset.deleted_forms
+            and attachment_form.cleaned_data
+            and not attachment_form.cleaned_data.get("DELETE", False)
+        ]
+
+        if not valid_attachment_forms:
+            attachment_formset.non_form_errors = ["Please add at least one attachment."]
+            return self.form_invalid(form)
+
         if attachment_formset.is_valid() and prescription_formset.is_valid():
             self.object = form.save()
+
             attachments = attachment_formset.save(commit=False)
             for attachment in attachments:
                 attachment.consultation = self.object
@@ -54,11 +68,9 @@ class ConsultationUpdateView(UpdateView):
             for prescription in prescriptions:
                 prescription.consultation = self.object
                 prescription.save()
-
             for obj in prescription_formset.deleted_objects:
                 obj.delete()
 
-            # return redirect(self.get_success_url())
             return super().form_valid(form)
         else:
             return self.form_invalid(form)

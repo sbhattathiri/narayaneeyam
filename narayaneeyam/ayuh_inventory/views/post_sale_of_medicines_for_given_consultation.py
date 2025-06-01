@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class PrescriptionsSaleView(LoginRequiredMixin, FormView):
     template_name = (
-        "ayuh_inventory/post_medicine_sale_for_given_consultation_template.html"
+        "ayuh_inventory/post_sale_of_medicines_for_given_consultation_template.html"
     )
     form_class = forms.PrescriptionForGivenConsultationForm
 
