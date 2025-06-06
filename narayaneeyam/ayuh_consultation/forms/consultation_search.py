@@ -1,4 +1,6 @@
-from django import forms
+from django import (
+    forms,
+)
 
 
 class ConsultationSearchForm(forms.Form):

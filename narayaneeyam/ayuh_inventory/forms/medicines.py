@@ -1,11 +1,10 @@
 import logging
 
-from django import (
-    forms,
-)
-
 from ayuh_inventory import (
     models,
+)
+from django import (
+    forms,
 )
 
 logger = logging.getLogger(__name__)

@@ -1,8 +1,13 @@
+from ayuh_inventory.models.medicine_stocks import (
+    MedicineStock,
+)
 from django.db import (
     models,
 )
-from ayuh_core.models import AyuhModel
-from ayuh_inventory.models.medicine_stocks import MedicineStock
+
+from ayuh_core.models import (
+    AyuhModel,
+)
 
 
 class MedicinePurchase(AyuhModel):

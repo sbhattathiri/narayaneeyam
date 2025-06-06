@@ -1,3 +1,6 @@
+from django import (
+    forms,
+)
 from django.forms import (
     inlineformset_factory,
 )
@@ -5,8 +8,6 @@ from django.forms import (
 from ayuh_consultation import (
     models,
 )
-
-from django import forms
 
 
 class PrescriptionForm(forms.ModelForm):

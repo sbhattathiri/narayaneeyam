@@ -1,17 +1,20 @@
 import logging
 
-from django.urls import (
-    reverse_lazy,
-)
-from django.db import transaction
-from django.views.generic.edit import (
-    CreateView,
-)
-from django.shortcuts import redirect
-
 from ayuh_inventory import (
     forms,
     models,
+)
+from django.db import (
+    transaction,
+)
+from django.shortcuts import (
+    redirect,
+)
+from django.urls import (
+    reverse_lazy,
+)
+from django.views.generic.edit import (
+    CreateView,
 )
 
 logger = logging.getLogger(__name__)

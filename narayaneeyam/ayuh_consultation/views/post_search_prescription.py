@@ -1,12 +1,17 @@
-from django.views.generic import FormView
-
-from django.shortcuts import redirect
+from django.shortcuts import (
+    redirect,
+)
+from django.views.generic import (
+    FormView,
+)
 
 from ayuh_consultation import (
     forms,
     models,
 )
-from ayuh_patient.models import Patient
+from ayuh_patient.models import (
+    Patient,
+)
 
 
 class PrescriptionSearchView(FormView):

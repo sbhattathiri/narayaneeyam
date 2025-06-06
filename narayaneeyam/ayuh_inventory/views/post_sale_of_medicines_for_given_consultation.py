@@ -1,13 +1,29 @@
 import logging
 
-from django.views.generic.edit import FormView
-from django.forms import formset_factory
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+)
+from django.forms import (
+    formset_factory,
+)
+from django.db import (
+    transaction,
+)
+from django.shortcuts import (
+    get_object_or_404,
+    redirect,
+)
 from django.urls import (
     reverse_lazy,
 )
-from django.shortcuts import get_object_or_404, redirect
-from ayuh_consultation import models, forms
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import (
+    FormView,
+)
+
+from ayuh_consultation import (
+    forms,
+    models,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -57,12 +73,43 @@ class PrescriptionsSaleView(LoginRequiredMixin, FormView):
         context["formset"] = self.get_formset()
         return context
 
-    def post(self, request, *args, **kwargs):
-        formset = self.get_formset()
-        if formset.is_valid():
-            for form in formset:
-                # process SKU and quantity
-                print(form.cleaned_data)
-            return redirect(self.success_url)
-        context = self.get_context_data(formset=formset)
-        return self.render_to_response(context)
+    # def post(self, request, *args, **kwargs):
+    #     formset = self.get_formset()
+    #     if formset.is_valid():
+    #         for form in formset:
+    #             print(form.cleaned_data)
+    #         return redirect(self.success_url)
+    #     context = self.get_context_data(formset=formset)
+    #     return self.render_to_response(context)
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        formset = context["formset"]
+
+        with transaction.atomic():
+            self.object = form.save()
+
+            if formset.is_valid():
+                formset.instance = self.object
+                for item_form in formset:
+                    medicine = item_form.cleaned_data["medicine"]
+                    quantity = item_form.cleaned_data["quantity"]
+
+                    if medicine.stock.quantity < quantity:
+                        form.add_error(
+                            None, f"We don't have enough stock for {medicine.name}"
+                        )
+                        transaction.set_rollback(True)
+                        return self.form_invalid(form)
+
+                    logger.info("deducting stock")
+                    stock = medicine.stock
+                    stock.quantity -= quantity
+                    stock.save()
+                    medicine.save()
+
+                formset.save()
+            else:
+                return self.form_invalid(form)
+
+        return redirect(self.success_url)

@@ -7,14 +7,15 @@
     {% csrf_token %}
 
     {% bootstrap_form form layout="horizontal" %}
-
     <hr class="border border-secondary">
 
+    {% if form.non_field_errors %}
     <div class="text-danger">
-        {% for error in attachment_formset.non_form_errors %}
+        {% for error in form.non_field_errors %}
         <div>{{ error }}</div>
         {% endfor %}
     </div>
+    {% endif %}
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0" style="color: #966d29;">Attachments</h4>
@@ -22,6 +23,13 @@
     </div>
 
     {{ attachment_formset.management_form }}
+    {% if attachment_formset.non_form_errors %}
+    <div class="alert alert-danger">
+        {% for error in attachment_formset.non_form_errors %}
+        <div>{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     <div id="attachment-formset-items">
         <div id="attachment-empty-form" style="display: none;">
@@ -33,7 +41,7 @@
         </div>
 
         {% for form in attachment_formset %}
-
+        {{ form.id }}
         <div class="form-row align-items-end mb-2">
             <div class="col">
                 {{ form.attachment.label_tag }}
@@ -51,19 +59,19 @@
 
     <hr class="border border-secondary">
 
-    <div class="text-danger">
-        {% for error in prescription_formset.non_form_errors %}
-        <div>{{ error }}</div>
-        {% endfor %}
-    </div>
-
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0" style="color: #966d29;">Prescription List</h4>
         <button class="btn btn-warning" id="add-prescription-row-btn" type="button">Add Medicine</button>
     </div>
 
     {{ prescription_formset.management_form }}
-
+    {% if prescription_formset.non_form_errors %}
+    <div class="alert alert-danger">
+        {% for error in prescription_formset.non_form_errors %}
+        <div>{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
     <div id="prescription-formset-items">
         <div class="form-row align-items-center mb-2">
             <div class="col-4">
@@ -92,7 +100,7 @@
         </div>
 
         {% for form in prescription_formset %}
-
+        {{ form.id }}
         <div class="form-row align-items-center mb-2">
             <div class="col-4">
                 {{ form.medicine }}
@@ -140,7 +148,7 @@
 
         addAttachmentButton.addEventListener('click', function () {
             let totalAttachmentForms = parseInt(totalAttachmentFormsInput.value);
-            let newFormHtml = emptyPrescriptionFormHtml.replace(/__prefix__/g, totalAttachmentForms);
+            let newFormHtml = emptyAttachmentFormHtml.replace(/__prefix__/g, totalAttachmentForms);
             const wrapper = document.createElement('div');
             wrapper.innerHTML = newFormHtml;
             attachmentFormSetDiv.appendChild(wrapper);

@@ -2,7 +2,9 @@ from django.db import (
     models,
 )
 
-from ayuh_core.enums import MEDICINE_TYPE_CHOICES
+from ayuh_core.enums import (
+    MEDICINE_TYPE_CHOICES,
+)
 from ayuh_core.models import (
     AyuhModel,
 )

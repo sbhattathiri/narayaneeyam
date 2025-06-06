@@ -1,9 +1,8 @@
-from django.contrib import (
-    admin,
-)
-
 from ayuh_inventory import (
     models,
+)
+from django.contrib import (
+    admin,
 )
 
 models_to_be_registered = [

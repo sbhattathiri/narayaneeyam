@@ -1,4 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import (
+    redirect,
+    render,
+)
 
 
 def narayaneeyam_home(request):
