@@ -1,3 +1,4 @@
+import json
 import logging
 
 from django.contrib.auth.mixins import (
@@ -24,6 +25,7 @@ from ayuh_consultation import (
     forms,
     models,
 )
+from ayuh_inventory.models import MedicineSale, MedicineSaleItem
 
 logger = logging.getLogger(__name__)
 
@@ -73,43 +75,48 @@ class PrescriptionsSaleView(LoginRequiredMixin, FormView):
         context["formset"] = self.get_formset()
         return context
 
-    # def post(self, request, *args, **kwargs):
-    #     formset = self.get_formset()
-    #     if formset.is_valid():
-    #         for form in formset:
-    #             print(form.cleaned_data)
-    #         return redirect(self.success_url)
-    #     context = self.get_context_data(formset=formset)
-    #     return self.render_to_response(context)
-
-    def form_valid(self, form):
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
         context = self.get_context_data()
         formset = context["formset"]
 
-        with transaction.atomic():
-            self.object = form.save()
+        patient = self.get_consultation().patient
 
-            if formset.is_valid():
-                formset.instance = self.object
-                for item_form in formset:
-                    medicine = item_form.cleaned_data["medicine"]
-                    quantity = item_form.cleaned_data["quantity"]
+        if formset.is_valid():
+            success = True
+            formset.instance = self.get_formset()
+            for item_form in formset:
+                medicine = item_form.cleaned_data["sku"]
+                quantity = item_form.cleaned_data["quantity"]
 
-                    if medicine.stock.quantity < quantity:
-                        form.add_error(
-                            None, f"We don't have enough stock for {medicine.name}"
-                        )
-                        transaction.set_rollback(True)
-                        return self.form_invalid(form)
+                if medicine.stock.quantity < quantity:
+                    form.add_error(
+                        None, f"We don't have enough stock for {medicine.name}"
+                    )
+                    success = False
+                    break
 
+                with transaction.atomic():
                     logger.info("deducting stock")
                     stock = medicine.stock
                     stock.quantity -= quantity
                     stock.save()
-                    medicine.save()
 
-                formset.save()
-            else:
+                    sale = MedicineSale.objects.create(patient=patient)
+                    sale_item = MedicineSaleItem.objects.create(
+                        sale=sale,
+                        medicine=medicine,
+                        quantity=quantity,
+                    )
+            if not success:
                 return self.form_invalid(form)
+        else:
+            logger.info(
+                f"formset is invalid. formset errors: {json.dumps(formset.errors, indent=2)}"
+            )
+            logger.info(
+                f"formset is invalid. non form errors: {json.dumps(formset.non_form_errors(), indent=2)}"
+            )
+            return self.form_invalid(form)
 
         return redirect(self.success_url)
