@@ -4,11 +4,11 @@ from .appointments import (
 from .consultation_attachments import (
     ConsultationAttachment,
 )
-from .consultations import (
-    Consultation,
-)
 from .consultation_prescriptions import (
     Prescription,
+)
+from .consultations import (
+    Consultation,
 )
 
 __all__ = [

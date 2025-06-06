@@ -1,10 +1,20 @@
-from django import forms
-from django.forms import formset_factory
+from django import (
+    forms,
+)
+from django.forms import (
+    formset_factory,
+)
+
+from ayuh_inventory.models import Medicine
 
 
 class PrescriptionForGivenConsultationForm(forms.Form):
     medicine = forms.CharField(disabled=True, required=False)
-    sku = forms.CharField(required=False)
+    sku = forms.ModelChoiceField(
+        queryset=Medicine.objects.all(),
+        required=False,
+        label="SKU",
+    )
     quantity = forms.IntegerField(min_value=1)
     instructions = forms.CharField(disabled=True, required=False)
 

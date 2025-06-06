@@ -1,12 +1,19 @@
+from ayuh_inventory.models.medicine_stocks import (
+    MedicineStock,
+)
 from django.db import (
     models,
 )
 from django_hashids import (
     HashidsField,
 )
-from ayuh_core.models import AyuhModel
-from ayuh_inventory.models.medicine_stocks import MedicineStock
-from ayuh_patient.models import Patient
+
+from ayuh_core.models import (
+    AyuhModel,
+)
+from ayuh_patient.models import (
+    Patient,
+)
 
 
 class MedicineSale(AyuhModel):

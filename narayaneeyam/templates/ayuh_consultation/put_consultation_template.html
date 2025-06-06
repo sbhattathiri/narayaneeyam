@@ -1,29 +1,159 @@
 {% extends "ayuh_base_template.html" %}
 {% load bootstrap4 %}
 {% block content %}
-<h3 class="mb-4" style="color: #966d29;">Update Consultation</h3>
-<form role="form" class=form-horizontal" method="post" enctype="multipart/form-data">
+<h3 class="mb-4" style="color: #966d29;">Consultation Notes</h3>
+<hr class="border border-secondary">
+<form class=form-horizontal" enctype="multipart/form-data" method="post" role="form">
     {% csrf_token %}
-    {% bootstrap_form form layout="horizontal" %}
 
-    <h4>Attachments</h4>
+    {% bootstrap_form form layout="horizontal" %}
+    <hr class="border border-secondary">
+
+    {% if form.non_field_errors %}
+    <div class="text-danger">
+        {% for error in form.non_field_errors %}
+        <div>{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0" style="color: #966d29;">Attachments</h4>
+        <button class="btn btn-warning" id="add-attachment-row-btn" type="button">Attach More</button>
+    </div>
+
     {{ attachment_formset.management_form }}
-    <div class="mb-3">
-        {% for attachment_form in attachment_formset %}
-            {% bootstrap_form attachment_form layout="horizontal" %}
+    {% if attachment_formset.non_form_errors %}
+    <div class="alert alert-danger">
+        {% for error in attachment_formset.non_form_errors %}
+        <div>{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div id="attachment-formset-items">
+        <div id="attachment-empty-form" style="display: none;">
+            <div class="form-row align-items-end mb-2">
+                <div class="col">
+                    {{ attachment_formset.empty_form.attachment }}
+                </div>
+            </div>
+        </div>
+
+        {% for form in attachment_formset %}
+        {{ form.id }}
+        <div class="form-row align-items-end mb-2">
+            <div class="col">
+                {{ form.attachment.label_tag }}
+                {{ form.attachment }}
+            </div>
+        </div>
+
+        {% if form.instance.pk %}
+        <input id="attachment-{{ form.prefix }}-DELETE" name="{{ form.prefix }}-DELETE" type="checkbox">
+        <label for="attachment-{{ form.prefix }}-DELETE">Delete</label>
+        {% endif %}
+
         {% endfor %}
     </div>
 
-    <h4>Prescriptions</h4>
+    <hr class="border border-secondary">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0" style="color: #966d29;">Prescription List</h4>
+        <button class="btn btn-warning" id="add-prescription-row-btn" type="button">Add Medicine</button>
+    </div>
+
     {{ prescription_formset.management_form }}
-    <div class="mb-3">
-        {% for prescription_form in prescription_formset %}
-            {% bootstrap_form prescription_form layout="horizontal" %}
+    {% if prescription_formset.non_form_errors %}
+    <div class="alert alert-danger">
+        {% for error in prescription_formset.non_form_errors %}
+        <div>{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div id="prescription-formset-items">
+        <div class="form-row align-items-center mb-2">
+            <div class="col-4">
+                <label>Medicine</label>
+            </div>
+            <div class="col-2">
+                <label>Quantity</label>
+            </div>
+            <div class="col-6">
+                <label>Instructions</label>
+            </div>
+        </div>
+
+        <div id="prescription-empty-form" style="display: none;">
+            <div class="form-row align-items-center mb-2">
+                <div class="col-4">
+                    {{ prescription_formset.empty_form.medicine }}
+                </div>
+                <div class="col-2">
+                    {{ prescription_formset.empty_form.quantity }}
+                </div>
+                <div class="col-6">
+                    {{ prescription_formset.empty_form.instructions }}
+                </div>
+            </div>
+        </div>
+
+        {% for form in prescription_formset %}
+        {{ form.id }}
+        <div class="form-row align-items-center mb-2">
+            <div class="col-4">
+                {{ form.medicine }}
+            </div>
+            <div class="col-2">
+                {{ form.quantity }}
+            </div>
+            <div class="col-6">
+                {{ form.instructions }}
+            </div>
+        </div>
+
+        {% if form.instance.pk %}
+        <input id="prescription-{{ form.prefix }}-DELETE" name="{{ form.prefix }}-DELETE" type="checkbox">
+        <label for="prescription-{{ form.prefix }}-DELETE">Delete</label>
+        {% endif %}
+
         {% endfor %}
     </div>
 
     {% buttons %}
-    <button type="submit" class="btn btn-warning">Save</button>
+    <button class="btn btn-warning" type="submit">Save</button>
     {% endbuttons %}
 </form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addPrescriptionButton = document.getElementById('add-prescription-row-btn');
+        const prescriptionFormSetDiv = document.getElementById('prescription-formset-items');
+        const emptyPrescriptionFormHtml = document.getElementById('prescription-empty-form').innerHTML;
+        const totalPrescriptionFormsInput = document.querySelector('[name="{{ prescription_formset.prefix }}-TOTAL_FORMS"]');
+
+        addPrescriptionButton.addEventListener('click', function () {
+            let totalPrescriptionForms = parseInt(totalPrescriptionFormsInput.value);
+            let newFormHtml = emptyPrescriptionFormHtml.replace(/__prefix__/g, totalPrescriptionForms);
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = newFormHtml;
+            prescriptionFormSetDiv.appendChild(wrapper);
+            totalPrescriptionFormsInput.value = totalPrescriptionForms + 1;
+        });
+
+        const addAttachmentButton = document.getElementById('add-attachment-row-btn');
+        const attachmentFormSetDiv = document.getElementById('attachment-formset-items');
+        const emptyAttachmentFormHtml = document.getElementById('attachment-empty-form').innerHTML;
+        const totalAttachmentFormsInput = document.querySelector('[name="{{ attachment_formset.prefix }}-TOTAL_FORMS"]');
+
+        addAttachmentButton.addEventListener('click', function () {
+            let totalAttachmentForms = parseInt(totalAttachmentFormsInput.value);
+            let newFormHtml = emptyAttachmentFormHtml.replace(/__prefix__/g, totalAttachmentForms);
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = newFormHtml;
+            attachmentFormSetDiv.appendChild(wrapper);
+            totalAttachmentFormsInput.value = totalAttachmentForms + 1;
+        });
+    });
+</script>
 {% endblock %}

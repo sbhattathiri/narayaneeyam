@@ -1,12 +1,13 @@
 import logging
 
-from django.views.generic import (
-    ListView,
+from ayuh_inventory.forms import (
+    MedicinesForm,
 )
-
-from ayuh_inventory.forms import MedicinesForm
 from ayuh_inventory.models import (
     Medicine,
+)
+from django.views.generic import (
+    ListView,
 )
 
 logger = logging.getLogger(__name__)

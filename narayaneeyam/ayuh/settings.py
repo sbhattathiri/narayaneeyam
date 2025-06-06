@@ -132,7 +132,6 @@ LOGIN_URL = f"/{FACILITY_NAME}/login/"  # IMPORTANT: start with `/`
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = f"/{FACILITY_NAME}/login/"
 
-
 SPECTACULAR_SETTINGS = {
     "TITLE": f"{FACILITY_NAME.upper()} API",
     "VERSION": "1.0.0",
@@ -272,3 +271,6 @@ if ENABLE_DEBUG_TOOLBAR:
     MIDDLEWARE += [
         "debug_toolbar.middleware.DebugToolbarMiddleware",
     ]
+
+
+NARAYANEEYAM_SETTINGS = {"PATIENT_CONSENT_MANDATORY": True}

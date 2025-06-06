@@ -1,12 +1,19 @@
+from django.db.models import (
+    F,
+)
+from django.shortcuts import (
+    get_object_or_404,
+)
 from django.views.generic import (
     ListView,
 )
-from django.shortcuts import get_object_or_404
-from django.db.models import F
+
 from ayuh_consultation import (
     models,
 )
-from ayuh_patient.models import Patient
+from ayuh_patient.models import (
+    Patient,
+)
 
 
 class PrescriptionHistoryListView(ListView):

@@ -1,7 +1,11 @@
-from django import forms
-from django.forms.models import inlineformset_factory
 from ayuh_inventory import (
     models,
+)
+from django import (
+    forms,
+)
+from django.forms.models import (
+    inlineformset_factory,
 )
 
 

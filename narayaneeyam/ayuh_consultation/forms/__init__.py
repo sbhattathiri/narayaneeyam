@@ -4,18 +4,22 @@ from .appointments import (
 from .consultation_attachments import (
     ConsultationAttachmentFormSet,
 )
-from .consultations import (
-    ConsultationForm,
-)
 from .consultation_prescriptions import (
     PrescriptionFormSet,
+)
+from .consultation_search import (
+    ConsultationSearchForm,
+)
+from .consultations import (
+    ConsultationForm,
 )
 from .prescription_for_given_consultation import (
     PrescriptionForGivenConsultationForm,
     PrescriptionForGivenConsultationFormSet,
 )
-from .consultation_search import ConsultationSearchForm
-from .prescription_search import PrescriptionSearchForm
+from .prescription_search import (
+    PrescriptionSearchForm,
+)
 
 __all__ = [
     "AppointmentForm",

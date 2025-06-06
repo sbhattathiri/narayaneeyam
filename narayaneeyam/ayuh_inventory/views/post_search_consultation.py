@@ -1,6 +1,9 @@
-from django.views.generic import FormView
-
-from django.shortcuts import redirect
+from django.shortcuts import (
+    redirect,
+)
+from django.views.generic import (
+    FormView,
+)
 
 from ayuh_consultation import (
     forms,
@@ -9,7 +12,7 @@ from ayuh_consultation import (
 
 
 class ConsultationSearchView(FormView):
-    template_name = "ayuh_consultation/post_search_consultation.html"
+    template_name = "ayuh_inventory/post_search_consultation.html"
     form_class = forms.ConsultationSearchForm
 
     def form_valid(self, form):
