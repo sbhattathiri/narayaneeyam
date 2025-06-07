@@ -24,12 +24,12 @@ class TreatmentForm(forms.ModelForm):
                     "class": "form-control",
                 }
             ),
-            "therapist": forms.ChoiceField(
+            "therapist": forms.Select(
                 attrs={
                     "class": "form-control",
                 }
             ),
-            "treatment_date": forms.DateField(
+            "treatment_date": forms.DateInput(
                 attrs={
                     "class": "form-control",
                 }
