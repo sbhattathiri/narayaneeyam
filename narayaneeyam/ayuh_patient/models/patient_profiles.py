@@ -103,7 +103,7 @@ class PatientProfile(Patient):
         blank=True,
     )
     patient_address = models.TextField(null=True, blank=True)
-    referral_source = type = models.CharField(
+    referral_source = models.CharField(
         choices=REFERRAL_SOURCE_CHOICES,
         null=True,
         blank=True,

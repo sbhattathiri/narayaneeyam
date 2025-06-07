@@ -15,6 +15,7 @@ class Admission(RoomMixin, TreatmentMixin):
     consultation = models.ForeignKey(
         Consultation,
         on_delete=models.SET_NULL,
+        null=True,
         related_name="admission_consultation",
     )
     admission_date = models.DateTimeField(auto_now_add=True)

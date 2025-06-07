@@ -20,6 +20,7 @@ class Treatment(AyuhModel):
     admission = models.ForeignKey(
         Admission,
         on_delete=models.SET_NULL,
+        null=True,
         related_name="treatment_admission",
     )
     treatment = models.TextField(null=True, blank=True)
