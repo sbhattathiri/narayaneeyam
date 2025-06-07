@@ -12,6 +12,7 @@ from ayuh_core.enums import (
     DietaryPreference,
     HabitStatus,
     Lifestyle,
+    REFERRAL_SOURCE_CHOICES,
 )
 from ayuh_patient.models.patients import (
     Patient,
@@ -24,6 +25,11 @@ class PatientProfile(Patient):
         verbose_name = "Patient Profile"
         verbose_name_plural = "Patient Profiles"
 
+    occupation = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+    )
     primary_care_provider = models.CharField(
         max_length=255,
         null=True,
@@ -97,6 +103,12 @@ class PatientProfile(Patient):
         blank=True,
     )
     patient_address = models.TextField(null=True, blank=True)
+    referral_source = type = models.CharField(
+        choices=REFERRAL_SOURCE_CHOICES,
+        null=True,
+        blank=True,
+        default="",
+    )
 
     def clean(self):
         self.primary_care_provider = (

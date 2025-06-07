@@ -4,11 +4,13 @@ from pathlib import (
     Path,
 )
 
-FACILITY_NAME = "narayaneeyam"
+APP_NAME = "dhanwanthari"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-b84o3pdb%^bt(jiwvzt$37xe%h(7xzj!bmw8p%zp8ucmpw#ur0"
+SECRET_KEY = (
+    "django-insecure-b84o3pdb%^bt(jiwvzt$37xe%h(7xzj!bmw8p%zp8ucmpw#ur0"  # TODO:
+)
 
 DEBUG = True  # TODO
 
@@ -34,6 +36,7 @@ THIRD_PARTY_APPS = [
 ]
 
 FIRST_PARTY_APPS = [
+    "ayuh_admission",
     "ayuh_consultation",
     "ayuh_core",
     "ayuh_home",
@@ -114,7 +117,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-DJANGO_HASHIDS_SALT = "my_salt"
+DJANGO_HASHIDS_SALT = "my_salt"  # TODO:
 DJANGO_HASHIDS_MIN_LENGTH = 5
 DJANGO_HASHIDS_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
@@ -128,12 +131,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
 
-LOGIN_URL = f"/{FACILITY_NAME}/login/"  # IMPORTANT: start with `/`
+APP_SETTINGS = {
+    "FACILITY_NAME": "narayaneeyam",
+    "PATIENT_CONSENT_MANDATORY": True,
+}
+
+LOGIN_URL = f"/{APP_NAME}/login/"  # IMPORTANT: start with `/`
 LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = f"/{FACILITY_NAME}/login/"
+LOGOUT_REDIRECT_URL = f"/{APP_NAME}/login/"
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": f"{FACILITY_NAME.upper()} API",
+    "TITLE": f"{APP_NAME.upper()} API",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_DIST": "SIDECAR",
@@ -250,7 +258,7 @@ LOGGING = {
 }
 
 
-ENABLE_DEBUG_TOOLBAR = DEBUG and "test" not in sys.argv
+ENABLE_DEBUG_TOOLBAR = DEBUG and "test" not in sys.argv  # TODO:
 
 if ENABLE_DEBUG_TOOLBAR:
     # By default, the Django Debug Toolbar only shows on localhost or 127.0.0.1.
@@ -271,6 +279,3 @@ if ENABLE_DEBUG_TOOLBAR:
     MIDDLEWARE += [
         "debug_toolbar.middleware.DebugToolbarMiddleware",
     ]
-
-
-NARAYANEEYAM_SETTINGS = {"PATIENT_CONSENT_MANDATORY": True}

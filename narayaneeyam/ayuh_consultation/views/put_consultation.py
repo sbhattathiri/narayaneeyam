@@ -93,7 +93,7 @@ class ConsultationUpdateView(UpdateView):
                 )
             )
 
-        is_consent_mandatory = settings.NARAYANEEYAM_SETTINGS.get(
+        is_consent_mandatory = settings.APP_SETTINGS.get(
             "PATIENT_CONSENT_MANDATORY", True
         )
 
