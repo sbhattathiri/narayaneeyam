@@ -2,6 +2,8 @@ from enum import (
     Enum,
 )
 
+# TODO: standardize
+
 BLOOD_GROUP_CHOICES = [
     ("A+", "A+"),
     ("A-", "A-"),
@@ -28,6 +30,18 @@ MEDICINE_TYPE_CHOICES = [
     ("LEPAM", "Lepam"),
     ("LEHYAM", "Lehyam"),
     ("THAILAM", "Thailam"),
+]
+
+
+REFERRAL_SOURCE_CHOICES = [
+    ("SEARCH", "search"),
+    ("ACQUAINTANCE", "Acquaintance"),
+    ("NEWSPAPER", "Newspaper"),
+    ("TELEVISION", "TV"),
+    ("RADIO", "Radio"),
+    ("INSTAGRAM", "Instagram"),
+    ("FACEBOOK", "Facebook"),
+    ("X", "X"),
 ]
 
 

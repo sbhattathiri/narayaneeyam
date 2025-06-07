@@ -10,11 +10,3 @@ def narayaneeyam_home(request):
 
 def narayaneeyam_admin(request):
     return render(request, "ayuh_home/admin_home_template.html", context={})
-
-
-def narayaneeyam_admission(request):
-    return render(
-        request,
-        "ayuh_home/admissions_home_template.html",
-        context={},
-    )

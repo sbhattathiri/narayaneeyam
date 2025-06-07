@@ -1,14 +1,18 @@
 import json
 import logging
 
+from ayuh_inventory.models import (
+    MedicineSale,
+    MedicineSaleItem,
+)
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
 )
-from django.forms import (
-    formset_factory,
-)
 from django.db import (
     transaction,
+)
+from django.forms import (
+    formset_factory,
 )
 from django.shortcuts import (
     get_object_or_404,
@@ -25,7 +29,6 @@ from ayuh_consultation import (
     forms,
     models,
 )
-from ayuh_inventory.models import MedicineSale, MedicineSaleItem
 
 logger = logging.getLogger(__name__)
 
@@ -119,4 +122,4 @@ class PrescriptionsSaleView(LoginRequiredMixin, FormView):
             )
             return self.form_invalid(form)
 
-        return redirect(self.success_url)
+        return redirect(self.get_success_url())

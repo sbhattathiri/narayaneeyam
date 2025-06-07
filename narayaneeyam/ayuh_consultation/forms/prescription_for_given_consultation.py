@@ -1,11 +1,12 @@
+from ayuh_inventory.models import (
+    Medicine,
+)
 from django import (
     forms,
 )
 from django.forms import (
     formset_factory,
 )
-
-from ayuh_inventory.models import Medicine
 
 
 class PrescriptionForGivenConsultationForm(forms.Form):
