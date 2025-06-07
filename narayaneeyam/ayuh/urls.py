@@ -31,6 +31,7 @@ urlpatterns = [
     ),
     path(f"{settings.APP_NAME}/", include("ayuh_core.urls")),
     path(f"{settings.APP_NAME}/", include("ayuh_consultation.urls")),
+    path(f"{settings.APP_NAME}/", include("ayuh_admission.urls")),
     path(f"{settings.APP_NAME}/", include("ayuh_home.urls")),
     path(f"{settings.APP_NAME}/", include("ayuh_inventory.urls")),
     path(f"{settings.APP_NAME}/", include("ayuh_patient.urls")),
