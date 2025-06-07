@@ -14,12 +14,9 @@ class AdmissionForm(forms.ModelForm):
         model = models.Admission
         fields = [
             "consultation",
-            "admission_date",
             "treatment",
             "patient_notes",
             "doctor_notes",
-            "treatment_updated_at",
-            "treatment_updated_by",
             "room",
             "by_stander_name",
             "by_stander_contact",
