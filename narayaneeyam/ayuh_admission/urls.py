@@ -7,17 +7,17 @@ from django.urls import (
 
 urlpatterns = [
     path(
-        "ayuh/consultation/list/",
+        "ayuh/admission/list/",
         views.AdmissionListView.as_view(),
         name="list_admission",
     ),
     path(
-        "ayuh/consultation/create/",
+        "ayuh/admission/create/",
         views.AdmissionCreateView.as_view(),
         name="post_admission",
     ),
     path(
-        "ayuh/consultation/<int:pk>/",
+        "ayuh/admission/<int:pk>/",
         views.AdmissionDetailView.as_view(),
         name="get_admission",
     ),

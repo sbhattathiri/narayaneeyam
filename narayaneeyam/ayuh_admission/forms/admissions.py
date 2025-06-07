@@ -14,7 +14,7 @@ class AdmissionForm(forms.ModelForm):
         model = models.Admission
         fields = [
             "consultation",
-            "treatment",
+            "treatment_overview",
             "patient_notes",
             "doctor_notes",
             "room",
@@ -29,15 +29,15 @@ class AdmissionForm(forms.ModelForm):
                     "class": "form-control",
                 }
             ),
-            "patient_notes": forms.TextInput(
+            "patient_notes": forms.Textarea(
                 attrs={
-                    "placeholder": "Other notes from patient",
+                    "placeholder": "Patient's notes",
                     "class": "form-control",
                 }
             ),
-            "doctor_notes": forms.TextInput(
+            "doctor_notes": forms.Textarea(
                 attrs={
-                    "placeholder": "Other notes from doctor",
+                    "placeholder": "Doctor's notes",
                     "class": "form-control",
                 }
             ),
