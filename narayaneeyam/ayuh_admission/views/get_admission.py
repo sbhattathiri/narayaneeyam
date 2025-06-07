@@ -1,9 +1,8 @@
-from django.views.generic.detail import (
-    DetailView,
-)
-
 from ayuh_admission import (
     models,
+)
+from django.views.generic.detail import (
+    DetailView,
 )
 
 

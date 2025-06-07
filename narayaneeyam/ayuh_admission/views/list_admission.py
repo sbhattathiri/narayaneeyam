@@ -1,9 +1,8 @@
-from django.views.generic import (
-    ListView,
-)
-
 from ayuh_admission import (
     models,
+)
+from django.views.generic import (
+    ListView,
 )
 
 

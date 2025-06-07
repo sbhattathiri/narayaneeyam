@@ -1,7 +1,12 @@
-from ayuh_admission.models.admissions import Admission
-from ayuh_core.models import AyuhModel
+from ayuh_admission.models.admissions import (
+    Admission,
+)
 from django.db import (
     models,
+)
+
+from ayuh_core.models import (
+    AyuhModel,
 )
 
 

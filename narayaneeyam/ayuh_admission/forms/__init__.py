@@ -1,5 +1,10 @@
-from .admissions import AdmissionForm
-from .admission_treatments import TreatmentForm, TreatmentFormSet
+from .admission_treatments import (
+    TreatmentForm,
+    TreatmentFormSet,
+)
+from .admissions import (
+    AdmissionForm,
+)
 
 __all__ = [
     "AdmissionForm",

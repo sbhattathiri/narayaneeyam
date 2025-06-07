@@ -1,6 +1,9 @@
-from ayuh_core.models import AyuhModel
 from django.db import (
     models,
+)
+
+from ayuh_core.models import (
+    AyuhModel,
 )
 
 

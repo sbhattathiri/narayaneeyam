@@ -1,8 +1,11 @@
+from ayuh_admission.models.mixins import (
+    RoomMixin,
+    TreatmentMixin,
+)
 from django.db import (
     models,
 )
 
-from ayuh_admission.models.mixins import TreatmentMixin, RoomMixin
 from ayuh_consultation.models.consultations import (
     Consultation,
 )

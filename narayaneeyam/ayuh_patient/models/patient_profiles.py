@@ -9,10 +9,10 @@ from phonenumber_field.modelfields import (
 )
 
 from ayuh_core.enums import (
+    REFERRAL_SOURCE_CHOICES,
     DietaryPreference,
     HabitStatus,
     Lifestyle,
-    REFERRAL_SOURCE_CHOICES,
 )
 from ayuh_patient.models.patients import (
     Patient,

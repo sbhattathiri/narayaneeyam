@@ -1,17 +1,15 @@
 import json
 import logging
 
-
+from ayuh_admission import (
+    forms,
+    models,
+)
 from django.urls import (
     reverse_lazy,
 )
 from django.views.generic.edit import (
     UpdateView,
-)
-
-from ayuh_admission import (
-    forms,
-    models,
 )
 
 logger = logging.getLogger(__name__)

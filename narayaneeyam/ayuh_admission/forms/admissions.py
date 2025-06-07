@@ -1,11 +1,11 @@
+from ayuh_admission import (
+    models,
+)
 from django import (
     forms,
 )
 from django.forms import (
     inlineformset_factory,
-)
-from ayuh_admission import (
-    models,
 )
 
 

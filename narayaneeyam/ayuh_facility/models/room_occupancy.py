@@ -1,10 +1,16 @@
-from ayuh_admission.models.admissions import Admission
-from ayuh_core.models import AyuhModel
+from ayuh_admission.models.admissions import (
+    Admission,
+)
+from ayuh_facility.models.rooms import (
+    Room,
+)
 from django.db import (
     models,
 )
 
-from ayuh_facility.models import Room
+from ayuh_core.models import (
+    AyuhModel,
+)
 
 
 class RoomOccupancy(AyuhModel):
