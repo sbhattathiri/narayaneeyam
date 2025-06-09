@@ -21,7 +21,7 @@ class AdmissionUpdateView(UpdateView):
     template_name = "ayuh_admission/put_admission_template.html"
 
     def get_success_url(self):
-        return reverse_lazy("get_consultation", kwargs={"pk": self.object.pk})
+        return reverse_lazy("get_admission", kwargs={"pk": self.object.pk})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
