@@ -39,8 +39,21 @@ class AdmissionUpdateView(UpdateView):
         treatment_formset = context["treatment_formset"]
 
         is_form_valid = form.is_valid()
+        is_treatment_formset_valid = treatment_formset.is_valid()
+
         if not is_form_valid:
             logger.info(f"form is invalid. errors: {json.dumps(form.errors, indent=2)}")
+            return self.render_to_response(
+                self.get_context_data(
+                    form=form,
+                    attachment_formset=treatment_formset,
+                )
+            )
+
+        if not is_treatment_formset_valid:
+            logger.info(
+                f"treatment_formset is invalid. errors: {json.dumps(treatment_formset.errors, indent=2)}"
+            )
             return self.render_to_response(
                 self.get_context_data(
                     form=form,
@@ -52,6 +65,7 @@ class AdmissionUpdateView(UpdateView):
 
         treatments = treatment_formset.save(commit=False)
         for treatment in treatments:
+            logger.info(f"saving {treatment}")
             treatment.admission = self.object
             treatment.save()
         for obj in treatment_formset.deleted_objects:

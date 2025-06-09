@@ -183,6 +183,18 @@ LOGGING = {
             "filename": os.path.join(LOGS_DIR, "ayuh_consultation.log"),
             "formatter": "verbose",
         },
+        "ayuh_admission_handler": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOGS_DIR, "ayuh_admission.log"),
+            "formatter": "verbose",
+        },
+        "ayuh_facility_handler": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOGS_DIR, "ayuh_facility.log"),
+            "formatter": "verbose",
+        },
         "ayuh_home_handler": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
@@ -252,6 +264,16 @@ LOGGING = {
         },
         "ayuh_staff": {
             "handlers": ["ayuh_staff_handler"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "ayuh_admission": {
+            "handlers": ["ayuh_admission_handler"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "ayuh_facility": {
+            "handlers": ["ayuh_facility_handler"],
             "level": "DEBUG",
             "propagate": False,
         },
