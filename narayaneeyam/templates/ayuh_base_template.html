@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>
         {% block title %}
-        NARAYANEEYAM ARYA AYURVEDAM
+        {{ FACILITY_NAME }}
         {% endblock %}
     </title>
     {% block styles %}
@@ -14,10 +14,10 @@
     {% endblock %}
 </head>
 <body>
-<header class="text-white py-4" style="background-color: #966d29;">
+<header class="text-white py-4" style="background-color: {{ PRIMARY_COLOR }};">
     <div class="container text-center">
-        <h1 class="text-2xl font-weight-bold">NARAYANEEYAM ARYA AYURVEDAM</h1>
-        <h3 class="text-base mt-2">त्रायस्व सर्वामयात्</h3>
+        <h1 class="text-2xl font-weight-bold">{{ FACILITY_NAME }}</h1>
+        <h3 class="text-base mt-2">{{ MOTTO }}</h3>
     </div>
 </header>
 <div class="container-fluid">

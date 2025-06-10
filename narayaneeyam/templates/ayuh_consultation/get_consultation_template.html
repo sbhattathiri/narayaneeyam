@@ -1,7 +1,7 @@
 {% extends "ayuh_base_template.html" %}
 {% load bootstrap4 %}
 {% block content %}
-<h3 class="mb-4 pt-4" style="color: #966d29;">Consultation Details</h3>
+<h3 class="mb-4 pt-4" style="color: {{ PRIMARY_COLOR }};">Consultation Details</h3>
 <div>
 <p><strong>Consultation ID:</strong> {{ consultation.appointment_hash_id }}</p>
 <p><strong>Doctor:</strong> {{ consultation.doctor }}</p>

@@ -32,6 +32,7 @@ class TreatmentForm(forms.ModelForm):
             "treatment_date": forms.widgets.DateInput(
                 attrs={
                     "class": "form-control",
+                    "type": "date",
                 }
             ),
             "treatment_feedback": forms.TextInput(

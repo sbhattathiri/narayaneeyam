@@ -1,7 +1,7 @@
 {% extends "ayuh_base_template.html" %}
 {% load bootstrap4 %}
 {% block content %}
-<h3 class="mb-4" style="color: #966d29;">Consultation Detail</h3>
+<h3 class="mb-4" style="color: {{ PRIMARY_COLOR }};">Consultation Detail</h3>
     <div class="row">
         <div class="col">Consultation ID:</div>
         <div class="col">{{ consultation.appointment_hash_id }}</div>
@@ -28,7 +28,7 @@
     </div>
 
     <fieldset class="border p-3 rounded">
-      <legend class="w-auto px-2" style="color: #966d29;">Prescriptions</legend>
+      <legend class="w-auto px-2" style="color: {{ PRIMARY_COLOR }};">Prescriptions</legend>
 
       <div class="form-row font-weight-bold mb-2">
         <div class="col-3">Medicine</div>

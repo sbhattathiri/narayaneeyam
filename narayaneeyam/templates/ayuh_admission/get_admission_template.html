@@ -1,12 +1,12 @@
 {% extends "ayuh_base_template.html" %}
 {% load bootstrap4 %}
 {% block content %}
-<h3 class="mb-4 pt-4" style="color: #966d29;">Admission Details</h3>
+<h3 class="mb-4 pt-4" style="color: {{ PRIMARY_COLOR }};">Admission Details</h3>
 <div>
-    <p><strong>Admission ID:</strong> {{ admission.id }}</p>
-    <p><strong>Consultation:</strong> {{ admission.consultation }}</p>
-    <p><strong>Doctor:</strong> {{ admission.consultation.doctor__full_name }}</p>
-    <p><strong>Patient:</strong> {{ admission.consultation.patient__full_name }}</p>
+    <p><strong>Admission ID:</strong> {{ admission.admission_hash_id }}</p>
+    <p><strong>Consultation:</strong> {{ admission.consultation.appointment_hash_id }}</p>
+    <p><strong>Doctor:</strong> {{ admission.consultation.doctor }}</p>
+    <p><strong>Patient:</strong> {{ admission.consultation.patient }}</p>
     <p><strong>Treatment:</strong> {{ admission.treatment_overview }}</p>
     <p><strong>Admission Date:</strong> {{ admission.admission_date }}</p>
     <p><strong>Room:</strong> {{ admission.room }}</p>
@@ -27,7 +27,7 @@
     </tr>
     </thead>
     <tbody>
-    {% for admission_treatment in admission.treatment.all %}
+    {% for admission_treatment in admission.treatment_admission.all %}
     <tr>
         <td>{{ admission_treatment.treatment }}</td>
         <td>{{ admission_treatment.therapist }}</td>

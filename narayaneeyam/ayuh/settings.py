@@ -73,6 +73,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "ayuh_core.context_processors.ayuh_context_processor.ayuh_context",
             ],
             "debug": True,
         },
@@ -133,8 +134,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
 
 APP_SETTINGS = {
-    "FACILITY_NAME": "narayaneeyam",
+    "FACILITY_NAME": "NARAYANEEYAM ARYA AYURVEDAM",
+    "MOTTO": "त्रायस्व सर्वामयात्",
     "PATIENT_CONSENT_MANDATORY": True,
+    "PRIMARY_COLOR": "#966d29",
 }
 
 LOGIN_URL = f"/{APP_NAME}/login/"  # IMPORTANT: start with `/`
@@ -142,7 +145,7 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = f"/{APP_NAME}/login/"
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": f"{APP_NAME.upper()} API",
+    "TITLE": f"{APP_SETTINGS['FACILITY_NAME'].upper()} API",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_DIST": "SIDECAR",
@@ -181,6 +184,18 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.FileHandler",
             "filename": os.path.join(LOGS_DIR, "ayuh_consultation.log"),
+            "formatter": "verbose",
+        },
+        "ayuh_admission_handler": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOGS_DIR, "ayuh_admission.log"),
+            "formatter": "verbose",
+        },
+        "ayuh_facility_handler": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOGS_DIR, "ayuh_facility.log"),
             "formatter": "verbose",
         },
         "ayuh_home_handler": {
@@ -252,6 +267,16 @@ LOGGING = {
         },
         "ayuh_staff": {
             "handlers": ["ayuh_staff_handler"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "ayuh_admission": {
+            "handlers": ["ayuh_admission_handler"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "ayuh_facility": {
+            "handlers": ["ayuh_facility_handler"],
             "level": "DEBUG",
             "propagate": False,
         },
