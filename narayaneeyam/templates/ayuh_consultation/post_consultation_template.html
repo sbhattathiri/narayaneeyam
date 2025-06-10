@@ -1,7 +1,7 @@
 {% extends "ayuh_base_template.html" %}
 {% load bootstrap4 %}
 {% block content %}
-<h3 class="mb-4" style="color: #966d29;">Create Appointment</h3>
+<h3 class="mb-4" style="color: {{ PRIMARY_COLOR }};">Create Appointment</h3>
 <form role="form" class=form-horizontal" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form layout="horizontal" %}

@@ -1,7 +1,7 @@
 {% extends "ayuh_base_template.html" %}
 {% load bootstrap4 %}
 {% block content %}
-<h3 class="mb-4 pt-4" style="color: #966d29;">Admission Details</h3>
+<h3 class="mb-4 pt-4" style="color: {{ PRIMARY_COLOR }};">Admission Details</h3>
 <div>
     <p><strong>Admission ID:</strong> {{ admission.admission_hash_id }}</p>
     <p><strong>Consultation:</strong> {{ admission.consultation.appointment_hash_id }}</p>

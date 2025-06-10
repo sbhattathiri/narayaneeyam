@@ -2,7 +2,7 @@
 {% load bootstrap4 %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-2">
-    <h3 class="mb-4 pt-4" style="color: #966d29;">Patients</h3>
+    <h3 class="mb-4 pt-4" style="color: {{ PRIMARY_COLOR }};">Patients</h3>
     <a href="{% url 'post_patient' %}" class="btn btn-warning btn-md">New Patient</a>
 </div>
 <table class="table table-bordered">

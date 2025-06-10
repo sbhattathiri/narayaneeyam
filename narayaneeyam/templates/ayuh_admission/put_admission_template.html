@@ -1,7 +1,7 @@
 {% extends "ayuh_base_template.html" %}
 {% load bootstrap4 %}
 {% block content %}
-<h3 class="mb-4" style="color: #966d29;">Admission Notes</h3>
+<h3 class="mb-4" style="color: {{ PRIMARY_COLOR }};">Admission Notes</h3>
 <hr class="border border-secondary">
 <form class=form-horizontal" enctype="multipart/form-data" method="post" role="form">
     {% csrf_token %}
@@ -18,7 +18,7 @@
     {% endif %}
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="mb-0" style="color: #966d29;">Treatments</h4>
+        <h4 class="mb-0" style="color: {{ PRIMARY_COLOR }};">Treatments</h4>
         <button class="btn btn-warning" id="add-treatment-row-btn" type="button">Add Treatment</button>
     </div>
 

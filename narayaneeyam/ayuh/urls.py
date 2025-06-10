@@ -17,25 +17,27 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 
+prefix = settings.APP_NAME
+
 urlpatterns = [
-    path(f"{settings.APP_NAME}/admin/", admin.site.urls),
+    path(f"{prefix}/admin/", admin.site.urls),
     path(
-        f"{settings.APP_NAME}/login/",
+        f"{prefix}/login/",
         auth_views.LoginView.as_view(template_name="ayuh_home/login.html"),
         name="login",
     ),
     path(
-        f"{settings.APP_NAME}/logout/",
+        f"{prefix}/logout/",
         auth_views.LogoutView.as_view(next_page="login"),
         name="logout",
     ),
-    path(f"{settings.APP_NAME}/", include("ayuh_core.urls")),
-    path(f"{settings.APP_NAME}/", include("ayuh_consultation.urls")),
-    path(f"{settings.APP_NAME}/", include("ayuh_admission.urls")),
-    path(f"{settings.APP_NAME}/", include("ayuh_home.urls")),
-    path(f"{settings.APP_NAME}/", include("ayuh_inventory.urls")),
-    path(f"{settings.APP_NAME}/", include("ayuh_patient.urls")),
-    path(f"{settings.APP_NAME}/", include("ayuh_staff.urls")),
+    path(f"{prefix}/", include("ayuh_core.urls")),
+    path(f"{prefix}/", include("ayuh_consultation.urls")),
+    path(f"{prefix}/", include("ayuh_admission.urls")),
+    path(f"{prefix}/", include("ayuh_home.urls")),
+    path(f"{prefix}/", include("ayuh_inventory.urls")),
+    path(f"{prefix}/", include("ayuh_patient.urls")),
+    path(f"{prefix}/", include("ayuh_staff.urls")),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path("swagger/", SpectacularSwaggerView.as_view(), name="swagger-ui"),
 ]
