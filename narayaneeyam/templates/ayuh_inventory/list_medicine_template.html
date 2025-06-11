@@ -3,8 +3,8 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-2">
     <h3 class="mb-4 pt-4" style="color: {{ PRIMARY_COLOR }};">Medicines</h3>
-    <a href="{% url 'post_search_consultations' %}" class="btn btn-warning btn-md">Get Prescriptions</a>
-    <a href="{% url 'post_medicine_sale' %}" class="btn btn-warning btn-md">Sale</a>
+    <a href="{% url 'post_search_consultations' %}" class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">Get Prescriptions</a>
+    <a href="{% url 'post_medicine_sale' %}" class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">Sale</a>
 </div>
 <table class="table table-bordered">
     <thead>

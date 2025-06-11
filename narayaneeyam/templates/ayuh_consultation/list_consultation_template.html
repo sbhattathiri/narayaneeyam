@@ -3,8 +3,8 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-2">
     <h3 class="mb-4 pt-4" style="color: {{ PRIMARY_COLOR }};">Appointments</h3>
-    <a href="{% url 'post_consultation' %}" class="btn btn-warning btn-md">Create Appointment</a>
-    <a href="{% url 'post_search_prescription_history' %}" class="btn btn-warning btn-md">Get Prescription History</a>
+    <a href="{% url 'post_consultation' %}" class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">Create Appointment</a>
+    <a href="{% url 'post_search_prescription_history' %}" class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">Get Prescription History</a>
 </div>
 <table class="table table-bordered">
     <thead>
@@ -22,7 +22,7 @@
                 <td>{{ consultation.patient }}</td>
                 <td>{{ consultation.appointment_date }}</td>
                 <td>
-                    <a href="{% url 'get_consultation' consultation.pk %}" class="btn btn-warning btn-sm">View</a>
+                    <a href="{% url 'get_consultation' consultation.pk %}" class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">View</a>
                 </td>
             </tr>
         {% endfor %}

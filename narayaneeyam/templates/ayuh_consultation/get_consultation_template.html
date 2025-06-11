@@ -6,11 +6,11 @@
 <p><strong>Consultation ID:</strong> {{ consultation.appointment_hash_id }}</p>
 <p><strong>Doctor:</strong> {{ consultation.doctor }}</p>
 <p><strong>Patient:</strong> {{ consultation.patient }}</p>
-<p><strong>Consultation Date:</strong> {{ consultation.consultation_date }}</p>
+<p><strong>Consultation Date:</strong> {{ consultation.consultation_date |date:"F j, Y"|default:"" }}</p>
 <p><strong>Patient Concern:</strong> {{ consultation.patient_concerns }}</p>
 <p><strong>Diagnosis:</strong> {{ consultation.diagnosis }}</p>
 <p><strong>Doctor's Comments</strong> {{ consultation.doctors_comments }}</p>
-<p><strong>Next Consultation Date:</strong> {{ consultation.next_consultation_date }}</p>
+<p><strong>Next Consultation Date:</strong> {{ consultation.next_consultation_date |date:"F j, Y"|default:"" }}</p>
 </div>
 <h2>Attachments</h2>
 <div class="row">
@@ -38,5 +38,5 @@
         {% endfor %}
     </tbody>
 </table>
-<a href="{% url 'put_consultation' consultation.pk %}" class="btn btn-warning">Update Consultation</a>
+<a href="{% url 'put_consultation' consultation.pk %}" class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">Update Consultation</a>
 {% endblock %}

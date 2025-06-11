@@ -19,6 +19,7 @@ class AdmissionListView(ListView):
             admissions_data.append(
                 {
                     "id": admission.id,
+                    "hashid": admission.admission_hash_id,
                     "patient": admission.consultation.patient,
                     "doctor": admission.consultation.doctor,
                     "consultation": admission.consultation,

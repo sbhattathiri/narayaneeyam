@@ -2,12 +2,12 @@
 {% load bootstrap4 %}
 {% block content %}
 <h3 class="mb-4" style="color: {{ PRIMARY_COLOR }};">Admission Notes</h3>
-<hr class="border border-secondary">
+<hr class="border border-secondary" style="color: {{ PRIMARY_COLOR }}">
 <form class=form-horizontal" enctype="multipart/form-data" method="post" role="form">
     {% csrf_token %}
 
     {% bootstrap_form form layout="horizontal" %}
-    <hr class="border border-secondary">
+    <hr class="border border-secondary" style="color: {{ PRIMARY_COLOR }}">
 
     {% if form.non_field_errors %}
     <div class="text-danger">
@@ -19,7 +19,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0" style="color: {{ PRIMARY_COLOR }};">Treatments</h4>
-        <button class="btn btn-warning" id="add-treatment-row-btn" type="button">Add Treatment</button>
+        <button class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" id="add-treatment-row-btn" type="button">Add Treatment</button>
     </div>
 
     {{ treatment_formset.management_form }}
@@ -88,7 +88,7 @@
         {% endfor %}
     </div>
 
-    <button class="btn btn-warning" type="submit">Save</button>
+    <button class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" type="submit">Save</button>
 </form>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

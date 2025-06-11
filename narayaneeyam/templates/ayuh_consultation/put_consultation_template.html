@@ -19,7 +19,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0" style="color: {{ PRIMARY_COLOR }};">Attachments</h4>
-        <button class="btn btn-warning" id="add-attachment-row-btn" type="button">Attach More</button>
+        <button class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" id="add-attachment-row-btn" type="button">Attach More</button>
     </div>
 
     {{ attachment_formset.management_form }}
@@ -61,7 +61,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0" style="color: {{ PRIMARY_COLOR }};">Prescription List</h4>
-        <button class="btn btn-warning" id="add-prescription-row-btn" type="button">Add Medicine</button>
+        <button class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" id="add-prescription-row-btn" type="button">Add Medicine</button>
     </div>
 
     {{ prescription_formset.management_form }}
@@ -121,7 +121,7 @@
         {% endfor %}
     </div>
 
-    <button class="btn btn-warning" type="submit">Save</button>
+    <button class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" type="submit">Save</button>
 </form>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

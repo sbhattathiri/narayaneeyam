@@ -24,7 +24,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0" style="color: {{ PRIMARY_COLOR }};">Prescription List</h4>
-        <button class="btn btn-warning" id="add-row-btn" type="button">Add Medicine</button>
+        <button class="btn btn-sm" id="add-row-btn" type="button" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">Add Medicine</button>
     </div>
 
     {{ formset.management_form }}
@@ -62,7 +62,7 @@
         {% endfor %}
     </div>
 
-    <button class="btn btn-warning" type="submit">Save</button>
+    <button class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" type="submit">Save</button>
 </form>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
