@@ -21,6 +21,11 @@ django-debug-toolbar==4.4.6
 drf-spectacular[sidecar]==0.27.2
 whitenoise==6.8.2
 
+# pdf
+fpdf2
+
+
+
 # local development
 psycopg2-binary==2.9.10
 python-dotenv==1.0.1
