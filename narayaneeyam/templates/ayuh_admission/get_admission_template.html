@@ -8,9 +8,9 @@
     <p><strong>Doctor:</strong> {{ admission.consultation.doctor }}</p>
     <p><strong>Patient:</strong> {{ admission.consultation.patient }}</p>
     <p><strong>Treatment:</strong> {{ admission.treatment_overview }}</p>
-    <p><strong>Admission Date:</strong> {{ admission.admission_date }}</p>
+    <p><strong>Admission Date:</strong> {{ admission.admission_date |date:"F j, Y"|default:"" }}</p>
     <p><strong>Room:</strong> {{ admission.room }}</p>
-    <p><strong>Discharge Date:</strong> {{ admission.next_consultation_date }}</p>
+    <p><strong>Discharge Date:</strong> {{ admission.next_consultation_date |date:"F j, Y"|default:"" }}</p>
 </div>
 
 <hr class="border border-secondary">
@@ -37,5 +37,5 @@
     {% endfor %}
     </tbody>
 </table>
-<a class="btn btn-warning" href="{% url 'put_admission' admission.pk %}">Update Admission</a>
+<a class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" href="{% url 'put_admission' admission.pk %}">Update Admission</a>
 {% endblock %}

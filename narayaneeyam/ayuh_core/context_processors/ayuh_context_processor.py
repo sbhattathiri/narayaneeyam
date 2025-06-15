@@ -5,7 +5,8 @@ from django.conf import (
 
 def ayuh_context(request):
     return {
-        "FACILITY_NAME": settings.APP_SETTINGS["FACILITY_NAME"],
-        "MOTTO": settings.APP_SETTINGS["MOTTO"],
-        "PRIMARY_COLOR": settings.APP_SETTINGS["PRIMARY_COLOR"],
+        "FACILITY_NAME": settings.APP_SETTINGS.get("FACILITY_NAME"),
+        "MOTTO": settings.APP_SETTINGS.get("MOTTO"),
+        "PRIMARY_COLOR": settings.APP_SETTINGS.get("PRIMARY_COLOR"),
+        "BUTTON_TEXT_COLOR": settings.APP_SETTINGS.get("BUTTON_TEXT_COLOR"),
     }

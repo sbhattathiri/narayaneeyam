@@ -84,23 +84,15 @@ class Patient(AyuhModel):
 
     @property
     def full_name(self):
-        self.first_name = (
-            self.first_name.upper() if self.first_name else self.first_name
-        )
-        self.middle_name = (
-            self.middle_name.upper() if self.middle_name else self.middle_name
-        )
-        self.last_name = self.last_name.upper() if self.last_name else self.last_name
+        self.first_name = self.first_name.upper() if self.first_name else ""
+        self.middle_name = self.middle_name.upper() if self.middle_name else ""
+        self.last_name = self.last_name.upper() if self.last_name else ""
         return f"{self.last_name}, {self.first_name} {self.middle_name}"
 
     def clean(self):
-        self.first_name = (
-            self.first_name.upper() if self.first_name else self.first_name
-        )
-        self.middle_name = (
-            self.middle_name.upper() if self.middle_name else self.middle_name
-        )
-        self.last_name = self.last_name.upper() if self.last_name else self.last_name
+        self.first_name = self.first_name.upper() if self.first_name else ""
+        self.middle_name = self.middle_name.upper() if self.middle_name else ""
+        self.last_name = self.last_name.upper() if self.last_name else ""
         super().clean()
 
     def save(self, *args, **kwargs):

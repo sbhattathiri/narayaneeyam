@@ -5,6 +5,6 @@
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <button type="submit" class="btn btn-warning">Save</button>
+    <button type="submit" class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">Save</button>
 </form>
 {% endblock %}

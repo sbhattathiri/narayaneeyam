@@ -3,7 +3,7 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-2">
     <h3 class="mb-4 pt-4" style="color: {{ PRIMARY_COLOR }};">Patients</h3>
-    <a href="{% url 'post_patient' %}" class="btn btn-warning btn-md">New Patient</a>
+    <a href="{% url 'post_patient' %}" class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">New Patient</a>
 </div>
 <table class="table table-bordered">
     <thead>
@@ -21,7 +21,7 @@
                 <td>{{ patient.doctor | default_if_none:""}}</td>
                 <td>{{ patient.appointment_date | default_if_none:"" }}</td>
                 <td>
-                    <a href="{% url 'put_patient' patient.patient_hash_id %}" class="btn btn-warning btn-sm">Update</a>
+                    <a href="{% url 'put_patient' patient.patient_hash_id %}" class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">Update</a>
                 </td>
             </tr>
         {% endfor %}

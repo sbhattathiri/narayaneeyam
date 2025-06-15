@@ -6,6 +6,6 @@
       {% csrf_token %}
       {% bootstrap_form form %}
 
-      <button class="btn btn-warning btn-sm" type="submit">Search</button>
+      <button class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" type="submit">Search</button>
   </form>
 {% endblock %}
