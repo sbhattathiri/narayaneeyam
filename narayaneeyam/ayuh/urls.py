@@ -35,6 +35,7 @@ urlpatterns = [
     path(f"{prefix}/", include("ayuh_consultation.urls")),
     path(f"{prefix}/", include("ayuh_admission.urls")),
     path(f"{prefix}/", include("ayuh_home.urls")),
+    path(f"{prefix}/", include("ayuh_facility.urls")),
     path(f"{prefix}/", include("ayuh_inventory.urls")),
     path(f"{prefix}/", include("ayuh_patient.urls")),
     path(f"{prefix}/", include("ayuh_staff.urls")),
