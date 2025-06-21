@@ -26,7 +26,7 @@ class InvoiceView(View):
 
     def get_context_data(self, **kwargs):
         # invoice = get_object_or_404(Invoice, pk=kwargs["pk"]
-        # Replace with actual DB lookups or logic
+
         return {
             "invoice_number": "BNBY20240508",
             "invoice_date": "2024-05-08",
