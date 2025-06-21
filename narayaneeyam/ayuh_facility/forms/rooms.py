@@ -1,8 +1,9 @@
+from ayuh_facility.models.rooms import (
+    Room,
+)
 from django import (
     forms,
 )
-
-from ayuh_facility.models.rooms import Room
 
 
 class RoomForm(forms.ModelForm):

@@ -1,8 +1,9 @@
+from ayuh_facility.models.room_occupancy import (
+    RoomOccupancy,
+)
 from django import (
     forms,
 )
-
-from ayuh_facility.models.room_occupancy import RoomOccupancy
 
 
 class RoomOccupancyForm(forms.ModelForm):

@@ -1,8 +1,12 @@
 import os
 
-from fpdf import FPDF, HTMLMixin
-
-from django.conf import settings
+from django.conf import (
+    settings,
+)
+from fpdf import (
+    FPDF,
+    HTMLMixin,
+)
 
 
 class PDF(FPDF, HTMLMixin):

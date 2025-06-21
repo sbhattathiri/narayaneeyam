@@ -1,4 +1,9 @@
-from ayuh import settings
+from ayuh import (
+    settings,
+)
+from ayuh_facility.models.rooms import (
+    Room,
+)
 
 # from ayuh_admission.models.mixins import (
 #     RoomMixin,
@@ -10,16 +15,16 @@ from django.db import (
 from django_hashids import (
     HashidsField,
 )
-
-from ayuh_consultation.models.consultations import (
-    Consultation,
-)
 from phonenumber_field.modelfields import (
     PhoneNumberField,
 )
 
-from ayuh_core.models import AyuhModel
-from ayuh_facility.models.rooms import Room
+from ayuh_consultation.models.consultations import (
+    Consultation,
+)
+from ayuh_core.models import (
+    AyuhModel,
+)
 
 
 class Admission(AyuhModel):

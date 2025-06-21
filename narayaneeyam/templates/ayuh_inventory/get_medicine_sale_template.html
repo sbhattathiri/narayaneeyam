@@ -1,0 +1,6 @@
+{% extends "ayuh_base_template.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<h3 class="mb-4 pt-4" style="color: {{ PRIMARY_COLOR }};">Medicine Sale</h3>
+<a href="{% url 'get_invoice' sale_id=object.pk %}" class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">Download Invoice PDF</a>
+{% endblock %}

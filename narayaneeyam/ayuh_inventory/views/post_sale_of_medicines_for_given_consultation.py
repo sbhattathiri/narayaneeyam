@@ -40,7 +40,7 @@ class PrescriptionsSaleView(LoginRequiredMixin, FormView):
     form_class = forms.PrescriptionForGivenConsultationForm
 
     def get_success_url(self):
-        return reverse_lazy("list_consultation")
+        return reverse_lazy("get_medicine_sale", kwargs={"sale_id": self.sale.sale_id})
 
     def get_formset(self):
         prescriptions = self.get_prescriptions()
@@ -88,29 +88,31 @@ class PrescriptionsSaleView(LoginRequiredMixin, FormView):
         if formset.is_valid():
             success = True
             formset.instance = self.get_formset()
-            for item_form in formset:
-                medicine = item_form.cleaned_data["sku"]
-                quantity = item_form.cleaned_data["quantity"]
 
-                if medicine.stock.quantity < quantity:
-                    form.add_error(
-                        None, f"We don't have enough stock for {medicine.name}"
-                    )
-                    success = False
-                    break
+            with transaction.atomic():
+                self.sale = MedicineSale.objects.create(patient=patient)
+                for item_form in formset:
+                    medicine = item_form.cleaned_data["sku"]
+                    quantity = item_form.cleaned_data["quantity"]
 
-                with transaction.atomic():
+                    if medicine.stock.quantity < quantity:
+                        form.add_error(
+                            None, f"We don't have enough stock for {medicine.name}"
+                        )
+                        success = False
+                        break
+
                     logger.info("deducting stock")
                     stock = medicine.stock
                     stock.quantity -= quantity
                     stock.save()
 
-                    sale = MedicineSale.objects.create(patient=patient)
                     sale_item = MedicineSaleItem.objects.create(
-                        sale=sale,
+                        sale=self.sale,
                         medicine=medicine,
                         quantity=quantity,
                     )
+
             if not success:
                 return self.form_invalid(form)
         else:

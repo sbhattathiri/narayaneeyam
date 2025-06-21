@@ -1,11 +1,11 @@
 import logging
 
-
+from ayuh_facility.models.room_occupancy import (
+    RoomOccupancy,
+)
 from django.views.generic import (
     ListView,
 )
-
-from ayuh_facility.models.room_occupancy import RoomOccupancy
 
 logger = logging.getLogger(__name__)
 

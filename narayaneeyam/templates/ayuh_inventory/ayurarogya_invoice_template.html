@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: "DejaVu Sans Condensed", sans-serif;
+            padding: 30px;
+            font-size: 14px;
+        }
+        h1, h2 {
+            margin: 0;
+        }
+        .header, .footer {
+            margin-bottom: 20px;
+        }
+        .header {
+            border-bottom: 2px solid #000;
+        }
+        .contact-info {
+            margin-top: 5px;
+            font-size: 13px;
+        }
+        .invoice-details, .payment-details {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
+        .total-row {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>{{ company.name }}</h2>
+        <div>{{ company.tagline }}</div>
+        <div class="contact-info">
+            {{ company.address }}<br>
+            ☎ {{ company.phone }}<br>
+            ✉ {{ company.email }}
+        </div>
+    </div>
+
+    <h1>TAX INVOICE</h1>
+
+    <div class="invoice-details">
+        <p><strong>INVOICE TO:</strong> {{ recipient_name }}</p>
+        <p><strong>INVOICE #:</strong> {{ invoice_number }}</p>
+        <p><strong>INVOICE DATE:</strong> {{ invoice_date }}</p>
+        <p><strong>ABN:</strong> {{ abn }}</p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Item Description</th>
+                <th>GST Rate</th>
+                <th>Qty</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.gst_rate }}%</td>
+                <td>{{ item.qty }}</td>
+                <td>A$ {{ item.amount|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="payment-details">
+        <p><strong>TOTAL:</strong> A$ {{ totals.subtotal|floatformat:2 }}</p>
+        <p><strong>GST:</strong> A$ {{ totals.gst|floatformat:2 }}</p>
+        <p><strong>TOTAL (incl. GST):</strong> A$ {{ totals.total|floatformat:2 }}</p>
+        <p><strong>PAYMENT DUE DATE:</strong> {{ due_date }}</p>
+        <p><strong>PAYMENT METHOD:</strong> {{ payment_method }}</p>
+        <p><strong>AMOUNT PAID:</strong> A$ {{ totals.paid|floatformat:2 }}</p>
+        <p><strong>BALANCE DUE:</strong> A$ {{ totals.balance|floatformat:2 }}</p>
+    </div>
+
+    <div class="footer">
+        <p><strong>BANK ACCOUNT NAME:</strong> {{ bank_details.name }}</p>
+        <p><strong>BANK BSB:</strong> {{ bank_details.bsb }}</p>
+        <p><strong>BANK ACCOUNT NUMBER:</strong> {{ bank_details.account_number }}</p>
+    </div>
+</body>
+</html>

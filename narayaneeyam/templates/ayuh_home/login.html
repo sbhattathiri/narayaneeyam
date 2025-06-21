@@ -7,17 +7,10 @@
 <p style="color: red;">{{ message }}</p>
 {% endfor %}
 {% endif %}
-<!--<form method="POST" action="">-->
-<!--    {% csrf_token %}-->
-<!--    <label for="username">Username:</label>-->
-<!--    <input name="username" required type="text"><br>-->
-<!--    <label for="password">Password:</label>-->
-<!--    <input name="password" required type="password"><br>-->
-<!--    <button type="submit">Login</button>-->
-<!--</form>-->
 <form method="post">
   {% csrf_token %}
-  {{ form.as_p }}
+<!--  {{ form.as_p }}-->
+  {% bootstrap_form form layout='horizontal' label_class="col-sm-3" field_class="col-sm-9" %}
   <button class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" type="submit">Log in</button>
 </form>
 {% endblock %}
