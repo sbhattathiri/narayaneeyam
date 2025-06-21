@@ -78,4 +78,4 @@ class MedicineSaleCreateView(CreateView):
             else:
                 return self.form_invalid(form)
 
-        return redirect(self.success_url)
+        return redirect(self.get_success_url())
