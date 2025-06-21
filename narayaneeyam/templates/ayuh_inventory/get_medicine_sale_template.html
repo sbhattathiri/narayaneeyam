@@ -2,5 +2,19 @@
 {% load bootstrap4 %}
 {% block content %}
 <h3 class="mb-4 pt-4" style="color: {{ PRIMARY_COLOR }};">Medicine Sale</h3>
-<a href="{% url 'get_invoice' sale_id=object.pk %}" class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">Download Invoice PDF</a>
+<div class="d-flex justify-content-between align-items-center border-bottom py-2">
+    <label>Sale ID: </label>
+    <span>{{ sale.sale_id }}</span>
+    <label>Customer: </label>
+    {% if sale.patient %}
+    <span>{{ sale.patient }}</span>
+    {% elif sale.patient2 %}
+    <span>{{ sale.patient2 }}</span>
+    {% else %}
+    <span>No patient info</span>
+    {% endif %}
+    <a class="btn btn-sm" href="{% url 'get_invoice' pk=object.pk %}" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}"
+       target="_blank">Download Invoice PDF</a>
+</div>
+
 {% endblock %}

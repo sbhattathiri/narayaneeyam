@@ -40,7 +40,7 @@ class PrescriptionsSaleView(LoginRequiredMixin, FormView):
     form_class = forms.PrescriptionForGivenConsultationForm
 
     def get_success_url(self):
-        return reverse_lazy("get_medicine_sale", kwargs={"sale_id": self.sale.sale_id})
+        return reverse_lazy("get_medicine_sale", kwargs={"pk": self.sale.id})
 
     def get_formset(self):
         prescriptions = self.get_prescriptions()

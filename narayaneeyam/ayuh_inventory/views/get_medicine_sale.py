@@ -9,4 +9,5 @@ from django.views.generic.detail import (
 class MedicineSaleDetailView(DetailView):
     model = models.MedicineSale
     template_name = "ayuh_inventory/get_medicine_sale_template.html"
-    pk_url_kwarg = "sale_id"
+    pk_url_kwarg = "pk"
+    context_object_name = "sale"

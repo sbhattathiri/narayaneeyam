@@ -27,12 +27,12 @@ urlpatterns = [
         name="post_sale_of_prescriptions_for_given_consultation",
     ),
     path(
-        "ayuh/inventory/sale/<str:sale_id>",
+        "ayuh/inventory/sale/<int:pk>",
         views.MedicineSaleDetailView.as_view(),
         name="get_medicine_sale",
     ),
     path(
-        "ayuh/inventory/sale/<str:sale_id>/invoice",
+        "ayuh/inventory/sale/<int:pk>/invoice",
         views.InvoiceView.as_view(),
         name="get_invoice",
     ),

@@ -1,6 +1,7 @@
 from .get_invoice import (
     InvoiceView,
 )
+from .get_medicine_sale import MedicineSaleDetailView
 from .list_medicines import (
     MedicineListView,
 )
@@ -19,5 +20,6 @@ __all__ = [
     "InvoiceView",
     "MedicineListView",
     "MedicineSaleCreateView",
+    "MedicineSaleDetailView",
     "PrescriptionsSaleView",
 ]
