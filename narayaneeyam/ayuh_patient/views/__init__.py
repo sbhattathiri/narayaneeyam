@@ -1,15 +1,15 @@
-from .patient_profiles_api import (
-    PatientProfileAPI,
+from .list_patient import (
+    PatientListView,
 )
-from .patient_profiles_view import (
-    AddPatientProfile,
-    PatientProfile,
-    UpdatePatientProfile,
+from .post_patient import (
+    PatientCreateView,
+)
+from .put_patient import (
+    PatientUpdateView,
 )
 
 __all__ = [
-    "PatientProfileAPI",
-    "AddPatientProfile",
-    "UpdatePatientProfile",
-    "PatientProfile",
+    "PatientListView",
+    "PatientCreateView",
+    "PatientUpdateView",
 ]

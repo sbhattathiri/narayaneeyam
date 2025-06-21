@@ -1,27 +1,34 @@
 import uuid
 
-from ayuh_common.enums import (
-    BloodGroup,
-    Gender,
-    Title,
+from django.db import (
+    models,
 )
-from ayuh_common.models import (
-    BaseModel,
+from django_hashids import (
+    HashidsField,
 )
 from phonenumber_field.modelfields import (
     PhoneNumberField,
 )
 
-from django.db import (
-    models,
+from ayuh_core.enums import (
+    BLOOD_GROUP_CHOICES,
+    GENDER_CHOICES,
+    Title,
+)
+from ayuh_core.models import (
+    AyuhModel,
 )
 
 
-class Patient(BaseModel):
-    patient_id = models.UUIDField(
-        primary_key=True,
-        editable=False,
-        default=uuid.uuid4,
+def generate_registration_id():
+    return uuid.uuid4().hex[:10].upper()
+
+
+class Patient(AyuhModel):
+    patient_hash_id = HashidsField(real_field_name="id")
+    patient_registration_id = models.CharField(
+        max_length=10,
+        unique=True,
     )
     title = models.CharField(
         choices=Title.choices(),
@@ -45,14 +52,14 @@ class Patient(BaseModel):
         blank=True,
     )
     gender = models.CharField(
-        choices=Gender.choices(),
+        choices=GENDER_CHOICES,
         null=True,
         blank=True,
         default="",
     )
     date_of_birth = models.DateField(null=True, blank=True)
     blood_type = models.CharField(
-        choices=BloodGroup.choices(),
+        choices=BLOOD_GROUP_CHOICES,
         null=True,
         blank=True,
         default="",
@@ -66,3 +73,32 @@ class Patient(BaseModel):
         null=True,
         blank=True,
     )
+
+    class Meta:
+        unique_together = (
+            "first_name",
+            "middle_name",
+            "last_name",
+            "email",
+        )
+
+    @property
+    def full_name(self):
+        self.first_name = self.first_name.upper() if self.first_name else ""
+        self.middle_name = self.middle_name.upper() if self.middle_name else ""
+        self.last_name = self.last_name.upper() if self.last_name else ""
+        return f"{self.last_name}, {self.first_name} {self.middle_name}"
+
+    def clean(self):
+        self.first_name = self.first_name.upper() if self.first_name else ""
+        self.middle_name = self.middle_name.upper() if self.middle_name else ""
+        self.last_name = self.last_name.upper() if self.last_name else ""
+        super().clean()
+
+    def save(self, *args, **kwargs):
+        if not self.patient_registration_id:
+            self.patient_registration_id = generate_registration_id()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.title}  {self.first_name or ""} {self.middle_name or ""} {self.last_name or ""}"

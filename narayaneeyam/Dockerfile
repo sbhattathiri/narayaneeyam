@@ -1,35 +1,36 @@
 ARG APPROOT=/narayaneeyam
-ARG FRONTEND_DIR=/narayaneeyam/ayuh_frontend
 ARG LOG_DIR="/var/log/ayuh"
 
-FROM python:3.13.0-slim
+FROM python:3.13.1-slim-bookworm
 
 ARG APPROOT
-ARG FRONTEND_DIR
 ARG LOG_DIR
 
-COPY .. ${APPROOT}/
 WORKDIR ${APPROOT}
+COPY .. ${APPROOT}/
 
-# avoid .pyc
 ENV PYTHONDONTWRITEBYTECODE 1
-# send stdout, stderr straightaway
 ENV PYTHONUNBUFFERED 1
 
 ENV PYTHONPATH "${PYTHONPATH}:${APPROOT}"
 
-# setting ENV for use in entrypoint.sh
 ENV LOG_DIR=$LOG_DIR
-ENV FRONTEND_DIR=$FRONTEND_DIR
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir gunicorn==21.2.0
 
-RUN mkdir -p "$LOG_DIR/gunicorn/"
-RUN pip install --no-cache-dir gunicorn==21.2.0
+RUN mkdir -p "$LOG_DIR/gunicorn/" && \
+    addgroup --system appgroup && \
+    adduser --system --ingroup appgroup appuser
+
+RUN chown -R appuser:appgroup ${APPROOT} && \
+    chown -R appuser:appgroup "$LOG_DIR"
 
 EXPOSE 8000
 
 RUN chmod +x ./entrypoint.sh
+
+USER appuser
 
 CMD ["/bin/bash", "./entrypoint.sh"]
 

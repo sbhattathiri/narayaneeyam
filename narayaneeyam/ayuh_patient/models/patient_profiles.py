@@ -1,22 +1,35 @@
-from ayuh_common.enums import (
-    Lifestyle,
-)
-from ayuh_patient.models.patients import (
-    Patient,
-)
-from phonenumber_field.modelfields import (
-    PhoneNumberField,
-)
-
 from django.contrib.postgres.fields import (
     ArrayField,
 )
 from django.db import (
     models,
 )
+from phonenumber_field.modelfields import (
+    PhoneNumberField,
+)
+
+from ayuh_core.enums import (
+    REFERRAL_SOURCE_CHOICES,
+    DietaryPreference,
+    HabitStatus,
+    Lifestyle,
+)
+from ayuh_patient.models.patients import (
+    Patient,
+)
 
 
 class PatientProfile(Patient):
+
+    class Meta:
+        verbose_name = "Patient Profile"
+        verbose_name_plural = "Patient Profiles"
+
+    occupation = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+    )
     primary_care_provider = models.CharField(
         max_length=255,
         null=True,
@@ -29,6 +42,7 @@ class PatientProfile(Patient):
         blank=True,
     )
     primary_physician_phone = PhoneNumberField(
+        region="IN",
         null=True,
         blank=True,
     )
@@ -53,22 +67,30 @@ class PatientProfile(Patient):
         null=True,
         blank=True,
     )
-    smoking_status = models.BooleanField(
+    smoking_status = models.CharField(
+        choices=HabitStatus.choices(),
         null=True,
         blank=True,
-        default=False,
+        default="",
     )
-    drinking_status = models.BooleanField(
+    drinking_status = models.CharField(
+        choices=HabitStatus.choices(),
         null=True,
         blank=True,
-        default=False,
+        default="",
     )
-    substance_abuse_status = models.BooleanField(
+    substance_abuse_status = models.CharField(
+        choices=HabitStatus.choices(),
         null=True,
         blank=True,
-        default=False,
+        default="",
     )
-    dietary_preference = models.TextField(null=True, blank=True)
+    dietary_preference = models.CharField(
+        choices=DietaryPreference.choices(),
+        null=True,
+        blank=True,
+        default="",
+    )
     general_lifestyle = models.CharField(
         choices=Lifestyle.choices(),
         null=True,
@@ -80,3 +102,31 @@ class PatientProfile(Patient):
         null=True,
         blank=True,
     )
+    patient_address = models.TextField(null=True, blank=True)
+    referral_source = models.CharField(
+        choices=REFERRAL_SOURCE_CHOICES,
+        null=True,
+        blank=True,
+        default="",
+    )
+
+    def clean(self):
+        self.primary_care_provider = (
+            self.primary_care_provider.upper()
+            if self.primary_care_provider
+            else self.primary_care_provider
+        )
+        self.primary_physician_name = (
+            self.primary_physician_name.upper()
+            if self.primary_physician_name
+            else self.primary_physician_name
+        )
+        self.patient_address = (
+            self.patient_address.upper()
+            if self.patient_address
+            else self.patient_address
+        )
+        super().clean()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)

@@ -1,0 +1,10 @@
+{% extends "ayuh_base_template.html" %}
+{% load bootstrap4 %}
+{% block content %}
+  <h3 class="mb-4" style="color: {{ PRIMARY_COLOR }};">Get Prescription List</h3>
+  <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <button class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" type="submit">Search</button>
+  </form>
+{% endblock %}

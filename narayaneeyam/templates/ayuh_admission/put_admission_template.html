@@ -1,0 +1,112 @@
+{% extends "ayuh_base_template.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<h3 class="mb-4" style="color: {{ PRIMARY_COLOR }};">Admission Notes</h3>
+<hr class="border border-secondary" style="color: {{ PRIMARY_COLOR }}">
+<form class=form-horizontal" enctype="multipart/form-data" method="post" role="form">
+    {% csrf_token %}
+
+    {% bootstrap_form form layout="horizontal" %}
+    <hr class="border border-secondary" style="color: {{ PRIMARY_COLOR }}">
+
+    {% if form.non_field_errors %}
+    <div class="text-danger">
+        {% for error in form.non_field_errors %}
+        <div>{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0" style="color: {{ PRIMARY_COLOR }};">Treatments</h4>
+        <button class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" id="add-treatment-row-btn" type="button">Add Treatment</button>
+    </div>
+
+    {{ treatment_formset.management_form }}
+    {% if treatment_formset.non_form_errors %}
+    <div class="alert alert-danger">
+        {% for error in treatment_formset.non_form_errors %}
+        <div>{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div id="treatment-formset-items">
+        <div class="form-row align-items-center mb-2">
+            <div class="col-3">
+                <label>Treatment</label>
+            </div>
+            <div class="col-3">
+                <label>Therapist</label>
+            </div>
+            <div class="col-3">
+                <label>Treatment Date</label>
+            </div>
+            <div class="col-3">
+                <label>Treatment Feedback</label>
+            </div>
+        </div>
+
+        <div id="treatment-empty-form" style="display: none;">
+            <div class="form-row align-items-center mb-2">
+                <div class="col-3">
+                    {{ treatment_formset.empty_form.treatment }}
+                </div>
+                <div class="col-3">
+                    {{ treatment_formset.empty_form.therapist }}
+                </div>
+                <div class="col-3">
+                    {{ treatment_formset.empty_form.treatment_date }}
+                </div>
+                <div class="col-3">
+                    {{ treatment_formset.empty_form.treatment_feedback }}
+                </div>
+            </div>
+        </div>
+
+        {% for form in treatment_formset %}
+        {{ form.id }}
+        <div class="form-row align-items-center mb-2">
+            <div class="col-3">
+                {{ form.treatment }}
+            </div>
+            <div class="col-3">
+                {{ form.therapist }}
+            </div>
+            <div class="col-3">
+                {{ form.treatment_date }}
+            </div>
+            <div class="col-3">
+                {{ form.treatment_feedback }}
+            </div>
+        </div>
+
+        {% if form.instance.pk %}
+        <input id="treatment-{{ form.prefix }}-DELETE" name="{{ form.prefix }}-DELETE" type="checkbox">
+        <label for="treatment-{{ form.prefix }}-DELETE">Delete</label>
+        {% endif %}
+
+        {% endfor %}
+    </div>
+
+    <button class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" type="submit">Save</button>
+</form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addTreatmentButton = document.getElementById('add-treatment-row-btn');
+        const treatmentFormSetDiv = document.getElementById('treatment-formset-items');
+        const emptyTreatmentFormHtml = document.getElementById('treatment-empty-form').innerHTML;
+        const totalTreatmentFormsInput = document.querySelector('[name="{{ treatment_formset.prefix }}-TOTAL_FORMS"]');
+
+        addTreatmentButton.addEventListener('click', function () {
+            let totalTreatmentForms = parseInt(totalTreatmentFormsInput.value);
+            let newFormHtml = emptyTreatmentFormHtml.replace(/__prefix__/g, totalTreatmentForms);
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = newFormHtml;
+            treatmentFormSetDiv.appendChild(wrapper);
+            totalTreatmentFormsInput.value = totalTreatmentForms + 1;
+        });
+
+        
+    });
+</script>
+{% endblock %}

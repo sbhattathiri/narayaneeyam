@@ -1,7 +1,11 @@
 from .patient_profiles import (
-    PatientProfile,
+    PatientProfileForm,
+)
+from .patients import (
+    PatientForm,
 )
 
 __all__ = [
-    "PatientProfile",
+    "PatientForm",
+    "PatientProfileForm",
 ]

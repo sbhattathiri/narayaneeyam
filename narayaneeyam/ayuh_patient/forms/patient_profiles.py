@@ -1,16 +1,21 @@
-from ayuh_patient import (
-    models,
-)
-
 from django import (
     forms,
 )
+from django.forms import (
+    ModelForm,
+)
+
+from ayuh_patient.models import (
+    PatientProfile,
+)
 
 
-class PatientProfile(forms.ModelForm):
+class PatientProfileForm(ModelForm):
+
     class Meta:
-        model = models.PatientProfile
+        model = PatientProfile
         fields = [
+            "patient_registration_id",
             "title",
             "first_name",
             "middle_name",
@@ -25,7 +30,6 @@ class PatientProfile(forms.ModelForm):
             "primary_physician_phone",
             "primary_physician_email",
             "pre_existing_health_conditions",
-            "pre_existing_medications",
             "known_allergies",
             "known_medication_allergies",
             "previous_surgeries",
@@ -33,24 +37,19 @@ class PatientProfile(forms.ModelForm):
             "drinking_status",
             "substance_abuse_status",
             "dietary_preference",
+            "general_lifestyle",
             "emergency_contact_person_phone",
+            "patient_address",
         ]
+
         widgets = {
-            "title": forms.Select(attrs={"class": "select select-bordered w-full"}),
-            "first_name": forms.TextInput(
-                attrs={"class": "input input-bordered w-full"}
+            "patient_registration_id": forms.widgets.TextInput(
+                attrs={"readonly": True}
             ),
-            "middle_name": forms.TextInput(
-                attrs={"class": "input input-bordered w-full"}
-            ),
-            "last_name": forms.TextInput(
-                attrs={"class": "input input-bordered w-full"}
-            ),
-            "gender": forms.Select(attrs={"class": "select select-bordered w-full"}),
-            "date_of_birth": forms.DateInput(attrs={"type": "date"}),
-            "blood_type": forms.Select(
-                attrs={"class": "select select-bordered w-full"}
-            ),
-            "email": forms.TextInput(attrs={"class": "input input-bordered w-full"}),
-            "phone": forms.TextInput(attrs={"class": "input input-bordered w-full"}),
+            "date_of_birth": forms.widgets.DateInput(attrs={"type": "date"}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs.update({"class": "form-control"})

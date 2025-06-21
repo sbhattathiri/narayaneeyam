@@ -1,4 +1,5 @@
 #!bin/sh
+set -e
 
 LOG_FILE="$LOG_DIR/startup.log"
 
@@ -22,10 +23,6 @@ echo "apply migrations..." | tee -a "$LOG_FILE"
 python manage.py migrate --settings="${DJANGO_SETTINGS_MODULE}" >> "$LOG_FILE" 2>&1
 printf "\n" | tee -a "$LOG_FILE"
 
-echo "copy css..." | tee -a "$LOG_FILE"
-tailwindcss -i "$FRONTEND_DIR/styles.css" -o "$FRONTEND_DIR/dist/output.css"
-printf "\n" | tee -a "$LOG_FILE"
-
 echo "collect static..." | tee -a "$LOG_FILE"
 python manage.py collectstatic --noinput --settings="${DJANGO_SETTINGS_MODULE}" >> "$LOG_FILE" 2>&1
 printf "\n" | tee -a "$LOG_FILE"
@@ -41,4 +38,5 @@ gunicorn ayuh.wsgi \
  --error-logfile "$LOG_DIR/gunicorn/error.log"
 
 #tail -f /dev/null
+#sleep infinity
 

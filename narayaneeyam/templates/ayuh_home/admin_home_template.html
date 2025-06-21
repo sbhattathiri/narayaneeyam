@@ -1,0 +1,15 @@
+{% extends 'ayuh_base_template.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="bg-white shadow-lg rounded p-4 mx-auto text-center" style="max-width: 36rem;">
+    <div class="row row-cols-1 g-4 mt-4">
+        <div class="col">
+            <a class="d-block text-white text-sm font-weight-medium py-3 px-4 rounded"
+               href="{% url 'list_staff' %}"
+               style="background-color: {{ PRIMARY_COLOR }};">
+                STAFFS
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

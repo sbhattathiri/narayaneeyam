@@ -1,6 +1,3 @@
-from .patient_addresses import (
-    PatientAddress,
-)
 from .patient_profiles import (
     PatientProfile,
 )
@@ -10,6 +7,5 @@ from .patients import (
 
 __all__ = [
     "Patient",
-    "PatientAddress",
     "PatientProfile",
 ]

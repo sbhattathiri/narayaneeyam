@@ -1,0 +1,52 @@
+{% extends 'ayuh_base_template.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="bg-white shadow-lg rounded p-4 mx-auto text-center" style="max-width: 36rem;">
+    <div class="row row-cols-1 g-4 mt-4">
+        <div class="col">
+            <a class="d-block text-white text-sm font-weight-medium py-3 px-4 rounded"
+               href="{% url 'admin' %}"
+               style="background-color: {{ PRIMARY_COLOR }};">
+                ADMIN
+            </a>
+        </div>
+    </div>
+    <div class="row row-cols-1 g-4 mt-4">
+        <div class="col">
+            <a class="d-block text-white text-sm font-weight-medium py-3 px-4 rounded"
+               href="{% url 'list_medicine' %}"
+               style="background-color:{{ PRIMARY_COLOR }};">
+                MEDICINES
+            </a>
+        </div>
+    </div>
+    <div class="row row-cols-1 g-4 mt-4">
+        <div class="col">
+            <a class="d-block text-white text-sm font-weight-medium py-3 px-4 rounded"
+               href="{% url 'list_patient' %}"
+               style="background-color: {{ PRIMARY_COLOR }};">
+                PATIENTS
+            </a>
+        </div>
+    </div>
+    <div class="row row-cols-1 g-4 mt-4">
+        <div class="col">
+            <a class="d-block text-white text-sm font-weight-medium py-3 px-4 rounded"
+               href="{% url 'list_consultation' %}"
+               style="background-color: {{ PRIMARY_COLOR }};">
+                CONSULTATIONS
+            </a>
+        </div>
+    </div>
+    <div class="row row-cols-1 g-4 mt-4">
+        <div class="col">
+            <a class="d-block text-white text-sm font-weight-medium py-3 px-4 rounded"
+               href="{% url 'list_admission' %}"
+               style="background-color: {{ PRIMARY_COLOR }};">
+                ADMISSIONS
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

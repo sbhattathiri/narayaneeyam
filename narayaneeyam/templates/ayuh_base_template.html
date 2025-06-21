@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load bootstrap4 %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>
+        {% block title %}
+        {{ FACILITY_NAME }}
+        {% endblock %}
+    </title>
+    {% block styles %}
+      {% bootstrap_css %}
+    {% endblock %}
+</head>
+<body>
+<header class="text-white py-4" style="background-color: {{ PRIMARY_COLOR }};">
+    <div class="container text-center">
+        <h1 class="text-2xl font-weight-bold">{{ FACILITY_NAME }}</h1>
+        <h3 class="text-base mt-2">{{ MOTTO }}</h3>
+    </div>
+</header>
+<div class="container-fluid">
+    <div class="row">
+        {% if not request.resolver_match.url_name == "home" %}
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column" style="margin-top: 15%;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}" style="color: {{ PRIMARY_COLOR }};">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin' %}" style="color: {{ PRIMARY_COLOR }};">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        {% endif %}
+        <main class="{% if not request.resolver_match.url_name == 'home' %}
+               col-md-10 ml-sm-auto col-lg-10{% else %}col{% endif %}"
+              role="main">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+</div>
+{% block scripts %}
+   {% bootstrap_javascript jquery='full' %}
+{% endblock %}
+</body>
+</html>
