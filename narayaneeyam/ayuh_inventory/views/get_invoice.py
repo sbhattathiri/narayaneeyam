@@ -84,9 +84,3 @@ class InvoiceView(View):
             response.write(output.read())
 
         return response
-
-
-# def chained_success_view(request):
-#     # Notify someone, update logs, trigger API
-#     notify_admin()
-#     return redirect("final_page")
