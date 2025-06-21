@@ -16,16 +16,19 @@ from ayuh_core.models import (
 class RoomOccupancy(AyuhModel):
     admission = models.ForeignKey(
         Admission,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
+        null=True,
         related_name="room_occupancy_admission",
     )
     room = models.ForeignKey(
         Room,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name="room_occupancy_room",
     )
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
 
     class Meta:
-        ordering = ["-start_time"]
+        verbose_name = "Room Occupancy"
+        verbose_name_plural = "Room Occupancies"
+        ordering = ["-end_date"]

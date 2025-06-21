@@ -10,7 +10,7 @@
     <p><strong>Treatment:</strong> {{ admission.treatment_overview }}</p>
     <p><strong>Admission Date:</strong> {{ admission.admission_date |date:"F j, Y"|default:"" }}</p>
     <p><strong>Room:</strong> {{ admission.room }}</p>
-    <p><strong>Discharge Date:</strong> {{ admission.next_consultation_date |date:"F j, Y"|default:"" }}</p>
+    <p><strong>Discharge Date:</strong> {{ admission.discharge_date |date:"F j, Y"|default:"" }}</p>
 </div>
 
 <hr class="border border-secondary">

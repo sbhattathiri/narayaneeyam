@@ -1,0 +1,30 @@
+{% extends "ayuh_base_template.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h3 class="mb-4 pt-4" style="color: {{ PRIMARY_COLOR }};">Room Occupancy</h3>
+    <a href="{% url 'post_patient' %}" class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}">Assign Room</a>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Room</th>
+            <th>Category</th>
+            <th>Patient</th>
+            <th>From Date</th>
+            <th>To Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for room in rooms %}
+            <tr>
+                <td>{{ room.room.room_name }}</td>
+                <td>{{ room.room.room_category }}</td>
+                <td>{{ room.admission.consultation.patient }}</td>
+                <td>{{ room.start_date }}</td>
+                <td>{{ room.end_date }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

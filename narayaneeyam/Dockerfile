@@ -6,6 +6,30 @@ FROM python:3.13.1-slim-bookworm
 ARG APPROOT
 ARG LOG_DIR
 
+# weasyprint pdf
+ENV XDG_CACHE_HOME=/tmp/.cache
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libcairo2 \
+    libffi-dev \
+    libgdk-pixbuf2.0-0 \
+    libxml2 \
+    libxslt1.1 \
+    libjpeg-dev \
+    zlib1g-dev \
+    shared-mime-info \
+    curl \
+    fonts-dejavu \
+    fonts-dejavu-core \
+    && mkdir -p /tmp/.cache/fontconfig \
+    && chmod -R 777 /tmp/.cache \
+    && fc-cache -f -v \
+    && rm -rf /var/lib/apt/lists/*
+
+
 WORKDIR ${APPROOT}
 COPY .. ${APPROOT}/
 

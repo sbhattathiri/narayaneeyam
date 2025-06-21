@@ -1,18 +1,16 @@
 {% extends 'ayuh_base_template.html' %}
 {% load bootstrap4 %}
 {% block content %}
-<h2>Login</h2>
+<h3 class="mb-4" style="color: {{ PRIMARY_COLOR }};">Login</h3>
 {% if messages %}
 {% for message in messages %}
 <p style="color: red;">{{ message }}</p>
 {% endfor %}
 {% endif %}
-<form method="POST" action="">
-    {% csrf_token %}
-    <label for="username">Username:</label>
-    <input name="username" required type="text"><br>
-    <label for="password">Password:</label>
-    <input name="password" required type="password"><br>
-    <button type="submit">Login</button>
+<form method="post">
+  {% csrf_token %}
+<!--  {{ form.as_p }}-->
+  {% bootstrap_form form layout='horizontal' label_class="col-sm-3" field_class="col-sm-9" %}
+  <button class="btn btn-sm" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" type="submit">Log in</button>
 </form>
 {% endblock %}
