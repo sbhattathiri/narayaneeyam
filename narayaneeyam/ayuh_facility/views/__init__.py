@@ -1,3 +1,5 @@
-from .list_rooms import RoomOccupancyListView
+from .list_rooms import (
+    RoomOccupancyListView,
+)
 
 __all__ = ["RoomOccupancyListView"]

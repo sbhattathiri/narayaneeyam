@@ -22,7 +22,7 @@ drf-spectacular[sidecar]==0.27.2
 whitenoise==6.8.2
 
 # pdf
-fpdf2
+weasyprint==65.1
 
 
 

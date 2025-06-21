@@ -1,3 +1,7 @@
+from .get_invoice import (
+    InvoiceView,
+)
+from .get_medicine_sale import MedicineSaleDetailView
 from .list_medicines import (
     MedicineListView,
 )
@@ -13,7 +17,9 @@ from .post_search_consultation import (
 
 __all__ = [
     "ConsultationSearchView",
+    "InvoiceView",
     "MedicineListView",
     "MedicineSaleCreateView",
+    "MedicineSaleDetailView",
     "PrescriptionsSaleView",
 ]

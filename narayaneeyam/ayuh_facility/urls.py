@@ -1,9 +1,8 @@
-from django.urls import (
-    path,
-)
-
 from ayuh_facility import (
     views,
+)
+from django.urls import (
+    path,
 )
 
 urlpatterns = [
