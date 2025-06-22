@@ -53,25 +53,43 @@ class MedicineSalePaymentInfo(AyuhModel):
     sale = models.ForeignKey(
         "MedicineSale", on_delete=models.CASCADE, related_name="payment"
     )
-    total_amount = models.DecimalField(
+    total_sale_amount = models.DecimalField(
         max_digits=12,
         decimal_places=2,
         null=True,
         blank=True,
     )
-    gst = models.DecimalField(
+    total_gst_amount = models.DecimalField(
         max_digits=12,
         decimal_places=2,
         null=True,
         blank=True,
     )
-    gst_amount = models.DecimalField(
+    total_sale_amount_with_gst = models.DecimalField(
         max_digits=12,
         decimal_places=2,
         null=True,
         blank=True,
     )
-    total_amount_with_gst = models.DecimalField(
+    consultation_fee = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        null=True,
+        blank=True,
+    )
+    gst_on_consultation_fee = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        null=True,
+        blank=True,
+    )
+    total_consultation_amount_with_gst = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        null=True,
+        blank=True,
+    )
+    gross_amount = models.DecimalField(
         max_digits=12,
         decimal_places=2,
         null=True,

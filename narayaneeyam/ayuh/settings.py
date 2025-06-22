@@ -153,6 +153,7 @@ APP_PROFILES = {
         "LETTERHEAD_CONTACT1": "☎ +91 9495350727",
         "LETTERHEAD_CONTACT2": "✉ gopika.nkn@gmail.com",
         "LETTERHEAD_LOGO_IMAGE": "narayaneeyam.png",
+        "LETTERHEAD_SIGN_IMAGE": "ayurarogya.png",
         "PAYMENT_BANK": "",
         "PAYMENT_ACCOUNT": "",
         "SOFTWARE_NAME": "SMGN",
@@ -160,7 +161,7 @@ APP_PROFILES = {
         "ICON": "narayaneeyam.png",
         "ABN": "",
         "APPLY_GST": True,
-        "GST": "18",
+        "GST_ON_CONSULTATION": "18",
         "CONSULTATION_FEE": "250",
     },
     "AYURAROGYA": {
@@ -176,6 +177,7 @@ APP_PROFILES = {
         "LETTERHEAD_CONTACT1": "☎ +61 470 432 355",
         "LETTERHEAD_CONTACT2": "✉ info@ayurarogya.com.au",
         "LETTERHEAD_LOGO_IMAGE": "ayurarogya.png",
+        "LETTERHEAD_SIGN_IMAGE": "ayurarogya.png",
         "PAYMENT_BANK": "083004",
         "PAYMENT_ACCOUNT": "787255444",
         "SOFTWARE_NAME": "SMGN",
@@ -183,7 +185,7 @@ APP_PROFILES = {
         "ICON": "ayurarogya.png",
         "ABN": "27 660 465 878",
         "APPLY_GST": True,
-        "GST": "10",
+        "GST_ON_CONSULTATION": "10",
         "CONSULTATION_FEE": "80",
     },
 }

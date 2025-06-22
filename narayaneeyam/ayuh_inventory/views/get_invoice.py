@@ -26,7 +26,6 @@ class InvoiceView(View):
         return ["ayuh_inventory/narayaneeyam_invoice_template.html"]
 
     def get_context_data(self, **kwargs):
-        # invoice = get_object_or_404(Invoice, pk=kwargs["pk"]
 
         return {
             "invoice_number": "BNBY20240508",
@@ -72,9 +71,17 @@ class InvoiceView(View):
         }
 
     def get(self, request, *args, **kwargs):
-        logo_url = request.build_absolute_uri(static("ayurarogya.png"))
+        logo_url = request.build_absolute_uri(
+            static(settings.APP_SETTINGS.get("LETTERHEAD_LOGO_IMAGE"))
+        )
+        sign_url = request.build_absolute_uri(
+            static(settings.APP_SETTINGS.get("LETTERHEAD_SIGN_IMAGE"))
+        )
+
         context = self.get_context_data(**kwargs)
         context["logo_url"] = logo_url
+        context["sign_url"] = sign_url
+
         template = get_template(self.get_template_names()[0])
         html = template.render(context)
 
