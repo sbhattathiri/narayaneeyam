@@ -30,7 +30,6 @@ class MedicineSaleCreateView(CreateView):
     template_name = "ayuh_inventory/post_sale_of_medicines_template.html"
 
     def get_success_url(self):
-        # return reverse_lazy("get_medicine_sale", kwargs={"pk": self.object.id})
         return reverse_lazy("post_payment_info", kwargs={"pk": self.object.id})
 
     def get_context_data(self, **kwargs):
@@ -50,11 +49,17 @@ class MedicineSaleCreateView(CreateView):
 
             if formset.is_valid():
                 formset.instance = self.object
+                logger.info(f"# of forms {len(formset)}")
+
                 for item_form in formset:
+
                     if item_form.cleaned_data.get("DELETE"):
                         continue
+
                     medicine = item_form.cleaned_data["medicine"]
                     quantity = item_form.cleaned_data["quantity"]
+
+                    logger.info(f"sale for medicine: {medicine} | quantity: {quantity}")
 
                     if medicine.stock.quantity < quantity:
                         form.add_error(
@@ -67,13 +72,17 @@ class MedicineSaleCreateView(CreateView):
                     stock = medicine.stock
                     stock.quantity -= quantity
                     stock.save()
-                    # medicine.save()
+                    medicine.save()
 
-                    sale_item = MedicineSaleItem.objects.create(
-                        sale=self.object,
-                        medicine=medicine,
-                        quantity=quantity,
+                    logger.info(
+                        f"creating sale item for {self.object}:{self.object.id} | medicine: {medicine} | quantity: {quantity}"
                     )
+
+                    # sale_item = MedicineSaleItem.objects.create(
+                    #     sale=self.object,
+                    #     medicine=medicine,
+                    #     quantity=quantity,
+                    # )
 
                 formset.save()
             else:

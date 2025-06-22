@@ -14,6 +14,7 @@
             <th>Type</th>
             <th>Manufacturer</th>
             <th>Price</th>
+            <th>GST</th>
             <th>Stocks Left</th>
         </tr>
     </thead>
@@ -25,6 +26,7 @@
                 <td>{{ medicine.type | default_if_none:"" }}</td>
                 <td>{{ medicine.manufacturer | default_if_none:""}}</td>
                 <td>{{ medicine.price | default_if_none:"" }}</td>
+                <td>{{ medicine.gst | default_if_none:"" }}</td>
                 <td>{{ medicine.stock.quantity | default_if_none:"" }}</td>
             </tr>
         {% endfor %}

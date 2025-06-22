@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from ayuh_inventory import (
     forms,
     models,
@@ -8,6 +10,10 @@ from django.views.generic.edit import (
 from django.urls import (
     reverse_lazy,
 )
+from django.db.models import F, Sum, ExpressionWrapper, DecimalField
+from django.conf import settings
+
+from ayuh_inventory.models import MedicineSaleItem
 
 
 class MedicineSalePaymentInfoCreateView(CreateView):
@@ -18,33 +24,38 @@ class MedicineSalePaymentInfoCreateView(CreateView):
     context_object_name = "sale"
 
     def get_success_url(self):
-        return reverse_lazy("get_medicine_sale", kwargs={"pk": self.object.id})
+        return reverse_lazy("get_medicine_sale", kwargs={"pk": self.object.sale.id})
 
     def get_initial(self):
-        # Prepopulate the 'sale' field using the sale id from URL
         sale = models.MedicineSale.objects.get(pk=self.kwargs["pk"])
-        return {"sale": sale}
+        medicine_sale_items_query_set = (
+            MedicineSaleItem.objects.filter(sale=sale)
+            .select_related("medicine")
+            .annotate(
+                sale_amount=ExpressionWrapper(
+                    F("quantity") * F("medicine__price"),
+                    output_field=DecimalField(max_digits=10, decimal_places=2),
+                ),
+                gst_amount=ExpressionWrapper(
+                    F("quantity") * F("medicine__price") * F("medicine__gst"),
+                    output_field=DecimalField(max_digits=10, decimal_places=2),
+                ),
+            )
+        )
+        totals = medicine_sale_items_query_set.aggregate(
+            total_sale_amount=Sum("sale_amount"), total_gst_amount=Sum("gst_amount")
+        )
+
+        total_sale_amount = totals["total_sale_amount"] or Decimal(0.00)
+        total_gst_amount = totals["total_gst_amount"] or Decimal(0.00)
+
+        return {
+            "sale": sale,
+            "total_sale_amount": total_sale_amount,
+            "total_gst_amount": total_gst_amount,
+            "total_sale_amount_with_gst": total_sale_amount + total_gst_amount,
+        }
 
     def form_valid(self, form):
-        # Ensure that the sale field is set properly, even if disabled in form
         form.instance.sale = models.MedicineSale.objects.get(pk=self.kwargs["pk"])
         return super().form_valid(form)
-
-    # def get_success_url(self):
-    #     return reverse_lazy("get_medicine_sale", kwargs={"pk": self.object.sale.id})
-    #
-    # def get_initial(self):
-    #     # Prepopulate the 'sale' field using the sale id from URL
-    #     sale = models.MedicineSale.objects.get(pk=self.kwargs["pk"])
-    #     return {"sale": sale}
-    #
-    # def get_form(self, form_class=None):
-    #     form = super().get_form(form_class)
-    #     # Make the 'sale' field readonly/disabled
-    #     form.fields["sale"].disabled = True
-    #     return form
-    #
-    # def form_valid(self, form):
-    #     # Ensure that the sale field is set properly, even if disabled in form
-    #     form.instance.sale = models.MedicineSale.objects.get(pk=self.kwargs["pk"])
-    #     return super().form_valid(form)

@@ -30,6 +30,11 @@ class Medicine(AyuhModel):
         decimal_places=2,
         help_text="price per unit",
     )
+    gst = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default="0",
+    )
 
     class Meta:
         verbose_name = "Medicine"
