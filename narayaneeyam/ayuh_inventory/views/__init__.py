@@ -14,6 +14,7 @@ from .post_sale_of_medicines_for_given_consultation import (
 from .post_search_consultation import (
     ConsultationSearchView,
 )
+from .post_medicine_sale_payment_info import MedicineSalePaymentInfoCreateView
 
 __all__ = [
     "ConsultationSearchView",
@@ -21,5 +22,6 @@ __all__ = [
     "MedicineListView",
     "MedicineSaleCreateView",
     "MedicineSaleDetailView",
+    "MedicineSalePaymentInfoCreateView",
     "PrescriptionsSaleView",
 ]

@@ -7,6 +7,7 @@ from .medicine_purchases import (
 from .medicine_sales import (
     MedicineSale,
     MedicineSaleItem,
+    MedicineSalePaymentInfo,
 )
 from .medicine_stocks import (
     MedicineStock,
@@ -20,6 +21,7 @@ __all__ = [
     "MedicinePurchase",
     "MedicineSale",
     "MedicineSaleItem",
+    "MedicineSalePaymentInfo",
     "MedicineStock",
     "Medicine",
 ]

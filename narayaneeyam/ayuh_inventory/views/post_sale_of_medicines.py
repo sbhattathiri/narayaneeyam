@@ -30,7 +30,8 @@ class MedicineSaleCreateView(CreateView):
     template_name = "ayuh_inventory/post_sale_of_medicines_template.html"
 
     def get_success_url(self):
-        return reverse_lazy("get_medicine_sale", kwargs={"pk": self.object.id})
+        # return reverse_lazy("get_medicine_sale", kwargs={"pk": self.object.id})
+        return reverse_lazy("post_payment_info", kwargs={"pk": self.object.id})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
