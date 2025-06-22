@@ -27,6 +27,11 @@ urlpatterns = [
         name="post_sale_of_prescriptions_for_given_consultation",
     ),
     path(
+        "ayuh/inventory/sale/<int:pk>/payment",
+        views.MedicineSalePaymentInfoCreateView.as_view(),
+        name="post_payment_info",
+    ),
+    path(
         "ayuh/inventory/sale/<int:pk>",
         views.MedicineSaleDetailView.as_view(),
         name="get_medicine_sale",

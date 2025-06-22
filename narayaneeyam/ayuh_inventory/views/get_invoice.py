@@ -15,6 +15,7 @@ from django.views.generic import (
 from weasyprint import (
     HTML,
 )
+from django.templatetags.static import static
 
 
 class InvoiceView(View):
@@ -71,7 +72,9 @@ class InvoiceView(View):
         }
 
     def get(self, request, *args, **kwargs):
+        logo_url = request.build_absolute_uri(static("ayurarogya.png"))
         context = self.get_context_data(**kwargs)
+        context["logo_url"] = logo_url
         template = get_template(self.get_template_names()[0])
         html = template.render(context)
 
@@ -79,7 +82,9 @@ class InvoiceView(View):
         response["Content-Disposition"] = 'filename="invoice.pdf"'
 
         with tempfile.NamedTemporaryFile(delete=True) as output:
-            HTML(string=html).write_pdf(target=output.name)
+            HTML(string=html, base_url=request.build_absolute_uri("/")).write_pdf(
+                target=output.name
+            )
             output.seek(0)
             response.write(output.read())
 
