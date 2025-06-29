@@ -133,11 +133,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
 
-COLOR_BLUE = "#35a2c4e3"
-COLOR_GREEN = "#b6d73ff7"
 COLOR_OCHRE = "#966d29"
 COLOR_WHITE = "#ffffff"
-COLOR_BLACK = "#000000"
 
 APP_PROFILES = {
     "NARAYANEEYAM": {
@@ -164,33 +161,9 @@ APP_PROFILES = {
         "GST_ON_CONSULTATION": "18",
         "CONSULTATION_FEE": "250",
     },
-    "AYURAROGYA": {
-        "FACILITY_NAME": "AYURAROGYA PTY LTD",
-        "MOTTO": "Healing Space For Better Living",
-        "PATIENT_CONSENT_MANDATORY": True,
-        "PRIMARY_COLOR": COLOR_BLUE,
-        "BUTTON_TEXT_COLOR": COLOR_WHITE,
-        "LETTERHEAD_NAME": "AYURAROGYA PTY LTD",
-        "LETTERHEAD_MOTTO": "Healing Space For Better Living",
-        "LETTERHEAD_ADDR_LINE1": "18 Kingscliff Avenue",
-        "LETTERHEAD_ADDR_LINE2": "Clyde, Victoria 3978",
-        "LETTERHEAD_CONTACT1": "☎ +61 470 432 355",
-        "LETTERHEAD_CONTACT2": "✉ info@ayurarogya.com.au",
-        "LETTERHEAD_LOGO_IMAGE": "ayurarogya.png",
-        "LETTERHEAD_SIGN_IMAGE": "ayurarogya.png",
-        "PAYMENT_BANK": "083004",
-        "PAYMENT_ACCOUNT": "787255444",
-        "SOFTWARE_NAME": "SMGN",
-        "SOFTWARE_VERSION": "v0.2",
-        "ICON": "ayurarogya.png",
-        "ABN": "27 660 465 878",
-        "APPLY_GST": True,
-        "GST_ON_CONSULTATION": "10",
-        "CONSULTATION_FEE": "80",
-    },
 }
 
-ACTIVE_APP_PROFILE = os.getenv("ACTIVE_APP_PROFILE", "AYURAROGYA")
+ACTIVE_APP_PROFILE = os.getenv("ACTIVE_APP_PROFILE", "NARAYANEEYAM")
 
 APP_SETTINGS = APP_PROFILES[ACTIVE_APP_PROFILE]
 

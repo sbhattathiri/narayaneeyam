@@ -21,12 +21,9 @@ from django.templatetags.static import static
 class InvoiceView(View):
 
     def get_template_names(self):
-        if settings.ACTIVE_APP_PROFILE == "AYURAROGYA":
-            return ["ayuh_inventory/ayurarogya_invoice_template.html"]
         return ["ayuh_inventory/narayaneeyam_invoice_template.html"]
 
     def get_context_data(self, **kwargs):
-
         return {
             "invoice_number": "BNBY20240508",
             "invoice_date": "2024-05-08",
