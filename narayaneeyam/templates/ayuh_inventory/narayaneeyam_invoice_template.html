@@ -24,13 +24,14 @@
         <img alt="Ayurarogya Logo" src="{{ logo_url }}" style="height: 60px;">
     </div>
     <div class="text-center flex-grow-1">
-        <h2 class="mb-0" style="color: green">{{ company.name }}</h2>
-        <small class="text-muted"><i>{{ company.tagline }}</i></small>
+        <h2 class="mb-0" style="color: green">{{ clinic.name }}</h2>
+        <small class="text-muted"><i>{{ clinic.tagline }}</i></small>
     </div>
     <div class="contact-info">
-        {{ company.address }}<br>
-        ☎ {{ company.phone }}<br>
-        ✉ {{ company.email }}
+        {{ clinic.address1 }}<br>
+        {{ clinic.address2 }}<br>
+        {{ clinic.phone }}<br>
+        {{ clinic.email }}
     </div>
 </div>
 
@@ -40,20 +41,16 @@
 
 <table class="table table-borderless table-sm w-auto">
     <tr>
-        <td style="width: 150px;"><strong>INVOICE TO:</strong></td>
-        <td>{{ recipient_name }}</td>
+        <td style="width: 150px; font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>INVOICE TO:</strong></td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ patient }}</td>
     </tr>
     <tr>
-        <td><strong>INVOICE #:</strong></td>
-        <td>{{ invoice_number }}</td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>INVOICE #:</strong></td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ invoice_number }}</td>
     </tr>
     <tr>
-        <td><strong>INVOICE DATE:</strong></td>
-        <td>{{ invoice_date }}</td>
-    </tr>
-    <tr>
-        <td><strong>ABN:</strong></td>
-        <td>{{ abn }}</td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>INVOICE DATE:</strong></td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ invoice_date }}</td>
     </tr>
 </table>
 
@@ -62,24 +59,40 @@
 
 <table class="table table-striped table-sm w-auto">
     <thead>
-    <tr>
-        <th>#</th>
-        <th>Item Description</th>
-        <th>GST Rate</th>
-        <th>Qty</th>
-        <th>Amount</th>
+    <tr style="font-size: 0.7rem;">
+        <th style="font-size: 0.7rem;">#</th>
+        <th style="font-size: 0.7rem;">Item</th>
+        <th style="font-size: 0.7rem;">Manufacturer</th>
+        <th style="font-size: 0.7rem;">Price</th>
+        <th style="font-size: 0.7rem;">GST RATE</th>
+        <th style="font-size: 0.7rem;">Quantity</th>
+        <th style="font-size: 0.7rem;">GST AMOUNT</th>
+        <th style="font-size: 0.7rem;">TOTAL AMOUNT</th>
     </tr>
     </thead>
     <tbody>
     {% for item in items %}
     <tr>
-        <td>{{ forloop.counter }}</td>
-        <td>{{ item.description }}</td>
-        <td>{{ item.gst_rate }}%</td>
-        <td>{{ item.qty }}</td>
-        <td>A$ {{ item.amount|floatformat:2 }}</td>
+        <td style="font-size: 0.7rem;">{{ forloop.counter }}</td>
+        <td style="font-size: 0.7rem;">{{ item.name }}</td>
+        <td style="font-size: 0.7rem;">{{ item.manufacturer }}</td>
+        <td style="font-size: 0.7rem;">₹ {{ item.price }}</td>
+        <td style="font-size: 0.7rem;">{{ item.gst }}%</td>
+        <td style="font-size: 0.7rem;">{{ item.quantity }}</td>
+        <td style="font-size: 0.7rem;">₹ {{ item.gst_amount | floatformat:2 }}</td>
+        <td style="font-size: 0.7rem;">₹ {{ item.amount_incl_gst | floatformat:2 }}</td>
     </tr>
     {% endfor %}
+    <tr>
+        <td></td>
+        <td style="font-size: 0.7rem;"><strong>GROSS TOTAL</strong></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="font-size: 0.7rem;"><strong>₹ {{ gross_total2 | floatformat:2 }}</strong></td>
+    </tr>
     </tbody>
 </table>
 
@@ -89,51 +102,24 @@
 
 <table class="table table-borderless table-sm w-auto">
     <tr>
-        <td style="width: 150px;"><strong>TOTAL:</strong></td>
-        <td>A$ {{ totals.subtotal|floatformat:2 }}</td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>PAYMENT DATE:</strong></td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ payment.payment_date }}</td>
     </tr>
     <tr>
-        <td><strong>GST:</strong></td>
-        <td>A$ {{ totals.gst|floatformat:2 }}</td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>PAYMENT METHOD:</strong></td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ payment.payment_method }}</td>
     </tr>
     <tr>
-        <td><strong>TOTAL (incl. GST):</strong></td>
-        <td> A$ {{ totals.total|floatformat:2 }}</td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>AMOUNT PAID:</strong></td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">₹ {{ payment.paid|floatformat:2 }}</td>
     </tr>
     <tr>
-        <td><strong>PAYMENT DUE DATE:</strong></td>
-        <td>{{ due_date }}</td>
-    </tr>
-    <tr>
-        <td><strong>PAYMENT METHOD:</strong></td>
-        <td>{{ payment_method }}</td>
-    </tr>
-    <tr>
-        <td><strong>AMOUNT PAID:</strong></td>
-        <td>A$ {{ totals.paid|floatformat:2 }}</td>
-    </tr>
-    <tr>
-        <td><strong>BALANCE DUE:</strong></td>
-        <td>A$ {{ totals.balance|floatformat:2 }}</td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>BALANCE DUE:</strong></td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">₹ {{ payment.balance_due|floatformat:2 }}</td>
     </tr>
 </table>
 
 <hr>
-
-<table class="table table-borderless table-sm w-auto">
-    <tr>
-        <td style="width: 150px;"><strong>BANK ACCOUNT NAME:</strong></td>
-        <td>{{ bank_details.name }}</td>
-    </tr>
-    <tr>
-        <td><strong>BANK BSB:</strong></td>
-        <td>{{ bank_details.bsb }}</td>
-    </tr>
-    <tr>
-        <td><strong>BANK ACCOUNT NUMBER:</strong></td>
-        <td> {{ bank_details.account_number }}</td>
-    </tr>
-</table>
 
 
 <div class="d-flex justify-content-between align-items-center">
@@ -141,10 +127,10 @@
 
     </div>
     <div class="text-center flex-grow-1">
-        <h2 class="mb-0"> </h2>
+        <h2 class="mb-0"></h2>
     </div>
     <div class="me-3">
-        <img alt="Ayurarogya Logo" src="{{ sign_url }}" style="height: 60px;">
+        <p style="font-size: 0.5rem;">Signed: {{ clinic.name }}</p>
     </div>
 
 </div>
