@@ -1,3 +1,5 @@
+import datetime
+
 from ayuh_inventory import (
     models,
 )
@@ -7,7 +9,6 @@ from django import (
 from django.forms.models import (
     inlineformset_factory,
 )
-from django.forms import HiddenInput
 
 
 class MedicineSaleForm(forms.ModelForm):
@@ -41,8 +42,6 @@ class MedicineSalePaymentInfoForm(forms.ModelForm):
             "total_gst_amount",
             "total_sale_amount_with_gst",
             "consultation_fee",
-            "gst_on_consultation_fee",
-            "total_consultation_amount_with_gst",
             "gross_amount",
             "amount_paid",
             "amount_due",
@@ -54,8 +53,6 @@ class MedicineSalePaymentInfoForm(forms.ModelForm):
             "total_gst_amount": "Total GST Amount",
             "total_sale_amount_with_gst": "Total Sale Amount (incl GST)",
             "consultation_fee": "Consultation Fee",
-            "gst_on_consultation_fee": "GST on Consultation Fee",
-            "total_consultation_amount_with_gst": "Consultation Fee (incl GST)",
             "gross_amount": "Gross Amount",
             "amount_paid": "Amount Paid",
             "amount_due": "Amount Due",
@@ -78,6 +75,7 @@ class MedicineSalePaymentInfoForm(forms.ModelForm):
             "total_gst_amount",
             "total_sale_amount_with_gst",
         ]
+        self.fields["payment_due_date"].initial = datetime.date.today()
         for field in readonly_fields:
             self.fields[field].widget.attrs["readonly"] = True
         for field in self.fields.values():

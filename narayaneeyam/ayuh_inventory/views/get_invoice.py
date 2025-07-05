@@ -6,6 +6,7 @@ from ayuh import (
 from django.http import (
     HttpResponse,
 )
+from django.shortcuts import get_object_or_404
 from django.template.loader import (
     get_template,
 )
@@ -17,70 +18,87 @@ from weasyprint import (
 )
 from django.templatetags.static import static
 
+from ayuh_inventory.models import MedicineSale, MedicineSalePaymentInfo
+from hashids import Hashids
+
 
 class InvoiceView(View):
 
     def get_template_names(self):
-        if settings.ACTIVE_APP_PROFILE == "AYURAROGYA":
-            return ["ayuh_inventory/ayurarogya_invoice_template.html"]
         return ["ayuh_inventory/narayaneeyam_invoice_template.html"]
 
-    def get_context_data(self, **kwargs):
-
-        return {
-            "invoice_number": "BNBY20240508",
-            "invoice_date": "2024-05-08",
-            "due_date": "2024-05-08",
-            "recipient_name": "Baby, Bibin",
-            "abn": "27 660 465 878",
-            "company": {
-                "name": "Ayurarogya Pty Ltd",
-                "tagline": "healing space for better living",
-                "address": "18 Detroit Avenue, Cranbourne East, Victoria 3977",
-                "phone": "+61 470 432 355",
-                "email": "info@ayurarogya.com.au",
-            },
-            "items": [
-                {
-                    "description": "Consultation Fee(Short)",
-                    "gst_rate": 0,
-                    "qty": 1,
-                    "amount": 40.0,
-                },
-                {"description": "Treatment", "gst_rate": 10, "qty": 1, "amount": 40.0},
-                {
-                    "description": "Medicine Ext oil",
-                    "gst_rate": 10,
-                    "qty": 1,
-                    "amount": 13.5,
-                },
-            ],
-            "totals": {
-                "subtotal": 93.5,
-                "gst": 5.35,
-                "total": 98.85,
-                "paid": 0.0,
-                "balance": 98.85,
-            },
-            "payment_method": "CARD",
-            "bank_details": {
-                "name": "Ayurarogya",
-                "bsb": "083004",
-                "account_number": "787255444",
-            },
-        }
-
     def get(self, request, *args, **kwargs):
+        sale_id = kwargs.get("pk")
+
         logo_url = request.build_absolute_uri(
-            static(settings.APP_SETTINGS.get("LETTERHEAD_LOGO_IMAGE"))
-        )
-        sign_url = request.build_absolute_uri(
-            static(settings.APP_SETTINGS.get("LETTERHEAD_SIGN_IMAGE"))
+            static(settings.APP_SETTINGS.get("INVOICE_LETTERHEAD_LOGO_IMAGE"))
         )
 
-        context = self.get_context_data(**kwargs)
-        context["logo_url"] = logo_url
-        context["sign_url"] = sign_url
+        sale = get_object_or_404(MedicineSale, id=sale_id)
+
+        patient = sale.patient if sale.patient else sale.customer
+        invoice_date = sale.sale_date.date().strftime("%d %b %Y").upper()
+        invoice_number = Hashids(salt=settings.SECRET_KEY, min_length=6).encode(sale_id)
+
+        items = sale.items.select_related("medicine").all()
+
+        sale_items = [
+            {
+                "name": item.medicine.name,
+                "manufacturer": item.medicine.manufacturer,
+                "price": item.medicine.price,
+                "quantity": item.quantity,
+                "gst": item.medicine.gst,
+                "gst_amount": round(
+                    (item.medicine.price * item.medicine.gst / 100) * item.quantity, 2
+                ),
+                "amount_incl_gst": float(
+                    round(
+                        (item.medicine.price * item.quantity)
+                        + (item.medicine.price * item.medicine.gst / 100)
+                        * item.quantity,
+                        2,
+                    )
+                ),
+            }
+            for item in items
+        ]
+
+        total_amount = sum(item["amount_incl_gst"] for item in sale_items)
+
+        payment_info = MedicineSalePaymentInfo.objects.filter(sale=sale).latest(
+            "payment_due_date"
+        )
+
+        context = {
+            "logo_url": logo_url,
+            "items": sale_items,
+            "gross_total": total_amount,
+            "clinic": {
+                "name_line1": settings.APP_SETTINGS.get(
+                    "INVOICE_LETTERHEAD_NAME_LINE1"
+                ),
+                "name_line2": settings.APP_SETTINGS.get(
+                    "INVOICE_LETTERHEAD_NAME_LINE2"
+                ),
+                "tagline": settings.APP_SETTINGS.get("INVOICE_LETTERHEAD_MOTTO"),
+                "address1": settings.APP_SETTINGS.get("INVOICE_LETTERHEAD_ADDR_LINE1"),
+                "address2": settings.APP_SETTINGS.get("INVOICE_LETTERHEAD_ADDR_LINE2"),
+                "phone": settings.APP_SETTINGS.get("INVOICE_LETTERHEAD_CONTACT_PHONE"),
+                "email": settings.APP_SETTINGS.get("INVOICE_LETTERHEAD_CONTACT_EMAIL"),
+                "website": settings.APP_SETTINGS.get("INVOICE_LETTERHEAD_WEBSITE"),
+            },
+            "invoice_number": invoice_number,
+            "patient": patient,
+            "invoice_date": invoice_date,
+            "payment": {
+                "paid": payment_info.amount_paid,
+                "balance_due": payment_info.amount_due,
+                "payment_method": payment_info.payment_method,
+                "payment_date": payment_info.payment_due_date,
+            },
+            "policy_line": settings.APP_SETTINGS.get("INVOICE_POLICY_LINE"),
+        }
 
         template = get_template(self.get_template_names()[0])
         html = template.render(context)

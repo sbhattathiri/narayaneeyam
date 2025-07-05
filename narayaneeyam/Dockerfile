@@ -24,6 +24,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     fonts-dejavu \
     fonts-dejavu-core \
+    fonts-noto-core \
+    fonts-noto-unhinted \
+    fonts-noto-cjk \
+    fonts-noto-color-emoji \
+    fonts-noto-extra \
     && mkdir -p /tmp/.cache/fontconfig \
     && chmod -R 777 /tmp/.cache \
     && fc-cache -f -v \

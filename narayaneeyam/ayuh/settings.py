@@ -133,64 +133,37 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
 
-COLOR_BLUE = "#35a2c4e3"
-COLOR_GREEN = "#b6d73ff7"
 COLOR_OCHRE = "#966d29"
 COLOR_WHITE = "#ffffff"
-COLOR_BLACK = "#000000"
 
 APP_PROFILES = {
     "NARAYANEEYAM": {
-        "FACILITY_NAME": "NARAYANEEYAM ARYA AYURVEDAM",
-        "MOTTO": "त्रायस्व सर्वामयात्",
+        # AAPLICATION PROPS
+        "APPLICATION_FACILITY_NAME": "NARAYANEEYAM ARYA AYURVEDAM",
+        "APPLICATION_MOTTO": "त्रायस्व सर्वामयात्",
+        "APPLICATION_PRIMARY_COLOR": COLOR_OCHRE,
+        "APPLICATION_BUTTON_TEXT_COLOR": COLOR_WHITE,
+        # INVOICE PROPS
+        "INVOICE_LETTERHEAD_NAME_LINE1": "Ashtavaidyan Vayaskara Krishnan Mooss Memorial",
+        "INVOICE_LETTERHEAD_NAME_LINE2": "NARAYANEEYAM ARYA AYURVEDAM",
+        "INVOICE_LETTERHEAD_MOTTO": "त्रायस्व सर्वामयात्",
+        "INVOICE_LETTERHEAD_ADDR_LINE1": "Vayaskarakunnu, Kottayam",
+        "INVOICE_LETTERHEAD_ADDR_LINE2": "Edappally, Ernakulam",
+        "INVOICE_LETTERHEAD_CONTACT_PHONE": "☎ +91 8289816629",
+        "INVOICE_LETTERHEAD_CONTACT_EMAIL": "✉ gopika.nkn@gmail.com",
+        "INVOICE_LETTERHEAD_LOGO_IMAGE": "narayaneeyam.png",
+        "INVOICE_LETTERHEAD_WEBSITE": "https://narayaneeyam.in",
+        "INVOICE_SIGN_IMAGE": "",
+        "INVOICE_POLICY_LINE": "Products once sold shall not be taken back.",
+        # OTHER CONFIGS
         "PATIENT_CONSENT_MANDATORY": False,
-        "PRIMARY_COLOR": COLOR_OCHRE,
-        "BUTTON_TEXT_COLOR": COLOR_WHITE,
-        "LETTERHEAD_NAME": "NARAYANEEYAM ARYA AYURVEDAM",
-        "LETTERHEAD_MOTTO": "त्रायस्व सर्वामयात्",
-        "LETTERHEAD_ADDR_LINE1": "Vayaskara, Kottayam",
-        "LETTERHEAD_ADDR_LINE2": "Edappally, Ernakulam",
-        "LETTERHEAD_CONTACT1": "☎ +91 9495350727",
-        "LETTERHEAD_CONTACT2": "✉ gopika.nkn@gmail.com",
-        "LETTERHEAD_LOGO_IMAGE": "narayaneeyam.png",
-        "LETTERHEAD_SIGN_IMAGE": "ayurarogya.png",
-        "PAYMENT_BANK": "",
-        "PAYMENT_ACCOUNT": "",
-        "SOFTWARE_NAME": "SMGN",
-        "SOFTWARE_VERSION": "v0.2",
-        "ICON": "narayaneeyam.png",
-        "ABN": "",
         "APPLY_GST": True,
-        "GST_ON_CONSULTATION": "18",
-        "CONSULTATION_FEE": "250",
-    },
-    "AYURAROGYA": {
-        "FACILITY_NAME": "AYURAROGYA PTY LTD",
-        "MOTTO": "Healing Space For Better Living",
-        "PATIENT_CONSENT_MANDATORY": True,
-        "PRIMARY_COLOR": COLOR_BLUE,
-        "BUTTON_TEXT_COLOR": COLOR_WHITE,
-        "LETTERHEAD_NAME": "AYURAROGYA PTY LTD",
-        "LETTERHEAD_MOTTO": "Healing Space For Better Living",
-        "LETTERHEAD_ADDR_LINE1": "18 Kingscliff Avenue",
-        "LETTERHEAD_ADDR_LINE2": "Clyde, Victoria 3978",
-        "LETTERHEAD_CONTACT1": "☎ +61 470 432 355",
-        "LETTERHEAD_CONTACT2": "✉ info@ayurarogya.com.au",
-        "LETTERHEAD_LOGO_IMAGE": "ayurarogya.png",
-        "LETTERHEAD_SIGN_IMAGE": "ayurarogya.png",
-        "PAYMENT_BANK": "083004",
-        "PAYMENT_ACCOUNT": "787255444",
-        "SOFTWARE_NAME": "SMGN",
-        "SOFTWARE_VERSION": "v0.2",
-        "ICON": "ayurarogya.png",
-        "ABN": "27 660 465 878",
-        "APPLY_GST": True,
-        "GST_ON_CONSULTATION": "10",
-        "CONSULTATION_FEE": "80",
+        "GST_ON_CONSULTATION": 0,
+        "CONSULTATION_FEE": 250,
     },
 }
 
-ACTIVE_APP_PROFILE = os.getenv("ACTIVE_APP_PROFILE", "AYURAROGYA")
+ACTIVE_APP_PROFILE = os.getenv("ACTIVE_APP_PROFILE", "NARAYANEEYAM")
 
 APP_SETTINGS = APP_PROFILES[ACTIVE_APP_PROFILE]
 
@@ -199,7 +172,7 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = f"/{APP_NAME}/login/"
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": f"{APP_SETTINGS['FACILITY_NAME'].upper()} API",
+    "TITLE": f"SMGN API",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_DIST": "SIDECAR",
