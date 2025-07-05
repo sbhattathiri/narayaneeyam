@@ -21,24 +21,27 @@
 <body>
 <div class="d-flex justify-content-between align-items-center">
     <div class="me-3">
-        <img alt="Ayurarogya Logo" src="{{ logo_url }}" style="height: 60px;">
+        <img alt="Logo" src="{{ logo_url }}" style="height: 60px;">
     </div>
     <div class="text-center flex-grow-1">
-        <h2 class="mb-0" style="color: green">{{ clinic.name }}</h2>
-        <small class="text-muted"><i>{{ clinic.tagline }}</i></small>
+        <h5 class="mb-0" style="color: green;">{{ clinic.name_line1 }}<br>{{ clinic.name_line2 }}</h5>
+        <small style="color: #966d29; font-family: 'Noto Sans Devanagari', sans-serif;">{{ clinic.tagline }}</small>
     </div>
     <div class="contact-info">
+        {{ clinic.website }}
+        <br>
+        <br>
         {{ clinic.address1 }}<br>
         {{ clinic.address2 }}<br>
         {{ clinic.phone }}<br>
-        {{ clinic.email }}
+        {{ clinic.email }}<br>
     </div>
 </div>
 
 <hr>
+
 <div class="text-primary" style="font-size: 0.7rem;">TAX INVOICE</div>
-
-
+<br>
 <table class="table table-borderless table-sm w-auto">
     <tr>
         <td style="width: 150px; font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>INVOICE TO:</strong></td>
@@ -56,7 +59,7 @@
 
 
 <div class="text-primary" style="font-size: 0.7rem;">BILLING DETAILS</div>
-
+<br>
 <table class="table table-striped table-sm w-auto">
     <thead>
     <tr style="font-size: 0.7rem;">
@@ -91,7 +94,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td style="font-size: 0.7rem;"><strong>₹ {{ gross_total2 | floatformat:2 }}</strong></td>
+        <td style="font-size: 0.7rem;"><strong>₹ {{ gross_total | floatformat:2 }}</strong></td>
     </tr>
     </tbody>
 </table>
@@ -99,11 +102,11 @@
 <hr>
 
 <div class="text-primary" style="font-size: 0.7rem;">PAYMENT DETAILS</div>
-
+<br>
 <table class="table table-borderless table-sm w-auto">
     <tr>
         <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>PAYMENT DATE:</strong></td>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ payment.payment_date }}</td>
+        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ payment.payment_date | date:"F j, Y" }}</td>
     </tr>
     <tr>
         <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>PAYMENT METHOD:</strong></td>
@@ -124,7 +127,6 @@
 
 <div class="d-flex justify-content-between align-items-center">
     <div class="me-3">
-
     </div>
     <div class="text-center flex-grow-1">
         <h2 class="mb-0"></h2>
@@ -132,8 +134,13 @@
     <div class="me-3">
         <p style="font-size: 0.5rem;">Signed: {{ clinic.name }}</p>
     </div>
-
 </div>
+
+<footer>
+  <p style="text-align: center; font-size: 14px; color: gray;">
+    Products once sold shall not be taken back.
+  </p>
+</footer>
 
 </body>
 </html>

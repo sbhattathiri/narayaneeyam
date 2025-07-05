@@ -5,6 +5,7 @@ from django_hashids import (
     HashidsField,
 )
 
+from ayuh_core.enums.ayuh_enums import PAYMENT_METHOD_CHOICES
 from ayuh_core.models import (
     AyuhModel,
 )
@@ -77,18 +78,6 @@ class MedicineSalePaymentInfo(AyuhModel):
         null=True,
         blank=True,
     )
-    gst_on_consultation_fee = models.DecimalField(
-        max_digits=12,
-        decimal_places=2,
-        null=True,
-        blank=True,
-    )
-    total_consultation_amount_with_gst = models.DecimalField(
-        max_digits=12,
-        decimal_places=2,
-        null=True,
-        blank=True,
-    )
     gross_amount = models.DecimalField(
         max_digits=12,
         decimal_places=2,
@@ -107,7 +96,12 @@ class MedicineSalePaymentInfo(AyuhModel):
         null=True,
         blank=True,
     )
-    payment_method = models.CharField(max_length=255, null=True, blank=True)
+    payment_method = models.CharField(
+        choices=PAYMENT_METHOD_CHOICES,
+        null=True,
+        blank=True,
+        default="",
+    )
     payment_due_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):

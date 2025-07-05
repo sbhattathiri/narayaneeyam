@@ -45,6 +45,14 @@ REFERRAL_SOURCE_CHOICES = [
 ]
 
 
+PAYMENT_METHOD_CHOICES = [
+    ("CARD", "card"),
+    ("CASH", "cash"),
+    ("UPI", "upi"),
+    ("OTHER", "other"),
+]
+
+
 class ChoiceEnum(Enum):
 
     @classmethod

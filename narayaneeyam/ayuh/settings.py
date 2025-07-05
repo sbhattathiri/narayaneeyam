@@ -138,28 +138,28 @@ COLOR_WHITE = "#ffffff"
 
 APP_PROFILES = {
     "NARAYANEEYAM": {
-        "FACILITY_NAME": "NARAYANEEYAM ARYA AYURVEDAM",
-        "MOTTO": "त्रायस्व सर्वामयात्",
+        # AAPLICATION PROPS
+        "APPLICATION_FACILITY_NAME": "NARAYANEEYAM ARYA AYURVEDAM",
+        "APPLICATION_MOTTO": "त्रायस्व सर्वामयात्",
+        "APPLICATION_PRIMARY_COLOR": COLOR_OCHRE,
+        "APPLICATION_BUTTON_TEXT_COLOR": COLOR_WHITE,
+        # INVOICE PROPS
+        "INVOICE_LETTERHEAD_NAME_LINE1": "Ashtavaidyan Vayaskara Krishnan Mooss Memorial",
+        "INVOICE_LETTERHEAD_NAME_LINE2": "NARAYANEEYAM ARYA AYURVEDAM",
+        "INVOICE_LETTERHEAD_MOTTO": "त्रायस्व सर्वामयात्",
+        "INVOICE_LETTERHEAD_ADDR_LINE1": "Vayaskarakunnu, Kottayam",
+        "INVOICE_LETTERHEAD_ADDR_LINE2": "Edappally, Ernakulam",
+        "INVOICE_LETTERHEAD_CONTACT_PHONE": "☎ +91 8289816629",
+        "INVOICE_LETTERHEAD_CONTACT_EMAIL": "✉ gopika.nkn@gmail.com",
+        "INVOICE_LETTERHEAD_LOGO_IMAGE": "narayaneeyam.png",
+        "INVOICE_LETTERHEAD_WEBSITE": "https://narayaneeyam.in",
+        "INVOICE_SIGN_IMAGE": "",
+        "INVOICE_POLICY_LINE": "Products once sold shall not be taken back.",
+        # OTHER CONFIGS
         "PATIENT_CONSENT_MANDATORY": False,
-        "PRIMARY_COLOR": COLOR_OCHRE,
-        "BUTTON_TEXT_COLOR": COLOR_WHITE,
-        "LETTERHEAD_NAME": "NARAYANEEYAM ARYA AYURVEDAM",
-        "LETTERHEAD_MOTTO": "त्रायस्व सर्वामयात्",
-        "LETTERHEAD_ADDR_LINE1": "Vayaskara, Kottayam",
-        "LETTERHEAD_ADDR_LINE2": "Edappally, Ernakulam",
-        "LETTERHEAD_CONTACT_PHONE": "☎ +91 9495350727",
-        "LETTERHEAD_CONTACT_EMAIL": "✉ gopika.nkn@gmail.com",
-        "LETTERHEAD_LOGO_IMAGE": "narayaneeyam.png",
-        "LETTERHEAD_SIGN_IMAGE": "narayaneeyam.png",
-        "PAYMENT_BANK": "",
-        "PAYMENT_ACCOUNT": "",
-        "SOFTWARE_NAME": "SMGN",
-        "SOFTWARE_VERSION": "v0.2",
-        "ICON": "narayaneeyam.png",
-        "ABN": "",
         "APPLY_GST": True,
-        "GST_ON_CONSULTATION": "18",
-        "CONSULTATION_FEE": "250",
+        "GST_ON_CONSULTATION": 0,
+        "CONSULTATION_FEE": 250,
     },
 }
 
@@ -172,7 +172,7 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = f"/{APP_NAME}/login/"
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": f"{APP_SETTINGS['FACILITY_NAME'].upper()} API",
+    "TITLE": f"SMGN API",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_DIST": "SIDECAR",
