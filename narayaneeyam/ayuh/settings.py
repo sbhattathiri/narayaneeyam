@@ -3,18 +3,19 @@ import sys
 from pathlib import (
     Path,
 )
+import environ
 
-APP_NAME = "dhanwanthari"
+APP_NAME = "narayaneeyam"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = (
-    "django-insecure-b84o3pdb%^bt(jiwvzt$37xe%h(7xzj!bmw8p%zp8ucmpw#ur0"  # TODO:
-)
+env = environ.Env(DEBUG=(bool, False))
+environ.Env.read_env(BASE_DIR / ".env")
 
-DEBUG = True  # TODO
+SECRET_KEY = env("SECRET_KEY")
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 DJANGO_APPS = [
     "django.contrib.admin",
@@ -83,14 +84,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "ayuh.wsgi.application"
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "narayaneeyam",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "host.docker.internal",
-        "PORT": "5432",
-    }
+    "default": env.db(),
 }
 
 AUTH_USER_MODEL = "ayuh_core.AyuhUser"
@@ -119,7 +113,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-DJANGO_HASHIDS_SALT = "my_salt"  # TODO:
+
+DJANGO_HASHIDS_SALT = env("DJANGO_HASHIDS_SALT")
 DJANGO_HASHIDS_MIN_LENGTH = 5
 DJANGO_HASHIDS_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
@@ -127,7 +122,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # collect static; to be .gitignored
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -138,12 +133,10 @@ COLOR_WHITE = "#ffffff"
 
 APP_PROFILES = {
     "NARAYANEEYAM": {
-        # AAPLICATION PROPS
         "APPLICATION_FACILITY_NAME": "NARAYANEEYAM ARYA AYURVEDAM",
         "APPLICATION_MOTTO": "त्रायस्व सर्वामयात्",
         "APPLICATION_PRIMARY_COLOR": COLOR_OCHRE,
         "APPLICATION_BUTTON_TEXT_COLOR": COLOR_WHITE,
-        # INVOICE PROPS
         "INVOICE_LETTERHEAD_NAME_LINE1": "Ashtavaidyan Vayaskara Krishnan Mooss Memorial",
         "INVOICE_LETTERHEAD_NAME_LINE2": "NARAYANEEYAM ARYA AYURVEDAM",
         "INVOICE_LETTERHEAD_MOTTO": "त्रायस्व सर्वामयात्",
@@ -155,7 +148,6 @@ APP_PROFILES = {
         "INVOICE_LETTERHEAD_WEBSITE": "https://narayaneeyam.in",
         "INVOICE_SIGN_IMAGE": "",
         "INVOICE_POLICY_LINE": "Products once sold shall not be taken back.",
-        # OTHER CONFIGS
         "PATIENT_CONSENT_MANDATORY": False,
         "APPLY_GST": True,
         "GST_ON_CONSULTATION": 0,
@@ -163,7 +155,7 @@ APP_PROFILES = {
     },
 }
 
-ACTIVE_APP_PROFILE = os.getenv("ACTIVE_APP_PROFILE", "NARAYANEEYAM")
+ACTIVE_APP_PROFILE = env("ACTIVE_APP_PROFILE")
 
 APP_SETTINGS = APP_PROFILES[ACTIVE_APP_PROFILE]
 

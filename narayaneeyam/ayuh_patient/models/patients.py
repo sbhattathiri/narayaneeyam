@@ -1,5 +1,5 @@
 import uuid
-
+from django.core.exceptions import ValidationError
 from django.db import (
     models,
 )
@@ -84,12 +84,14 @@ class Patient(AyuhModel):
 
     @property
     def full_name(self):
-        self.first_name = self.first_name.upper() if self.first_name else ""
-        self.middle_name = self.middle_name.upper() if self.middle_name else ""
-        self.last_name = self.last_name.upper() if self.last_name else ""
-        return f"{self.last_name}, {self.first_name} {self.middle_name}"
+        first_name = self.first_name.upper() if self.first_name else ""
+        middle_name = self.middle_name.upper() if self.middle_name else ""
+        last_name = self.last_name.upper() if self.last_name else ""
+        return f"{last_name}, {first_name} {middle_name}"
 
     def clean(self):
+        if not any([self.first_name, self.last_name]):
+            raise ValidationError("Either first name or last name is required")
         self.first_name = self.first_name.upper() if self.first_name else ""
         self.middle_name = self.middle_name.upper() if self.middle_name else ""
         self.last_name = self.last_name.upper() if self.last_name else ""
