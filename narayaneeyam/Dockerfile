@@ -48,9 +48,10 @@ ENV LOG_DIR=$LOG_DIR
 RUN pip install --no-cache-dir -r requirements.txt && \
     pip install --no-cache-dir gunicorn==21.2.0
 
-RUN mkdir -p "$LOG_DIR/gunicorn/" && \
-    addgroup --system appgroup && \
+RUN addgroup --system appgroup && \
     adduser --system --ingroup appgroup appuser
+
+RUN mkdir -p "$LOG_DIR"
 
 RUN chown -R appuser:appgroup ${APPROOT} && \
     chown -R appuser:appgroup "$LOG_DIR"
