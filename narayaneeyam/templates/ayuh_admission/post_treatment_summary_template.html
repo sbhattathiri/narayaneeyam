@@ -1,0 +1,50 @@
+{% extends "ayuh_base_template.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<h3 class="mb-4" style="color: {{ PRIMARY_COLOR }};">Treatment Summary</h3>
+<form method="post" role="form">
+    {% csrf_token %}
+
+    {{ formset.management_form }}
+
+    {% if formset.non_form_errors %}
+    <div class="alert alert-danger">
+        {% for error in formset.non_form_errors %}
+            <div>{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="form-row font-weight-bold border-bottom mb-2 pb-1">
+        <div class="col-3">Treatment</div>
+        <div class="col-3">Therapist</div>
+        <div class="col-3">Treatment Date</div>
+        <div class="col-3">Cost</div>
+    </div>
+
+    {% for form in formset %}
+    <div class="form-row align-items-center mb-2">
+        <div class="col-3">
+            <input type="text" class="form-control-plaintext" readonly value="{{ form.treatment.value }}">
+        </div>
+        <div class="col-3">
+            <input type="text" class="form-control-plaintext" readonly value="{{ form.therapist.value }}">
+        </div>
+        <div class="col-3">
+            <input type="text" class="form-control-plaintext" readonly value="{{ form.treatment_date.value }}">
+        </div>
+        <div class="col-3">
+            {{ form.cost|add_class:"form-control" }}
+            {{ form.cost.errors }}
+        </div>
+        {{ form.treatment_id }}
+    </div>
+    {% endfor %}
+
+    <hr class="border border-secondary" style="color: {{ PRIMARY_COLOR }}">
+
+    <button class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" type="submit">
+        Generate Summary
+    </button>
+</form>
+{% endblock %}

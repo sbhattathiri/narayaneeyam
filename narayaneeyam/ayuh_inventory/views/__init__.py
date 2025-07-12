@@ -1,5 +1,5 @@
-from .get_invoice import (
-    InvoiceView,
+from .get_sale_invoice import (
+    SaleInvoiceView,
 )
 from .get_medicine_sale import MedicineSaleDetailView
 from .list_medicines import (
@@ -18,7 +18,7 @@ from .post_medicine_sale_payment_info import MedicineSalePaymentInfoCreateView
 
 __all__ = [
     "ConsultationSearchView",
-    "InvoiceView",
+    "SaleInvoiceView",
     "MedicineListView",
     "MedicineSaleCreateView",
     "MedicineSaleDetailView",
