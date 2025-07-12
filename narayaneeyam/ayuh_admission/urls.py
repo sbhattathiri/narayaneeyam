@@ -33,7 +33,7 @@ urlpatterns = [
     ),
     path(
         "ayuh/admission/<int:pk>/treatment/summary/invoice",
-        GenerateDischargePDFView.as_view(),
+        views.DischargeInvoiceView.as_view(),
         name="generate_discharge_invoice",
     ),
 ]
