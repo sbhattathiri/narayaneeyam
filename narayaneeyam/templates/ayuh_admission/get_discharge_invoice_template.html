@@ -6,10 +6,9 @@
     <style>
         body {
            font-family: "DejaVu Sans Condensed", sans-serif;
-           padding: 30px;
            font-size: 12px;
            margin: 0;
-           padding: 0;
+           padding: 30px;
        }
        table.table-compact td, table.table-compact th {
             padding-top: 2px;
@@ -27,10 +26,8 @@
         <h5 class="mb-0" style="color: green;">{{ clinic.name_line1 }}<br>{{ clinic.name_line2 }}</h5>
         <small style="color: #966d29; font-family: 'Noto Sans Devanagari', sans-serif;">{{ clinic.tagline }}</small>
     </div>
-    <div class="contact-info">
-        {{ clinic.website }}
-        <br>
-        <br>
+    <div class="contact-info text-right">
+        {{ clinic.website }}<br><br>
         {{ clinic.address1 }}<br>
         {{ clinic.address2 }}<br>
         {{ clinic.phone }}<br>
@@ -40,107 +37,86 @@
 
 <hr>
 
-<div class="text-primary" style="font-size: 0.7rem;">TAX INVOICE</div>
+<div class="text-primary" style="font-size: 0.7rem;">DISCHARGE SUMMARY</div>
 <br>
 <table class="table table-borderless table-sm w-auto">
-    <tr>
-        <td style="width: 150px; font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>INVOICE TO:</strong></td>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ patient }}</td>
-    </tr>
-    <tr>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>INVOICE #:</strong></td>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ invoice_number }}</td>
-    </tr>
-    <tr>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>INVOICE DATE:</strong></td>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ invoice_date }}</td>
-    </tr>
+    <tr><td class="font-weight-bold">Patient Name:</td><td>{{ patient.name }}</td></tr>
+    <tr><td class="font-weight-bold">Gender / Age:</td><td>{{ patient.gender }} / {{ patient.age }}</td></tr>
+    <tr><td class="font-weight-bold">Date of Birth:</td><td>{{ patient.dob }}</td></tr>
+    <tr><td class="font-weight-bold">Admission Date:</td><td>{{ admission.admission_date }}</td></tr>
+    <tr><td class="font-weight-bold">Discharge Date:</td><td>{{ discharge.discharge_date }}</td></tr>
+    <tr><td class="font-weight-bold">Room:</td><td>{{ admission.room }}</td></tr>
+    <tr><td class="font-weight-bold">Discharge Status:</td><td>{{ discharge.status }}</td></tr>
 </table>
 
-
-<div class="text-primary" style="font-size: 0.7rem;">BILLING DETAILS</div>
 <br>
-<table class="table table-striped table-sm w-auto">
+<div class="text-primary" style="font-size: 0.7rem;">CONSULTATION DETAILS</div>
+<br>
+<table class="table table-borderless table-sm w-auto">
+    <tr><td class="font-weight-bold">Doctor:</td><td>{{ consultation.consulting_doctor }}</td></tr>
+    <tr><td class="font-weight-bold">Consultation Date:</td><td>{{ consultation.consultation_date }}</td></tr>
+    <tr><td class="font-weight-bold">Diagnosis:</td><td>{{ consultation.diagnosis }}</td></tr>
+    <tr><td class="font-weight-bold">Concerns:</td><td>{{ consultation.patient_concerns }}</td></tr>
+    <tr><td class="font-weight-bold">Onset From:</td><td>{{ consultation.patient_concerns_onset_from }}</td></tr>
+</table>
+
+<br>
+<div class="text-primary" style="font-size: 0.7rem;">PATIENT PROFILE</div>
+<br>
+<table class="table table-borderless table-sm w-auto">
+    <tr><td class="font-weight-bold">Address:</td><td>{{ patient_profile.patient_address }}</td></tr>
+    <tr><td class="font-weight-bold">Conditions:</td><td>{{ patient_profile.pre_existing_health_conditions }}</td></tr>
+    <tr><td class="font-weight-bold">Medications:</td><td>{{ patient_profile.pre_existing_medications }}</td></tr>
+    <tr><td class="font-weight-bold">Allergies:</td><td>{{ patient_profile.known_allergies }}</td></tr>
+    <tr><td class="font-weight-bold">Medication Allergies:</td><td>{{ patient_profile.known_medication_allergies }}</td></tr>
+    <tr><td class="font-weight-bold">Surgeries:</td><td>{{ patient_profile.previous_surgeries }}</td></tr>
+</table>
+
+<br>
+<div class="text-primary" style="font-size: 0.7rem;">TREATMENT DETAILS</div>
+<br>
+<table class="table table-bordered table-sm table-compact">
     <thead>
-    <tr style="font-size: 0.7rem;">
-        <th style="font-size: 0.7rem;">#</th>
-        <th style="font-size: 0.7rem;">Item</th>
-        <th style="font-size: 0.7rem;">Manufacturer</th>
-        <th style="font-size: 0.7rem;">Price</th>
-        <th style="font-size: 0.7rem;">GST RATE</th>
-        <th style="font-size: 0.7rem;">Quantity</th>
-        <th style="font-size: 0.7rem;">GST AMOUNT</th>
-        <th style="font-size: 0.7rem;">TOTAL AMOUNT</th>
+    <tr class="bg-light">
+        <th>#</th>
+        <th>Treatment</th>
+        <th>Date</th>
+        <th>Therapist</th>
+        <th>Amount (₹)</th>
     </tr>
     </thead>
     <tbody>
-    {% for item in items %}
+    {% for row in treatment %}
     <tr>
-        <td style="font-size: 0.7rem;">{{ forloop.counter }}</td>
-        <td style="font-size: 0.7rem;">{{ item.name }}</td>
-        <td style="font-size: 0.7rem;">{{ item.manufacturer }}</td>
-        <td style="font-size: 0.7rem;">₹ {{ item.price }}</td>
-        <td style="font-size: 0.7rem;">{{ item.gst }}%</td>
-        <td style="font-size: 0.7rem;">{{ item.quantity }}</td>
-        <td style="font-size: 0.7rem;">₹ {{ item.gst_amount | floatformat:2 }}</td>
-        <td style="font-size: 0.7rem;">₹ {{ item.amount_incl_gst | floatformat:2 }}</td>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ row.treatment }}</td>
+        <td>{{ row.treatment_date }}</td>
+        <td>{{ row.therapist }}</td>
+        <td>{{ row.amount }}</td>
     </tr>
     {% endfor %}
-    <tr>
-        <td></td>
-        <td style="font-size: 0.7rem;"><strong>GROSS TOTAL</strong></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td style="font-size: 0.7rem;"><strong>₹ {{ gross_total | floatformat:2 }}</strong></td>
-    </tr>
     </tbody>
 </table>
 
-<hr>
-
-<div class="text-primary" style="font-size: 0.7rem;">PAYMENT DETAILS</div>
 <br>
-<table class="table table-borderless table-sm w-auto">
-    <tr>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>PAYMENT DATE:</strong></td>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ payment.payment_date | date:"F j, Y" }}</td>
-    </tr>
-    <tr>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>PAYMENT METHOD:</strong></td>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">{{ payment.payment_method }}</td>
-    </tr>
-    <tr>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>AMOUNT PAID:</strong></td>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">₹ {{ payment.paid|floatformat:2 }}</td>
-    </tr>
-    <tr>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;"><strong>BALANCE DUE:</strong></td>
-        <td style="font-size: 0.7rem; line-height: 1; padding: 2px 8px;">₹ {{ payment.balance_due|floatformat:2 }}</td>
-    </tr>
-</table>
+<div class="d-flex justify-content-end">
+    <p class="text-right" style="font-size: 0.7rem;">Total Amount: ₹ </p>
+</div>
 
 <hr>
-
 
 <div class="d-flex justify-content-between align-items-center">
+    <div class="me-3"></div>
+    <div class="text-center flex-grow-1"></div>
     <div class="me-3">
-    </div>
-    <div class="text-center flex-grow-1">
-        <h2 class="mb-0"></h2>
-    </div>
-    <div class="me-3">
-        <p style="font-size: 0.5rem;">Signed: {{ clinic.name }}</p>
+        <p style="font-size: 0.5rem;">Signed: {{ clinic.name_line1 }}</p>
     </div>
 </div>
 
 <footer>
   <p style="text-align: center; font-size: 14px; color: gray;">
-    Products once sold shall not be taken back.
+    Thank you for choosing {{ clinic.name_line1 }}. Wishing you good health!
   </p>
 </footer>
-
 </body>
 </html>
