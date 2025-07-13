@@ -26,14 +26,14 @@ urlpatterns = [
         views.AdmissionUpdateView.as_view(),
         name="put_admission",
     ),
-    path(
-        "ayuh/admission/<int:pk>/treatment/summary/",
-        views.TreatmentSummaryView.as_view(),
-        name="post_treatment_summary",
-    ),
+    # path(
+    #     "ayuh/admission/<int:pk>/treatment/summary/",
+    #     views.TreatmentSummaryView.as_view(),
+    #     name="post_treatment_summary",
+    # ),
     path(
         "ayuh/admission/<int:pk>/treatment/summary/invoice",
         views.DischargeInvoiceView.as_view(),
-        name="generate_discharge_invoice",
+        name="get_discharge_invoice",
     ),
 ]
