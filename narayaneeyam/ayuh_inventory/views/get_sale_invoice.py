@@ -1,8 +1,6 @@
 import tempfile
 
-from ayuh import (
-    settings,
-)
+from django.conf import settings
 from django.http import (
     HttpResponse,
 )
@@ -22,10 +20,10 @@ from ayuh_inventory.models import MedicineSale, MedicineSalePaymentInfo
 from hashids import Hashids
 
 
-class InvoiceView(View):
+class SaleInvoiceView(View):
 
     def get_template_names(self):
-        return ["ayuh_inventory/narayaneeyam_invoice_template.html"]
+        return ["ayuh_inventory/get_sale_invoice_template.html"]
 
     def get(self, request, *args, **kwargs):
         sale_id = kwargs.get("pk")

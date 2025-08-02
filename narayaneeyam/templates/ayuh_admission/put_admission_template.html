@@ -42,7 +42,7 @@
                 <label>Treatment Date</label>
             </div>
             <div class="col-3">
-                <label>Treatment Feedback</label>
+                <label>Amount</label>
             </div>
         </div>
 
@@ -58,7 +58,7 @@
                     {{ treatment_formset.empty_form.treatment_date }}
                 </div>
                 <div class="col-3">
-                    {{ treatment_formset.empty_form.treatment_feedback }}
+                    {{ treatment_formset.empty_form.treatment_amount }}
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
                 {{ form.treatment_date }}
             </div>
             <div class="col-3">
-                {{ form.treatment_feedback }}
+                {{ form.treatment_amount }}
             </div>
         </div>
 
@@ -105,8 +105,6 @@
             treatmentFormSetDiv.appendChild(wrapper);
             totalTreatmentFormsInput.value = totalTreatmentForms + 1;
         });
-
-        
     });
 </script>
 {% endblock %}

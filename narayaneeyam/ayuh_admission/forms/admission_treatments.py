@@ -16,7 +16,7 @@ class TreatmentForm(forms.ModelForm):
             "treatment",
             "therapist",
             "treatment_date",
-            "treatment_feedback",
+            "treatment_amount",
         ]
         widgets = {
             "treatment": forms.TextInput(
@@ -35,7 +35,7 @@ class TreatmentForm(forms.ModelForm):
                     "type": "date",
                 }
             ),
-            "treatment_feedback": forms.TextInput(
+            "treatment_amount": forms.TextInput(
                 attrs={
                     "class": "form-control",
                 }

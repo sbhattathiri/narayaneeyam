@@ -45,6 +45,4 @@ gunicorn ayuh.wsgi \
  --access-logfile "$GUNICORN_ACCESS_LOG" \
  --error-logfile "$GUNICORN_ERROR_LOG"
 
-#tail -f /dev/null
-#sleep infinity
 

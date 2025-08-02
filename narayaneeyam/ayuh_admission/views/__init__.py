@@ -11,9 +11,12 @@ from .put_admission import (
     AdmissionUpdateView,
 )
 
+from .get_discharge_invoice import DischargeInvoiceView
+
 __all__ = [
     "AdmissionDetailView",
     "AdmissionListView",
     "AdmissionCreateView",
     "AdmissionUpdateView",
+    "DischargeInvoiceView",
 ]

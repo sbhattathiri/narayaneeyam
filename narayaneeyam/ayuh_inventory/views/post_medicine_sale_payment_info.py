@@ -11,7 +11,6 @@ from django.urls import (
     reverse_lazy,
 )
 from django.db.models import F, Sum, ExpressionWrapper, DecimalField
-from django.conf import settings
 
 from ayuh_inventory.models import MedicineSaleItem
 

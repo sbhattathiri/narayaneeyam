@@ -26,4 +26,9 @@ urlpatterns = [
         views.AdmissionUpdateView.as_view(),
         name="put_admission",
     ),
+    path(
+        "ayuh/admission/<int:pk>/treatment/summary/invoice",
+        views.DischargeInvoiceView.as_view(),
+        name="get_discharge_invoice",
+    ),
 ]

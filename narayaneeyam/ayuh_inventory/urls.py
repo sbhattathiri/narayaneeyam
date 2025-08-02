@@ -38,7 +38,7 @@ urlpatterns = [
     ),
     path(
         "ayuh/inventory/sale/<int:pk>/invoice",
-        views.InvoiceView.as_view(),
-        name="get_invoice",
+        views.SaleInvoiceView.as_view(),
+        name="get_sale_invoice",
     ),
 ]

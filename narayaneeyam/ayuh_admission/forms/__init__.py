@@ -6,6 +6,7 @@ from .admissions import (
     AdmissionForm,
 )
 
+
 __all__ = [
     "AdmissionForm",
     "TreatmentForm",

@@ -34,4 +34,9 @@ class Treatment(AyuhModel):
         related_name="treatment_therapist",
     )
     treatment_date = models.DateField()
-    treatment_feedback = models.TextField(null=True, blank=True)
+    treatment_amount = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        null=True,
+        blank=True,
+    )

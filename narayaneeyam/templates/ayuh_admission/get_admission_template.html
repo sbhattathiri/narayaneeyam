@@ -23,7 +23,7 @@
         <th>Treatment</th>
         <th>Therapist</th>
         <th>Treatment Date</th>
-        <th>Treatment Feedback</th>
+        <th>Amount</th>
     </tr>
     </thead>
     <tbody>
@@ -32,10 +32,11 @@
         <td>{{ admission_treatment.treatment }}</td>
         <td>{{ admission_treatment.therapist }}</td>
         <td>{{ admission_treatment.treatment_date }}</td>
-        <td>{{ admission_treatment.treatment_feedback }}</td>
+        <td>{{ admission_treatment.treatment_amount }}</td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
 <a class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" href="{% url 'put_admission' admission.pk %}">Update Admission</a>
+<a class="btn btn-md" style="background-color: {{ PRIMARY_COLOR }}; color: {{ BUTTON_TEXT_COLOR }}" href="{% url 'get_discharge_invoice' admission.pk %}">Discharge Invoice</a>
 {% endblock %}
