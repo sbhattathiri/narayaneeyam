@@ -5,9 +5,13 @@ from django.db import (
 from ayuh_consultation.models.appointments import (
     Appointment,
 )
+from ayuh_consultation.managers import ConsultationManager
 
 
 class Consultation(Appointment):
+    # Add optimized manager
+    objects = ConsultationManager()
+    
     consultation_date = models.DateTimeField(auto_now_add=True)
     patient_concerns = models.TextField(null=True, blank=True)
     patient_concerns_onset_from = models.CharField(

@@ -5,9 +5,13 @@ from django.db import (
 from ayuh_core.models import (
     AyuhModel,
 )
+from ayuh_facility.managers import RoomManager
 
 
 class Room(AyuhModel):
+    # Add optimized manager
+    objects = RoomManager()
+    
     room_name = models.CharField(null=True, blank=True)
     room_type = models.CharField(null=True, blank=True)
     room_category = models.CharField(null=True, blank=True)

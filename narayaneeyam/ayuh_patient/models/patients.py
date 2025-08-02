@@ -18,6 +18,7 @@ from ayuh_core.enums import (
 from ayuh_core.models import (
     AyuhModel,
 )
+from ayuh_patient.managers import PatientManager
 
 
 def generate_registration_id():
@@ -25,6 +26,9 @@ def generate_registration_id():
 
 
 class Patient(AyuhModel):
+    # Add optimized manager
+    objects = PatientManager()
+    
     patient_hash_id = HashidsField(real_field_name="id")
     patient_registration_id = models.CharField(
         max_length=10,

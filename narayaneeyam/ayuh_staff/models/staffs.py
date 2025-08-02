@@ -16,9 +16,12 @@ from ayuh_core.enums import (
 from ayuh_core.models import (
     AyuhModel,
 )
+from ayuh_staff.managers import StaffManager
 
 
 class Staff(AyuhModel):
+    # Add optimized manager
+    objects = StaffManager()
 
     class Meta:
         unique_together = (

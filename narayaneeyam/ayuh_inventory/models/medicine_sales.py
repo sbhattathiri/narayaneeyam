@@ -12,9 +12,17 @@ from ayuh_core.models import (
 from ayuh_patient.models import (
     Patient,
 )
+from ayuh_inventory.managers import (
+    MedicineSaleManager,
+    MedicineSaleItemManager,
+    MedicineSalePaymentInfoManager,
+)
 
 
 class MedicineSale(AyuhModel):
+    # Add optimized manager
+    objects = MedicineSaleManager()
+    
     sale_id = HashidsField(real_field_name="id")
     sale_date = models.DateTimeField(auto_now_add=True)
     patient = models.ForeignKey(
@@ -35,6 +43,9 @@ class MedicineSale(AyuhModel):
 
 
 class MedicineSaleItem(AyuhModel):
+    # Add optimized manager
+    objects = MedicineSaleItemManager()
+    
     sale = models.ForeignKey(
         "MedicineSale", on_delete=models.CASCADE, related_name="items"
     )
@@ -50,6 +61,9 @@ class MedicineSaleItem(AyuhModel):
 
 
 class MedicineSalePaymentInfo(AyuhModel):
+    # Add optimized manager
+    objects = MedicineSalePaymentInfoManager()
+    
     payment_hash_id = HashidsField(real_field_name="id")
     sale = models.ForeignKey(
         "MedicineSale", on_delete=models.CASCADE, related_name="payment"

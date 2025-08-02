@@ -17,9 +17,13 @@ from ayuh_patient.models import (
 from ayuh_staff.models import (
     Staff,
 )
+from ayuh_consultation.managers import AppointmentManager
 
 
 class Appointment(AyuhModel):
+    # Add optimized manager
+    objects = AppointmentManager()
+    
     appointment_hash_id = HashidsField(real_field_name="id")
     patient = models.ForeignKey(
         Patient,

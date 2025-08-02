@@ -11,9 +11,13 @@ from ayuh_consultation.models.consultations import (
 from ayuh_core.models import (
     AyuhModel,
 )
+from ayuh_consultation.managers import PrescriptionManager
 
 
 class Prescription(AyuhModel):
+    # Add optimized manager
+    objects = PrescriptionManager()
+    
     prescription_hash_id = HashidsField(real_field_name="id")
     consultation = models.ForeignKey(
         Consultation,

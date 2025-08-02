@@ -17,9 +17,12 @@ from ayuh_core.enums import (
 from ayuh_patient.models.patients import (
     Patient,
 )
+from ayuh_patient.managers import PatientProfileManager
 
 
 class PatientProfile(Patient):
+    # Add optimized manager
+    objects = PatientProfileManager()
 
     class Meta:
         verbose_name = "Patient Profile"
