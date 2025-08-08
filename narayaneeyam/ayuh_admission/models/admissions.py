@@ -25,9 +25,13 @@ from ayuh_consultation.models.consultations import (
 from ayuh_core.models import (
     AyuhModel,
 )
+from ayuh_admission.managers import AdmissionManager
 
 
 class Admission(AyuhModel):
+    # Add optimized manager
+    objects = AdmissionManager()
+    
     admission_hash_id = HashidsField(real_field_name="id")
     consultation = models.ForeignKey(
         Consultation,

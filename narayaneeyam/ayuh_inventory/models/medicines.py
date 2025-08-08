@@ -8,9 +8,13 @@ from ayuh_core.enums import (
 from ayuh_core.models import (
     AyuhModel,
 )
+from ayuh_inventory.managers import MedicineManager
 
 
 class Medicine(AyuhModel):
+    # Add optimized manager
+    objects = MedicineManager()
+    
     sku = models.CharField(
         max_length=50,
         unique=True,
