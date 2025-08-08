@@ -685,19 +685,20 @@ class PerformanceMonitoringMiddleware:
 ### **Docker and Deployment Optimization**
 
 #### **17. Optimize Docker Configuration**
+
 ```dockerfile
 # Multi-stage build optimization
 FROM python:3.13.1-slim-bookworm as builder
 
 WORKDIR /app
-COPY requirements.txt .
+COPY ../narayaneeyam/requirements.txt .
 RUN pip install --user --no-cache-dir -r requirements.txt
 
 FROM python:3.13.1-slim-bookworm
 
 # Copy only necessary files
 COPY --from=builder /root/.local /root/.local
-COPY . /app
+COPY ../narayaneeyam /app
 
 # Optimize Python
 ENV PYTHONOPTIMIZE=1
